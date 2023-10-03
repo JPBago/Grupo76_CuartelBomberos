@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Siniestro {
 
     private int cod_siniestro;
-    private String tipo;
+    private Especialidad tipo;
     private LocalDate fechaSinietro;
     private double coord_X;
     private double coord_Y;
@@ -19,7 +19,7 @@ public class Siniestro {
     public Siniestro() {
     }
 
-    public Siniestro(String tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
+    public Siniestro(Especialidad tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
         this.coord_X = coord_X;
@@ -30,7 +30,7 @@ public class Siniestro {
         this.codBrigada = codBrigada;
     }
 
-    public Siniestro(int cod_siniestro, String tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
+    public Siniestro(int cod_siniestro, Especialidad tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
         this.cod_siniestro = cod_siniestro;
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
@@ -50,11 +50,11 @@ public class Siniestro {
         this.cod_siniestro = cod_siniestro;
     }
 
-    public String getTipo() {
+    public Especialidad getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Especialidad tipo) {
         this.tipo = tipo;
     }
 
@@ -116,7 +116,7 @@ public class Siniestro {
 
     @Override
     public String toString() {
-        return "Siniestro Nº " + cod_siniestro + ", tipo=" + tipo
+        return "Siniestro Nº " + cod_siniestro + ", tipo=" + tipo.name()
                 + ", fechaSinietro=" + fechaSinietro + ", detalles=" + detalles
                 + ", fechaResoluc=" + fechaResoluc + ", puntuacion=" + puntuacion
                 + ", codBrigada=" + codBrigada.getCodBrigada();
