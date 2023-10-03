@@ -2,31 +2,31 @@ package grupo76_cuartelbomberos.entidades;
 
 import java.time.LocalDate;
 
-
-
 public class Bomberos {
 
     private int codBombero;
     private int DNI;
     private String nombreApe;
     private String grupoSang;
-    private LocalDate fechaNac; 
+    private LocalDate fechaNac;
     private int celular;
     private int codBrigada;
+    private boolean activo;
 
     public Bomberos() {
     }
 
-    public Bomberos(int DNI, String nombreApe, String grupoSang, LocalDate fechaNac, int celular, int codBrigada) {
+    public Bomberos(int DNI, String nombreApe, String grupoSang, LocalDate fechaNac, int celular, int codBrigada, boolean activo) {
         this.DNI = DNI;
         this.nombreApe = nombreApe;
         this.grupoSang = grupoSang;
         this.fechaNac = fechaNac;
         this.celular = celular;
         this.codBrigada = codBrigada;
+        this.activo = activo;
     }
 
-    public Bomberos(int codBombero, int DNI, String nombreApe, String grupoSang, LocalDate fechaNac, int celular, int codBrigada) {
+    public Bomberos(int codBombero, int DNI, String nombreApe, String grupoSang, LocalDate fechaNac, int celular, int codBrigada, boolean activo) {
         this.codBombero = codBombero;
         this.DNI = DNI;
         this.nombreApe = nombreApe;
@@ -34,6 +34,7 @@ public class Bomberos {
         this.fechaNac = fechaNac;
         this.celular = celular;
         this.codBrigada = codBrigada;
+        this.activo = activo;
     }
 
     public int getCodBombero() {
@@ -92,10 +93,19 @@ public class Bomberos {
         this.codBrigada = codBrigada;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     @Override
     public String toString() {
-        return "codBombero=" + codBombero + ", DNI=" + DNI + ", nombreApe=" + nombreApe + ", grupoSang=" + grupoSang + ", fechaNac=" + fechaNac + ", celular=" + celular + ", codBrigada=" + codBrigada;
+        return "codBombero=" + codBombero + ", DNI=" + DNI + ", nombreApe=" + nombreApe
+                + ", grupoSang=" + grupoSang + ", fechaNac=" + fechaNac + ", celular="
+                + celular + ", codBrigada=" + codBrigada + " , estado = " + activo;
     }
-    
-    
+
 }
