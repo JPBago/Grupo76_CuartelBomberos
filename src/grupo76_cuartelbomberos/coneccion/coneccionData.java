@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class coneccionData {
 
-    private static final String URL = "jdbc:maiadb://localhost/";
+    private static final String URL = "jdbc:mariadb://localhost/";
     private static final String DB = "bomberos";//ver si la base de datos coinside
     private static final String USER = "root";
     private static final String PASS = "";
@@ -23,7 +23,7 @@ public class coneccionData {
                 Class.forName("org.mariadb.jdbc.Driver");
                 System.out.println("Drivers cargados exitosamente.");
                 // Conectar al servidor de la base de datos
-                connection = DriverManager.getConnection(URL + DB, USER, PASS);
+                connection = DriverManager.getConnection(URL+DB,USER,PASS);
                 System.out.println("Conexión establecida con exito.");
 
             } catch (ClassNotFoundException ex) {
@@ -35,7 +35,7 @@ public class coneccionData {
         return connection;
     }
 
-    public static void cerrarConexion() {
+    public void cerrarConexion() {
         try {
             if (connection != null) {
                 connection.close();

@@ -1,6 +1,8 @@
 package grupo76_cuartelbomberos.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+
 
 public class Bomberos {
 
@@ -8,14 +10,14 @@ public class Bomberos {
     private int DNI;
     private String nombreApe;
     private String grupoSang;
-    private Date fechaNac; 
+    private LocalDate fechaNac; 
     private int celular;
     private int codBrigada;
 
     public Bomberos() {
     }
 
-    public Bomberos(int DNI, String nombreApe, String grupoSang, Date fechaNac, int celular, int codBrigada) {
+    public Bomberos(int DNI, String nombreApe, String grupoSang, LocalDate fechaNac, int celular, int codBrigada) {
         this.DNI = DNI;
         this.nombreApe = nombreApe;
         this.grupoSang = grupoSang;
@@ -24,7 +26,7 @@ public class Bomberos {
         this.codBrigada = codBrigada;
     }
 
-    public Bomberos(int codBombero, int DNI, String nombreApe, String grupoSang, Date fechaNac, int celular, int codBrigada) {
+    public Bomberos(int codBombero, int DNI, String nombreApe, String grupoSang, LocalDate fechaNac, int celular, int codBrigada) {
         this.codBombero = codBombero;
         this.DNI = DNI;
         this.nombreApe = nombreApe;
@@ -66,11 +68,11 @@ public class Bomberos {
         this.grupoSang = grupoSang;
     }
 
-    public Date getFechaNac() {
+    public LocalDate getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(Date fechaNac) {
+    public void setFechaNac(LocalDate fechaNac) {
         this.fechaNac = fechaNac;
     }
 

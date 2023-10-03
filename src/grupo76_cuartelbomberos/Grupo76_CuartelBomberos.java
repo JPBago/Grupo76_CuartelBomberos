@@ -11,7 +11,7 @@ public class Grupo76_CuartelBomberos {
         
         Connection con=coneccionData.Conectar();
         
-        coneccionData.cerrarConexion();
+        
     
     }
 
