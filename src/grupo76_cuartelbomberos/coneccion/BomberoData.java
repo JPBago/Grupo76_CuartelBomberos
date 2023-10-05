@@ -108,10 +108,10 @@ public class BomberoData {
                 bom = new Bomberos();
                 bom.setCodBombero(rs.getInt("codBombero"));
                 bom.setDNI(rs.getInt("DNI"));
-                bom.setNombreApe(rs.getString("Nombre Completo"));
-                bom.setGrupoSang(rs.getString("Grupo Sanguíneo"));
-                bom.setFechaNac(rs.getDate("Fecha Nacimiento").toLocalDate());
-                bom.setCelular(rs.getString("Celular"));
+                bom.setNombreApe(rs.getString("nombreApe"));
+                bom.setGrupoSang(rs.getString("grupoSang"));
+                bom.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                bom.setCelular(rs.getString("celular"));
                 listaBom.add(bom);  
             }
             rs.close();
