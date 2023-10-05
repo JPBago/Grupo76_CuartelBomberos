@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,5 +95,32 @@ public class BomberoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n"+ ex.getMessage());
         }   
+    }
+    public List<Bomberos>listarBomberos(){
+        List<Bomberos>listaBom=new ArrayList<>();
+        Bomberos bom = null;
+        String sql="SELECT * FROM bombero WHERE codBrigada=? ";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+            while (rs.next())  {
+                bom = new Bomberos();
+                bom.setCodBombero(rs.getInt("codBombero"));
+                bom.setDNI(rs.getInt("DNI"));
+                bom.setNombreApe(rs.getString("Nombre Completo"));
+                bom.setGrupoSang(rs.getString("Grupo Sanguíneo"));
+                bom.setFechaNac(rs.getDate("Fecha Nacimiento").toLocalDate());
+                bom.setCelular(rs.getString("Celular"));
+                listaBom.add(bom);  
+            }
+            rs.close();
+            ps.close();
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n"+ex.getMessage());
+        }
+        
+        return listaBom;
     }
 }
