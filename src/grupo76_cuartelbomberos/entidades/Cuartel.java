@@ -7,13 +7,13 @@ public class Cuartel {
     private String direccion;
     private double coord_X;
     private double coord_Y;
-    private int telefono;
+    private String telefono;
     private String email;
 
     public Cuartel() {
     }
 
-    public Cuartel(String nombreCuartel, String direccion, double coord_X, double coord_Y, int telefono, String email) {
+    public Cuartel(String nombreCuartel, String direccion, double coord_X, double coord_Y, String telefono, String email) {
         this.nombreCuartel = nombreCuartel;
         this.direccion = direccion;
         this.coord_X = coord_X;
@@ -22,7 +22,7 @@ public class Cuartel {
         this.email = email;
     }
 
-    public Cuartel(int codCuartel, String nombreCuartel, String direccion, double coord_X, double coord_Y, int telefono, String email) {
+    public Cuartel(int codCuartel, String nombreCuartel, String direccion, double coord_X, double coord_Y, String telefono, String email) {
         this.codCuartel = codCuartel;
         this.nombreCuartel = nombreCuartel;
         this.direccion = direccion;
@@ -72,11 +72,11 @@ public class Cuartel {
         this.coord_Y = coord_Y;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
