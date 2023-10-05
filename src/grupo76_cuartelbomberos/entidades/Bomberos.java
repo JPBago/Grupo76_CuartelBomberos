@@ -10,7 +10,7 @@ public class Bomberos {
     private String grupoSang;
     private LocalDate fechaNac;
     private String celular;
-    private Brigada codBrigada;
+    private Brigada Brigada;
     private boolean activo;
 
     public Bomberos() {
@@ -22,7 +22,7 @@ public class Bomberos {
         this.grupoSang = grupoSang;
         this.fechaNac = fechaNac;
         this.celular = celular;
-        this.codBrigada = codBrigada;
+        this.Brigada = codBrigada;
         this.activo = activo;
     }
 
@@ -33,7 +33,7 @@ public class Bomberos {
         this.grupoSang = grupoSang;
         this.fechaNac = fechaNac;
         this.celular = celular;
-        this.codBrigada = codBrigada;
+        this.Brigada = codBrigada;
         this.activo = activo;
     }
 
@@ -85,12 +85,12 @@ public class Bomberos {
         this.celular = celular;
     }
 
-    public Brigada getCodBrigada() {
-        return codBrigada;
+    public Brigada getBrigada() {
+        return Brigada;
     }
 
-    public void setCodBrigada(Brigada codBrigada) {
-        this.codBrigada = codBrigada;
+    public void setBrigada(Brigada Brigada) {
+        this.Brigada = Brigada;
     }
 
     public boolean isActivo() {
@@ -106,7 +106,7 @@ public class Bomberos {
     public String toString() {
         return "codBombero=" + codBombero + ", DNI=" + DNI + ", nombreApe=" + nombreApe
                 + ", grupoSang=" + grupoSang + ", fechaNac=" + fechaNac + ", celular="
-                + celular + ", codBrigada=" + codBrigada.getCodBrigada() + " , estado = " + activo;
+                + celular + ", codBrigada=" + Brigada.getCodBrigada() + " , estado = " + activo;
     }
 
 }
