@@ -79,4 +79,19 @@ public class BomberoData {
         }
     }
 
+    public void eliminarBombero(int codBombero){
+        String sql= "UPDATE bombero SET activo=0 WHERE codBombero=? ";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, codBombero);
+            int uno =ps.executeUpdate();
+            if (uno==1) {
+               JOptionPane.showMessageDialog(null, "Se eliminó el Bombero Correctamente.");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n"+ ex.getMessage());
+        }   
+    }
 }
