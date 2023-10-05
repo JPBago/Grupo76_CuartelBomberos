@@ -94,7 +94,7 @@ public class BomberoData {
     
     public List<Bomberos>listarBomberosActivos(){
         List<Bomberos>listaBom=new ArrayList<>();
-        Bomberos bom;
+        Bomberos bom; Brigada brig=new Brigada();
         String sql="SELECT * FROM bombero Where activo = 1";
         
         try {
@@ -108,6 +108,9 @@ public class BomberoData {
                 bom.setGrupoSang(rs.getString("grupoSang"));
                 bom.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 bom.setCelular(rs.getString("celular"));
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                bom.setBrigada(brig);
+                bom.setActivo(rs.getBoolean("activo"));
                 listaBom.add(bom);  
             }
             rs.close();
@@ -122,7 +125,7 @@ public class BomberoData {
     
     public List<Bomberos>listarBomberosXBrigada(int codBrigada){
         List<Bomberos>listaBom=new ArrayList<>();
-        Bomberos bom;
+        Bomberos bom; Brigada brig=new Brigada();
         String sql="SELECT * FROM bombero WHERE codBrigada=? ";
         
         try {
@@ -137,9 +140,9 @@ public class BomberoData {
                 bom.setGrupoSang(rs.getString("grupoSang"));
                 bom.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 bom.setCelular(rs.getString("celular"));
-                Brigada brig=new Brigada();
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 bom.setBrigada(brig);
+                bom.setActivo(rs.getBoolean("activo"));
                 listaBom.add(bom);  
             }
             rs.close();
