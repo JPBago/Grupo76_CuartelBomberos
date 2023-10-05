@@ -75,6 +75,11 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BBomberos.setBorder(null);
         BBomberos.setText("Bomberos");
+        BBomberos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BBomberosMouseClicked(evt);
+            }
+        });
         BBomberos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BBomberosActionPerformed(evt);
@@ -120,14 +125,18 @@ public class ViewMenu extends javax.swing.JFrame {
     insc.setVisible(true);
     Escritorio.add(insc);
     Escritorio.moveToFront(insc);*/
-        escritorio.removeAll();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BBomberosActionPerformed
+
+    private void BBomberosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBomberosMouseClicked
+       escritorio.removeAll();
         escritorio.repaint();
         Bomberos bomber = new Bomberos ();
         bomber.setVisible(true);
         escritorio.add(bomber);
-        escritorio.moveToFront(bomber);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BBomberosActionPerformed
+        escritorio.moveToFront(bomber); // TODO add your handling code here:
+    }//GEN-LAST:event_BBomberosMouseClicked
 
     /**
      * @param args the command line arguments
