@@ -24,9 +24,9 @@ public class ViewMenu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
     }
-    public Image getIconImage () { 
+        public Image getIconImage () { 
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("grupo76_cuartelbomberos/Imagenes/iconbomber.png"));
-    return retValue ;
+        return retValue ;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +49,6 @@ public class ViewMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cuartel de bomberos Voluntarios");
         setIconImage(getIconImage());
-        setMaximumSize(new java.awt.Dimension(1000, 682));
         setMinimumSize(new java.awt.Dimension(1000, 682));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,11 +77,6 @@ public class ViewMenu extends javax.swing.JFrame {
         BBomberos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BBomberosMouseClicked(evt);
-            }
-        });
-        BBomberos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BBomberosActionPerformed(evt);
             }
         });
         jMenuBar1.add(BBomberos);
@@ -118,19 +112,9 @@ public class ViewMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BSalirMouseClicked
 
-    private void BBomberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBomberosActionPerformed
-        /* Escritorio.removeAll();
-    Escritorio.repaint();
-    FormularioInscripcion insc = new FormularioInscripcion ();
-    insc.setVisible(true);
-    Escritorio.add(insc);
-    Escritorio.moveToFront(insc);*/
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BBomberosActionPerformed
-
     private void BBomberosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBomberosMouseClicked
-       escritorio.removeAll();
+
+        escritorio.removeAll();
         escritorio.repaint();
         Bomberos bomber = new Bomberos ();
         bomber.setVisible(true);
