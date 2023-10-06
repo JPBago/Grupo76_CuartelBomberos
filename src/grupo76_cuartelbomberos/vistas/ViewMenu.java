@@ -116,7 +116,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         escritorio.removeAll();
         escritorio.repaint();
-        Bomberos bomber = new Bomberos ();
+        GestionBomber bomber = new GestionBomber ();
         bomber.setVisible(true);
         escritorio.add(bomber);
         escritorio.moveToFront(bomber); // TODO add your handling code here:

@@ -1,12 +1,13 @@
 
+
 package grupo76_cuartelbomberos.vistas;
+import grupo76_cuartelbomberos.entidades.*;
 
 
-
-public class Bomberos extends javax.swing.JInternalFrame {
+public class GestionBomber extends javax.swing.JInternalFrame {
 
      
-    public Bomberos() {
+    public GestionBomber() {
         initComponents();
         cargarComboSanguineo ();
         
@@ -249,10 +250,10 @@ public class Bomberos extends javax.swing.JInternalFrame {
         CBSanguineo.setSelectedIndex(-1);
     }
     
-    private void rellenarCampos (Bomberos bomber){
+    private void rellenarCampos (GestionBomber bomber){
         
         if (bomber != null ) {
-          //TextId.setText(bomber.getcodBombero()+ "");
+         TextId.setText(bomber()+ "");
           //TextDni.setText();
         }
     }
