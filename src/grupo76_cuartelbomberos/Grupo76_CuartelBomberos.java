@@ -1,4 +1,3 @@
-
 package grupo76_cuartelbomberos;
 
 import grupo76_cuartelbomberos.coneccion.*;
@@ -21,21 +20,20 @@ public class Grupo76_CuartelBomberos {
 //        String nom="Perez, Jaime", sangre="(A+)", celular="3816200440";
 //        Bomberos bomba = new Bomberos(DNI, nom, sangre, LocalDate.now(), celular, brig, true);
 //
-        BomberoData bomD = new BomberoData();
+//        BomberoData bomD = new BomberoData();
 //        bomD.guardarBombero(bomba);
-//System.out.println("Bomberos totales:\n");        
-//for(Bomberos bombero:bomD.listarBomberosActivos()){        
-//    System.out.println(bombero.getNombreApe());
-//}  
-System.out.println("bomberos en la brigada 1:\n"); 
-for(Bomberos bombero:bomD.listarBomberosXBrigada(1)){        
-    System.out.println(bombero.toString());
-}        
+//
+//        System.out.println("Bomberos totales:\n");
+//        for (Bomberos bombero : bomD.listarBomberosActivos()) {
+//            System.out.println(bombero.toString());
+//        }
+//        System.out.println("bomberos en la brigada 1:\n");
+//        for (Bomberos bombero : bomD.listarBomberosXBrigada(1)) {
+//            System.out.println(bombero.toString());
+//        }
 
-        
-    
-//ViewMenu ventana = new ViewMenu();
-//ventana.setVisible(true);
+        ViewMenu ventana = new ViewMenu();
+        ventana.setVisible(true);
     }
 
 }
