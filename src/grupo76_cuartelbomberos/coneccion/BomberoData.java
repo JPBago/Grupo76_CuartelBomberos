@@ -92,6 +92,37 @@ public class BomberoData {
         }   
     }
     
+    public Bomberos buscarBombero(int id){
+        Bomberos bomb=new Bomberos();
+        Brigada brig=new Brigada();
+        String sql="SELECT * FROM bombero Where codBombero = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            if (rs.next()){
+                bomb.setCodBombero(rs.getInt("codBombero"));
+                bomb.setDNI(rs.getInt("DNI"));
+                bomb.setNombreApe(rs.getString("nombreApe"));
+                bomb.setGrupoSang(rs.getString("grupoSang"));
+                bomb.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                bomb.setCelular(rs.getString("celular"));
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                bomb.setBrigada(brig);
+                bomb.setActivo(rs.getBoolean("activo"));
+                
+            } else {
+                JOptionPane.showMessageDialog(null,"No hay Bombero con la ID = "+id);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"ERROR Al ACCEDER A LA TABLA BOMBERO\n"+ex.getMessage());
+        }
+        
+        return bomb;
+    }
     public List<Bomberos>listarBomberosActivos(){
         List<Bomberos>listaBom=new ArrayList<>();
         Bomberos bom; Brigada brig=new Brigada();
