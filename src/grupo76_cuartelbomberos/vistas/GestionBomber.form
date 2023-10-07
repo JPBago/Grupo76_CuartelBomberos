@@ -273,6 +273,9 @@
               <Dimension value="[100, 20]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BBuscarBomberxIDActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BNuevoBomber">
           <Properties>
@@ -284,6 +287,9 @@
               <Dimension value="[100, 20]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BNuevoBomberActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BModiBomber">
           <Properties>

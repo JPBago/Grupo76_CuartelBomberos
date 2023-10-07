@@ -1,7 +1,12 @@
 
 
 package grupo76_cuartelbomberos.vistas;
+import grupo76_cuartelbomberos.coneccion.BomberoData;
 import grupo76_cuartelbomberos.entidades.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
 
 
 public class GestionBomber extends javax.swing.JInternalFrame {
@@ -101,10 +106,20 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BBuscarBomberxID.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BBuscarBomberxID.setText("Buscar por ID:");
         BBuscarBomberxID.setPreferredSize(new java.awt.Dimension(100, 20));
+        BBuscarBomberxID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarBomberxIDActionPerformed(evt);
+            }
+        });
 
         BNuevoBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BNuevoBomber.setText("Nuevo");
         BNuevoBomber.setPreferredSize(new java.awt.Dimension(100, 20));
+        BNuevoBomber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BNuevoBomberActionPerformed(evt);
+            }
+        });
 
         BModiBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BModiBomber.setText("Modificar");
@@ -192,6 +207,149 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_BSalirBomActionPerformed
 
+    private void BNuevoBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoBomberActionPerformed
+        
+        BomberoData bom = new BomberoData();
+        Bomberos bomber =new Bomberos ();
+        
+        int bomId = 0;
+        int bomDni = 0;
+        
+        if (TextId.getText().compareTo("")!= 0){
+            
+            try {
+                  bomId = Integer.parseInt (TextId.getText ());
+                  bomDni = Integer.parseInt (TextDni.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");  
+            }
+            bomber.setCodBombero(bomId);
+            bomber.setDNI(bomDni);
+            }
+        String apeNom = TextApeNom.getText();
+        if (!validarString(apeNom)) {
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
+            return;
+        }
+        bomber.setNombreApe(apeNom);
+        String GrupoSan;
+        if (CBSanguineo != null){
+        GrupoSan = (String) CBSanguineo.getSelectedItem();
+        } else { 
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
+            return;
+        }
+        bomber.getGrupoSang();
+        
+        LocalDate cumple ;
+        try{
+            cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
+            return;
+        }
+        bomber.setFechaNac(cumple);
+        
+        String caraCelu = TextCaracteristicaCel.getText();
+        String chelu = TextCelu.getText();
+         
+        bomber.setCelular(caraCelu);
+        bomber.setCelular(chelu);
+        if  (bomber.isActivo()){
+            LabelEstado.setText("Bombero Activo");
+        } else {
+            LabelEstado.setText("Bombero Dado de Baja");
+          }
+        
+            
+            
+            
+        
+
+        /*//Agrego nuevo alumno
+
+        alumnoData alum = new alumnoData();
+        Alumno alu = new Alumno();
+        int aluId, aluDni;
+
+        if (TextIdAlumno.getText().compareTo("") != 0) {
+
+            try {
+                aluId = Integer.parseInt(TextIdAlumno.getText());
+                aluDni = Integer.parseInt(TextDNI.getText());
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
+                return;
+            }
+            alu.setIdAlumno(aluId);
+            alu.setDni(aluDni);
+
+        } else {
+            try {
+                aluDni = Integer.parseInt(TextDNI.getText());
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
+                return;
+            }
+            alu.setDni(aluDni);
+        }
+        String ape = TextApellido.getText();
+        if (!validarString(ape)) {
+            JOptionPane.showMessageDialog(this, "Ingrese un Apellido válido");
+            return;
+        }
+        String nom = TextNom.getText();
+        if (!validarString(nom)) {
+            JOptionPane.showMessageDialog(this, "Ingrese un Nombre válido");
+            return;
+        }
+        alu.setApeliido(ape);
+        alu.setNombre(nom);
+        LocalDate botonCumple;
+        try{
+            botonCumple = BFechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(this, "Coloque una fecha válida");
+            return;
+        }
+        
+        alu.setFechaNacimiento(botonCumple);
+        //el boton me devuelve un tipo date, el .toInstant lo pasa a un Instant, el .atZone 
+        //usa la zona horaria por defecto del sistema y agregando un .localDate devuelve un local date
+        boolean estado = EstadoActivoAlu.isSelected();
+        alu.setEstado(estado);
+        // se crea una variable del tipo Alumno con los atributos del action en el que estamos, 
+        //despues llamamos al metedo de la clase alumnoData y guardamos alumno
+        alum.guardarAlumno(alu);
+        borrarCampos();
+
+    }                      */
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BNuevoBomberActionPerformed
+
+    private void BBuscarBomberxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBomberxIDActionPerformed
+
+        // Buscamos el alumno segun el ID ingresado:
+        int numId=0;
+
+        try {
+            numId = Integer.parseInt(TextId.getText());
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número de ID valido.");
+            borrarCampos();
+            return;
+        }
+
+        BomberoData bombId = new BomberoData();
+        Bomberos bomb = bombId.buscarBombero(numId);
+
+        // Rellenamos el resto de los campos segun la búsqueda obtenida
+       rellenarCampos(bomb);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BBuscarBomberxIDActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscarBomberxID;
@@ -228,11 +386,11 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         TextId.setText("");
         TextDni.setText ("");
         TextApeNom.setText("");
-        CBSanguineo.setSelectedItem(null);
+        CBSanguineo.setSelectedIndex(-1);
         FechaNaci.setDate(null);
         TextCaracteristicaCel.setText ("");
         TextCelu.setText("");
-        LabelEstado.setText ("Estado no asignado.");
+        LabelEstado.setText (" ------ ");
 }
 
 
@@ -250,28 +408,39 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         CBSanguineo.setSelectedIndex(-1);
     }
     
-    private void rellenarCampos (GestionBomber bomber){
+    private void rellenarCampos (Bomberos bomber){
         
         if (bomber != null ) {
-         TextId.setText(bomber()+ "");
-          //TextDni.setText();
-        }
-    }
-    /*private void rellenarCampos(Alumno alum) {
-
-        if (alum != null) {
-            TextDNI.setText(alum.getDni() + "");
-            TextIdAlumno.setText(alum.getIdAlumno() + "");
-            TextApellido.setText(alum.getApellido());
-            TextNom.setText(alum.getNombre());
-            BFechaNaci.setDate(Date.valueOf(alum.getFechaNacimiento()));
-            EstadoActivoAlu.setSelected(alum.isEstado());
-            BEliminarAlumno.setEnabled(true);
-            BGuardarAlumno.setEnabled(true);
+        TextId.setText(bomber.getCodBombero()+ "");
+        TextDni.setText(bomber.getDNI()+ "");
+        TextApeNom.setText(bomber.getNombreApe()+"");
+        CBSanguineo.setSelectedItem(bomber.getGrupoSang()+ "");
+        FechaNaci.setDate(Date.valueOf(bomber.getFechaNac() +""));
+        TextCaracteristicaCel.setText(bomber.getCelular()+"");
+        TextCelu.setText(bomber.getCelular()+"");
+        if  (bomber.isActivo()){
+            LabelEstado.setText("Bombero Activo");
         } else {
-            //JOptionPane.showMessageDialog(this, "No existe alumno con los datos Ingresados. Corrobore los datos o ingrese un nuevo alumno ");
-            BNuevoAlumno.setEnabled(true);
-            return;
+            LabelEstado.setText("Bombero Dado de Baja");
+          }
+        } 
+    }
+    
+    private static boolean validarString(String s) {
+        if (s == null || s.equals("")) {
+            return false;
         }
-    }*/
+        char c;
+        boolean flag = false;
+        for (int i = 0; i < s.length(); i++) {
+            c = s.charAt(i);
+            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == ' ') {
+                flag = true;
+            } else {
+                return false;
+            }
+        }
+        return flag;
+    }
+   
 }
