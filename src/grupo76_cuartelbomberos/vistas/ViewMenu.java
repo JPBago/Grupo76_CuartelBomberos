@@ -44,6 +44,8 @@ public class ViewMenu extends javax.swing.JFrame {
         BCuartel = new javax.swing.JMenu();
         BBrigada = new javax.swing.JMenu();
         BSiniestro = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         BSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,6 +93,18 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BSiniestro.setBorder(null);
         BSiniestro.setText("Siniestro");
+
+        jMenuItem1.setText("Declarar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        BSiniestro.add(jMenuItem1);
+
+        jMenuItem2.setText("Concluir");
+        BSiniestro.add(jMenuItem2);
+
         jMenuBar1.add(BSiniestro);
 
         BSalir.setBorder(null);
@@ -121,6 +135,16 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.add(bomber);
         escritorio.moveToFront(bomber); // TODO add your handling code here:
     }//GEN-LAST:event_BBomberosMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        DeclaracionSiniestro siniestro = new DeclaracionSiniestro();
+        siniestro.setVisible(true);
+        escritorio.add(siniestro);
+        escritorio.moveToFront(siniestro);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,5 +194,7 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JLabel Fondo;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

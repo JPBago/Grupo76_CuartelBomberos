@@ -31,6 +31,8 @@ public class Grupo76_CuartelBomberos {
 //        for (Bomberos bombero : bomD.listarBomberosXBrigada(1)) {
 //            System.out.println(bombero.toString());
 //        }
+        
+//        System.out.println(bomD.buscarBombero(2).toString());
 
         ViewMenu ventana = new ViewMenu();
         ventana.setVisible(true);
