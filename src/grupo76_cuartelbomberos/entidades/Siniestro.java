@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class Siniestro {
 
-    private int cod_siniestro;
+    private int codSiniestro;
     private Especialidad tipo;
     private LocalDate fechaSinietro;
     private double coord_X;
@@ -14,7 +14,7 @@ public class Siniestro {
     private String detalles;
     private LocalDate fechaResoluc;
     private int puntuacion;
-    private Brigada codBrigada;
+    private Brigada Brigada;
 
     public Siniestro() {
     }
@@ -27,11 +27,11 @@ public class Siniestro {
         this.detalles = detalles;
         this.fechaResoluc = fechaResoluc;
         this.puntuacion = puntuacion;
-        this.codBrigada = codBrigada;
+        this.Brigada = codBrigada;
     }
 
     public Siniestro(int cod_siniestro, Especialidad tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
-        this.cod_siniestro = cod_siniestro;
+        this.codSiniestro = cod_siniestro;
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
         this.coord_X = coord_X;
@@ -39,15 +39,15 @@ public class Siniestro {
         this.detalles = detalles;
         this.fechaResoluc = fechaResoluc;
         this.puntuacion = puntuacion;
-        this.codBrigada = codBrigada;
+        this.Brigada = codBrigada;
     }
 
-    public int getCod_siniestro() {
-        return cod_siniestro;
+    public int getCodSiniestro() {
+        return codSiniestro;
     }
 
-    public void setCod_siniestro(int cod_siniestro) {
-        this.cod_siniestro = cod_siniestro;
+    public void setCodSiniestro(int codSiniestro) {
+        this.codSiniestro = codSiniestro;
     }
 
     public Especialidad getTipo() {
@@ -106,20 +106,20 @@ public class Siniestro {
         this.puntuacion = puntuacion;
     }
 
-    public Brigada getCodBrigada() {
-        return codBrigada;
+    public Brigada getBrigada() {
+        return Brigada;
     }
 
-    public void setCodBrigada(Brigada codBrigada) {
-        this.codBrigada = codBrigada;
+    public void setBrigada(Brigada Brigada) {
+        this.Brigada = Brigada;
     }
 
     @Override
     public String toString() {
-        return "Siniestro Nº " + cod_siniestro + ", tipo=" + tipo.name()
+        return "Siniestro Nº " + codSiniestro + ", tipo=" + tipo.name()
                 + ", fechaSinietro=" + fechaSinietro + ", detalles=" + detalles
                 + ", fechaResoluc=" + fechaResoluc + ", puntuacion=" + puntuacion
-                + ", codBrigada=" + codBrigada.getCodBrigada();
+                + ", codBrigada=" + Brigada.getCodBrigada();
     }
 
 }
