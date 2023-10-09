@@ -46,6 +46,7 @@ public class ViewMenu extends javax.swing.JFrame {
         BSiniestro = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        MenuConsultas = new javax.swing.JMenu();
         BSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,15 +85,30 @@ public class ViewMenu extends javax.swing.JFrame {
         jMenuBar1.add(BBomberos);
 
         BCuartel.setBorder(null);
-        BCuartel.setText("Cuartel");
+        BCuartel.setText("Cuarteles");
+        BCuartel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BCuartelMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(BCuartel);
 
         BBrigada.setBorder(null);
-        BBrigada.setText("Brigada");
+        BBrigada.setText("Brigadas");
+        BBrigada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BBrigadaMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(BBrigada);
 
         BSiniestro.setBorder(null);
-        BSiniestro.setText("Siniestro");
+        BSiniestro.setText("Siniestros");
+        BSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BSiniestroActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("Declarar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +122,9 @@ public class ViewMenu extends javax.swing.JFrame {
         BSiniestro.add(jMenuItem2);
 
         jMenuBar1.add(BSiniestro);
+
+        MenuConsultas.setText("Consultas");
+        jMenuBar1.add(MenuConsultas);
 
         BSalir.setBorder(null);
         BSalir.setText("Salir");
@@ -145,6 +164,42 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.add(siniestro);
         escritorio.moveToFront(siniestro);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void BCuartelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BCuartelMouseClicked
+    
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+       Cuarteles cuartel =new Cuarteles ();
+       cuartel.setVisible(true);
+        escritorio.add(cuartel);
+        escritorio.moveToFront(cuartel);
+// TODO add your handling code here:
+    }//GEN-LAST:event_BCuartelMouseClicked
+
+    private void BBrigadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBrigadaMouseClicked
+    
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        Brigadas brigada =new Brigadas ();
+        brigada.setVisible(true);
+        escritorio.add(brigada);
+        escritorio.moveToFront(brigada);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BBrigadaMouseClicked
+
+    private void BSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSiniestroActionPerformed
+
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        ConcluirSiniestro concluir =new ConcluirSiniestro ();
+        concluir.setVisible(true);
+        escritorio.add(concluir);
+        escritorio.moveToFront(concluir);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BSiniestroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +247,7 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenu BSalir;
     private javax.swing.JMenu BSiniestro;
     private javax.swing.JLabel Fondo;
+    private javax.swing.JMenu MenuConsultas;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

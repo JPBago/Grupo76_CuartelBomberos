@@ -6,6 +6,8 @@ import grupo76_cuartelbomberos.entidades.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 
@@ -58,7 +60,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         setVerifyInputWhenFocusTarget(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("ID : ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 47, 15));
 
@@ -66,24 +68,24 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         jLabel2.setText("Datos de Bomberos Voluntarios");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 11, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("DNI : ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Apellido y  Nombre : ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Grupo Sanguineo: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento : ");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, 20));
         getContentPane().add(FechaNaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 162, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Celular : ");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 70, 17));
         getContentPane().add(TextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 160, 20));
@@ -92,11 +94,11 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         getContentPane().add(TextCaracteristicaCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 30, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 61, 321, 10));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("+54 (");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, 19));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText(") - 15");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 40, 20));
         getContentPane().add(TextCelu, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 64, -1));
@@ -124,6 +126,11 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BModiBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BModiBomber.setText("Modificar");
         BModiBomber.setPreferredSize(new java.awt.Dimension(100, 20));
+        BModiBomber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BModiBomberActionPerformed(evt);
+            }
+        });
 
         BLimpBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BLimpBomber.setText("Limpiar");
@@ -137,6 +144,11 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BEliminarBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BEliminarBomber.setText("Eliminar");
         BEliminarBomber.setPreferredSize(new java.awt.Dimension(100, 20));
+        BEliminarBomber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEliminarBomberActionPerformed(evt);
+            }
+        });
 
         BSalirBom.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BSalirBom.setText("Salir");
@@ -183,7 +195,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 380));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Estado:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
 
@@ -196,7 +208,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private void BLimpBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpBomberActionPerformed
     
           borrarCampos();
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_BLimpBomberActionPerformed
 
     private void BSalirBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBomActionPerformed
@@ -204,7 +216,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         ViewMenu ventana = new ViewMenu();
         ventana.setVisible(true);
         this.dispose();
-// TODO add your handling code here:
+
     }//GEN-LAST:event_BSalirBomActionPerformed
 
     private void BNuevoBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoBomberActionPerformed
@@ -261,77 +273,12 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             LabelEstado.setText("Bombero Dado de Baja");
           }
         
-            
-            
-            
         
-
-        /*//Agrego nuevo alumno
-
-        alumnoData alum = new alumnoData();
-        Alumno alu = new Alumno();
-        int aluId, aluDni;
-
-        if (TextIdAlumno.getText().compareTo("") != 0) {
-
-            try {
-                aluId = Integer.parseInt(TextIdAlumno.getText());
-                aluDni = Integer.parseInt(TextDNI.getText());
-
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
-                return;
-            }
-            alu.setIdAlumno(aluId);
-            alu.setDni(aluDni);
-
-        } else {
-            try {
-                aluDni = Integer.parseInt(TextDNI.getText());
-
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
-                return;
-            }
-            alu.setDni(aluDni);
-        }
-        String ape = TextApellido.getText();
-        if (!validarString(ape)) {
-            JOptionPane.showMessageDialog(this, "Ingrese un Apellido válido");
-            return;
-        }
-        String nom = TextNom.getText();
-        if (!validarString(nom)) {
-            JOptionPane.showMessageDialog(this, "Ingrese un Nombre válido");
-            return;
-        }
-        alu.setApeliido(ape);
-        alu.setNombre(nom);
-        LocalDate botonCumple;
-        try{
-            botonCumple = BFechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } catch (NullPointerException e){
-            JOptionPane.showMessageDialog(this, "Coloque una fecha válida");
-            return;
-        }
-        
-        alu.setFechaNacimiento(botonCumple);
-        //el boton me devuelve un tipo date, el .toInstant lo pasa a un Instant, el .atZone 
-        //usa la zona horaria por defecto del sistema y agregando un .localDate devuelve un local date
-        boolean estado = EstadoActivoAlu.isSelected();
-        alu.setEstado(estado);
-        // se crea una variable del tipo Alumno con los atributos del action en el que estamos, 
-        //despues llamamos al metedo de la clase alumnoData y guardamos alumno
-        alum.guardarAlumno(alu);
-        borrarCampos();
-
-    }                      */
-        // TODO add your handling code here:
     }//GEN-LAST:event_BNuevoBomberActionPerformed
 
     private void BBuscarBomberxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBomberxIDActionPerformed
 
-        // Buscamos el alumno segun el ID ingresado:
+        // Buscamos el bombero segun el ID ingresado:
         int numId=0;
 
         try {
@@ -347,8 +294,68 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         // Rellenamos el resto de los campos segun la búsqueda obtenida
        rellenarCampos(bomb);
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_BBuscarBomberxIDActionPerformed
+
+    private void BModiBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModiBomberActionPerformed
+        
+        BomberoData bomber = new BomberoData () ;
+        Bomberos bom = new Bomberos () ;
+        int bomberCod, bomDni ;
+        
+        try {
+            bomberCod = Integer.parseInt(TextId.getText());
+            bomDni = Integer.parseInt(TextDni.getText());
+  
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Caracteres invalidos, porfavor ingrese números enteros solamente.");
+            return;
+            
+        }
+         String apeNom = TextApeNom.getText();
+        if (!validarString(apeNom)) {
+            JOptionPane.showMessageDialog(this, "Caracteres invalidos, porfavor ingrese letras unicamente.");
+            return;
+        }
+        String GrupoSan;
+        if (CBSanguineo != null){
+        GrupoSan = (String) CBSanguineo.getSelectedItem();
+        } else { 
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
+            return;
+        }
+        LocalDate cumple ;
+        try{
+            cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
+            return;
+        }
+        String caraCelu = TextCaracteristicaCel.getText();
+        String chelu = TextCelu.getText();
+        if  (bom.isActivo()){
+            LabelEstado.setText("Bombero Activo");
+        } else {
+            LabelEstado.setText("Bombero Dado de Baja");
+          } 
+        bomber.ActualizarBombero(bom);
+        borrarCampos();
+        
+              
+        
+       
+    }//GEN-LAST:event_BModiBomberActionPerformed
+
+    private void BEliminarBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBomberActionPerformed
+
+            BomberoData bomber = new BomberoData ();
+            int bomId = Integer.parseInt(TextId.getText());
+            
+            bomber.eliminarBombero(bomId);
+            borrarCampos();
+            
+      
+    }//GEN-LAST:event_BEliminarBomberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
