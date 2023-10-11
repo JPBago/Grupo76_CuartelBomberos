@@ -66,7 +66,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Datos de Bomberos Voluntarios");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 11, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("DNI : ");
@@ -92,7 +92,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         getContentPane().add(TextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 162, -1));
         getContentPane().add(TextApeNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 162, -1));
         getContentPane().add(TextCaracteristicaCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 30, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 61, 321, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 321, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("+54 (");

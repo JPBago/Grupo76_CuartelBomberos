@@ -68,7 +68,11 @@
                 <Property name="text" type="java.lang.String" value="Concluir"/>
               </Properties>
               <Events>
+<<<<<<< Updated upstream
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Sinistro_ConcluirActionPerformed"/>
+=======
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+>>>>>>> Stashed changes
               </Events>
             </MenuItem>
           </SubComponents>
@@ -77,6 +81,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuConsultasMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="BSalir">
           <Properties>

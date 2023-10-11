@@ -104,6 +104,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BSiniestro.setBorder(null);
         BSiniestro.setText("Siniestros");
+<<<<<<< Updated upstream
 
         Siniestro_Declarar.setText("Declarar");
         Siniestro_Declarar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +113,8 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
         BSiniestro.add(Siniestro_Declarar);
+=======
+>>>>>>> Stashed changes
 
         Sinistro_Concluir.setText("Concluir");
         Sinistro_Concluir.addActionListener(new java.awt.event.ActionListener() {
@@ -119,11 +122,28 @@ public class ViewMenu extends javax.swing.JFrame {
                 Sinistro_ConcluirActionPerformed(evt);
             }
         });
+<<<<<<< Updated upstream
         BSiniestro.add(Sinistro_Concluir);
+=======
+        BSiniestro.add(jMenuItem1);
+
+        jMenuItem2.setText("Concluir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        BSiniestro.add(jMenuItem2);
+>>>>>>> Stashed changes
 
         jMenuBar1.add(BSiniestro);
 
         MenuConsultas.setText("Consultas");
+        MenuConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuConsultasMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(MenuConsultas);
 
         BSalir.setBorder(null);
@@ -189,9 +209,35 @@ public class ViewMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BBrigadaMouseClicked
 
+<<<<<<< Updated upstream
     private void Sinistro_ConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sinistro_ConcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Sinistro_ConcluirActionPerformed
+=======
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        ConcluirSiniestro concluir =new ConcluirSiniestro ();
+        concluir.setVisible(true);
+        escritorio.add(concluir);
+        escritorio.moveToFront(concluir);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void MenuConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConsultasMouseClicked
+
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        Consultas consul =new Consultas ();
+        consul.setVisible(true);
+        escritorio.add(consul);
+        escritorio.moveToFront(consul);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuConsultasMouseClicked
+>>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments
