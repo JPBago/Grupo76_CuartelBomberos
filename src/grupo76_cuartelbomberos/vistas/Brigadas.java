@@ -37,7 +37,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
         TablaIntBrigada = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         RBSi = new javax.swing.JRadioButton();
-        RBNo = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         BAsignarsinie = new javax.swing.JButton();
         BNuevaBrigada = new javax.swing.JButton();
@@ -46,6 +45,8 @@ public class Brigadas extends javax.swing.JInternalFrame {
         BEliminarBrigada = new javax.swing.JButton();
         BSalirBrigada = new javax.swing.JButton();
         RBLibre = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setTitle("Detalles Brigadas");
 
@@ -79,9 +80,12 @@ public class Brigadas extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Asignado Accidente/Siniestro:");
 
-        RBSi.setText("SI");
-
-        RBNo.setText("NO");
+        RBSi.setText("ASIGNADO");
+        RBSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBSiActionPerformed(evt);
+            }
+        });
 
         BAsignarsinie.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BAsignarsinie.setText("Asignar Siniestro");
@@ -142,6 +146,8 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         RBLibre.setText("LIBRE");
 
+        jLabel6.setText("CODIGO DE CUARTEL");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,19 +162,19 @@ public class Brigadas extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(TextNomBrig, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CBEspecialidades, javax.swing.GroupLayout.Alignment.LEADING, 0, 185, Short.MAX_VALUE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(RBSi)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(RBNo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGap(43, 43, 43)
                                     .addComponent(RBLibre))
-                                .addComponent(jLabel5)))
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField1)
+                                .addComponent(TextNomBrig, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CBEspecialidades, javax.swing.GroupLayout.Alignment.LEADING, 0, 185, Short.MAX_VALUE))
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -178,22 +184,25 @@ public class Brigadas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextNomBrig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(RBSi)
-                            .addComponent(RBNo)
                             .addComponent(RBLibre))
                         .addGap(13, 13, 13)
                         .addComponent(jLabel4)
@@ -201,13 +210,16 @@ public class Brigadas extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RBSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBSiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RBSiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -219,7 +231,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
     private javax.swing.JButton BSalirBrigada;
     private javax.swing.JComboBox<String> CBEspecialidades;
     private javax.swing.JRadioButton RBLibre;
-    private javax.swing.JRadioButton RBNo;
     private javax.swing.JRadioButton RBSi;
     private javax.swing.JTable TablaIntBrigada;
     private javax.swing.JTextField TextNomBrig;
@@ -228,7 +239,9 @@ public class Brigadas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
