@@ -1,6 +1,6 @@
 package grupo76_cuartelbomberos.entidades;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 
@@ -8,18 +8,18 @@ public class Siniestro {
 
     private int codSiniestro;
     private Especialidad tipo;
-    private LocalDate fechaSinietro;
+    private LocalDateTime fechaSinietro;
     private double coord_X;
     private double coord_Y;
     private String detalles;
-    private LocalDate fechaResoluc;
+    private LocalDateTime fechaResoluc;
     private int puntuacion;
     private Brigada Brigada;
 
     public Siniestro() {
     }
 
-    public Siniestro(Especialidad tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
+    public Siniestro(Especialidad tipo, LocalDateTime fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDateTime fechaResoluc, int puntuacion, Brigada codBrigada) {
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
         this.coord_X = coord_X;
@@ -30,7 +30,7 @@ public class Siniestro {
         this.Brigada = codBrigada;
     }
 
-    public Siniestro(int cod_siniestro, Especialidad tipo, LocalDate fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
+    public Siniestro(int cod_siniestro, Especialidad tipo, LocalDateTime fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDateTime fechaResoluc, int puntuacion, Brigada codBrigada) {
         this.codSiniestro = cod_siniestro;
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
@@ -58,11 +58,11 @@ public class Siniestro {
         this.tipo = tipo;
     }
 
-    public LocalDate getFechaSinietro() {
+    public LocalDateTime getFechaSinietro() {
         return fechaSinietro;
     }
 
-    public void setFechaSinietro(LocalDate fechaSinietro) {
+    public void setFechaSinietro(LocalDateTime fechaSinietro) {
         this.fechaSinietro = fechaSinietro;
     }
 
@@ -90,11 +90,11 @@ public class Siniestro {
         this.detalles = detalles;
     }
 
-    public LocalDate getFechaResoluc() {
+    public LocalDateTime getFechaResoluc() {
         return fechaResoluc;
     }
 
-    public void setFechaResoluc(LocalDate fechaResoluc) {
+    public void setFechaResoluc(LocalDateTime fechaResoluc) {
         this.fechaResoluc = fechaResoluc;
     }
 
