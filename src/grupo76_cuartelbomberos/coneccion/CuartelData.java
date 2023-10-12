@@ -51,14 +51,15 @@ public class CuartelData {
     }
 
     public List<Cuartel> listarCuartel() {
-        List<Cuartel> listCuarteles = new ArrayList<>();
-        Cuartel cuartel = new Cuartel();
+        ArrayList<Cuartel> listCuarteles = new ArrayList<>();
+        Cuartel cuartel = null;
         String sql = "Select * FROM cuartel";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                cuartel = new Cuartel();
                 cuartel.setCodCuartel(rs.getInt("codCuartel"));
                 cuartel.setNombreCuartel(rs.getString("nombreCuartel"));
                 cuartel.setDireccion(rs.getString("direccion"));

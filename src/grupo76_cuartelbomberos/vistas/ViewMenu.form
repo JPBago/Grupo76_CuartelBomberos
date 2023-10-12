@@ -63,16 +63,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Siniestro_DeclararActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Sinistro_Concluir">
+            <MenuItem class="javax.swing.JMenuItem" name="Siniestro_Concluir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Concluir"/>
               </Properties>
               <Events>
-<<<<<<< Updated upstream
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Sinistro_ConcluirActionPerformed"/>
-=======
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
->>>>>>> Stashed changes
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Siniestro_ConcluirActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
