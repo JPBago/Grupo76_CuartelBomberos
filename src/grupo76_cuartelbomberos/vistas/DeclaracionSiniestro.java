@@ -82,12 +82,22 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         jLabel3.setText("Coordenas X:");
         jLabel3.setPreferredSize(new java.awt.Dimension(14, 24));
 
+        TF_CoordX.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TF_CoordXFocusLost(evt);
+            }
+        });
         TF_CoordX.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TF_CoordXKeyReleased(evt);
             }
         });
 
+        TF_CoordY.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TF_CoordYFocusLost(evt);
+            }
+        });
         TF_CoordY.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TF_CoordYKeyReleased(evt);
@@ -348,22 +358,26 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         }
 
         Brigada brig = new Brigada();
-        int codB = 0, filas=T_Brigadas.getSelectedRow();
+        int codB = 0, filas = T_Brigadas.getSelectedRow();
         try {
-            codB = Integer.parseInt((String)T_Brigadas.getValueAt(filas, 0));
+            codB = Integer.parseInt((String) T_Brigadas.getValueAt(filas, 0));
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una brigada\n"+e);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una brigada\n" + e);
             return;
         }
         brig.setCodBrigada(codB);
         sin.setBrigada(brig);
 
-        SiniestroData sinD = new SiniestroData();
-        int sinCod = sinD.guardarSiniestro(sin);
-        JOptionPane.showMessageDialog(this, "Se genero un reporte con el codigo: "+sinCod);
-        
+        int a = JOptionPane.showConfirmDialog(this, "¿Esta seguro de asignar la brigada " + codB + " al incidente?", null, 2, 3);
+        if (a == 0) {
+            SiniestroData sinD = new SiniestroData();
+            int sinCod = sinD.guardarSiniestro(sin);
+            JOptionPane.showMessageDialog(this, "Se genero un reporte con el codigo: " + sinCod);
+        } else {
+            return;
+        }
         limpiarCampos();
-        
+
         ocuparBrigada(codB);
     }//GEN-LAST:event_B_CargarActionPerformed
 
@@ -379,6 +393,26 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         }
         cargarTabla();
     }//GEN-LAST:event_B_BuscarActionPerformed
+
+    private void TF_CoordXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TF_CoordXFocusLost
+        // TODO add your handling code here:
+        try {
+            double aux = Double.parseDouble(TF_CoordX.getText());
+        } catch (ClassCastException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese la COORDENADA usan decimales");
+            return;
+        }
+    }//GEN-LAST:event_TF_CoordXFocusLost
+
+    private void TF_CoordYFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TF_CoordYFocusLost
+        // TODO add your handling code here:
+        try {
+            double aux = Double.parseDouble(TF_CoordX.getText());
+        } catch (ClassCastException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese la COORDENADA usan decimales");
+            return;
+        }
+    }//GEN-LAST:event_TF_CoordYFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -405,7 +439,6 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     // Metodos independientes
-    
     private void cargarComboEsp() {
 
         for (Especialidad esp : Especialidad.values()) {
@@ -424,7 +457,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
 
         T_Brigadas.setModel(tabla);
         PanelTabla.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-                "Table Title", TitledBorder.CENTER, TitledBorder.TOP));
+                "BRIGADAS DISPONIBLES", TitledBorder.CENTER, TitledBorder.TOP));
         T_Brigadas.setBackground(Color.gray);
         T_Brigadas.setForeground(Color.white);
         T_Brigadas.setSelectionBackground(Color.green);
@@ -454,6 +487,11 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         // buscar brigadas q coincidan con la especialidad y obtener el cuartel al q pertenecen
         ArrayList<double[]> cuartelDistancia = armarCuartelesporDistacia();
         ArrayList<String[]> CuartelesXEsp = sinD.listarCuarteslesXEsp(esp);
+        //
+        if (CuartelesXEsp == null || CuartelesXEsp.size() == 0) {
+            JOptionPane.showMessageDialog(this, "No hay Brigadas Disponibles para la especialidad: " + esp);
+            return;
+        }
         // 
         for (double[] aux1 : cuartelDistancia) {
             for (String[] aux2 : CuartelesXEsp) {
@@ -463,7 +501,6 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
                 }
             }
         }
-
     }
 
     private double calcularDistancia(double coordX2, double coordY2) {
@@ -508,8 +545,8 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
-    private void ocuparBrigada(int codB){
+
+    private void ocuparBrigada(int codB) {
         // Generar un codigo para modificar el campo ocupado de la brigada
     }
 }

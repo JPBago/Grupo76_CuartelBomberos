@@ -70,4 +70,38 @@ public class SiniestroData {
 
         return DatosXEsp;
     }
+
+    public Siniestro buscarSiniestro(int cod) {
+        Siniestro sin = null;
+        Brigada brig = null;
+        String sql = "SELECT * FROM `siniestro` WHERE cod_siniestro = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cod);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                sin = new Siniestro();
+                brig = new Brigada();
+                sin.setCodSiniestro(cod);
+                sin.setTipo(Especialidad.valueOf(rs.getString("tipo")));
+//                sin.setFechaSinietro(rs.getDate("fechaSinietro").toLocalDateTime());
+                sin.setCoord_X(rs.getDouble("coord_X"));
+                sin.setCoord_Y(rs.getDouble("coord_Y"));
+                sin.setDetalles(rs.getString("detalles"));
+//                sin.getFechaResoluc(rs.getDate("fechaResoluc").toLocalDateTime());
+                sin.setPuntuacion(rs.getInt("puntuacion"));
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                sin.setBrigada(brig);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No hay Reportes con el código " + cod);
+            System.out.println("Error: "+ex);
+            sin = null;
+        }
+
+        return sin;
+    }
 }

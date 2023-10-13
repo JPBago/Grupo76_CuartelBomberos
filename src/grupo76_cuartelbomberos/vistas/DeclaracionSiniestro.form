@@ -190,11 +190,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="TF_CoordX">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TF_CoordXFocusLost"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TF_CoordXKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TF_CoordY">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TF_CoordYFocusLost"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TF_CoordYKeyReleased"/>
       </Events>
     </Component>
