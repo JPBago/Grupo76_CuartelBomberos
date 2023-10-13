@@ -2,6 +2,8 @@ package grupo76_cuartelbomberos.coneccion;
 
 import grupo76_cuartelbomberos.entidades.*;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +47,28 @@ public class SiniestroData {
 
         return codSiniestro;
     }
+    
+    public void actualizarSiniestro(Siniestro sin){
+        String sql = "UPDATE siniestro SET fechaResoluc=?,puntuacion=? "
+                + "WHERE cod_siniestro=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setDate(1, Date.valueOf(sin.getFechaResoluc()));
+            ps.setInt(2, sin.getPuntuacion());
+            ps.setInt(3, sin.getCodSiniestro());
+
+            int aux = ps.executeUpdate();
+            if (aux == 1){
+                JOptionPane.showMessageDialog(null, "Reporte actualizado");
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero !!\n" + ex.getMessage());
+        }
+
+    }
 
     public ArrayList<String[]> listarCuarteslesXEsp(String especialidad) {
         ArrayList<String[]> DatosXEsp = new ArrayList<>();
@@ -85,11 +109,18 @@ public class SiniestroData {
                 brig = new Brigada();
                 sin.setCodSiniestro(cod);
                 sin.setTipo(Especialidad.valueOf(rs.getString("tipo")));
-//                sin.setFechaSinietro(rs.getDate("fechaSinietro").toLocalDateTime());
+                String datetimeString = rs.getString("fechaSinietro");
+                LocalDateTime localDateTime = LocalDateTime.parse(datetimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                sin.setFechaSinietro(localDateTime);
                 sin.setCoord_X(rs.getDouble("coord_X"));
                 sin.setCoord_Y(rs.getDouble("coord_Y"));
                 sin.setDetalles(rs.getString("detalles"));
-//                sin.getFechaResoluc(rs.getDate("fechaResoluc").toLocalDateTime());
+                Date aux = rs.getDate("fechaResoluc");
+                if (aux == null) {
+                    sin.setFechaResoluc(null);
+                } else {
+                    sin.setFechaResoluc(aux.toLocalDate());
+                }
                 sin.setPuntuacion(rs.getInt("puntuacion"));
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 sin.setBrigada(brig);
@@ -98,10 +129,17 @@ public class SiniestroData {
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No hay Reportes con el código " + cod);
-            System.out.println("Error: "+ex);
+            System.out.println("Error: " + ex);
             sin = null;
         }
 
         return sin;
+    }
+    
+    public ArrayList<Siniestro> listarSiniestros(){
+        ArrayList<Siniestro> listaSin = new ArrayList<>();
+        
+        
+        return listaSin;
     }
 }

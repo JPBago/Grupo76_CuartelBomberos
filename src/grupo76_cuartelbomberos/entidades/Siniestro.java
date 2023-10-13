@@ -1,5 +1,6 @@
 package grupo76_cuartelbomberos.entidades;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -12,14 +13,14 @@ public class Siniestro {
     private double coord_X;
     private double coord_Y;
     private String detalles;
-    private LocalDateTime fechaResoluc;
+    private LocalDate fechaResoluc;
     private int puntuacion;
     private Brigada Brigada;
 
     public Siniestro() {
     }
 
-    public Siniestro(Especialidad tipo, LocalDateTime fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDateTime fechaResoluc, int puntuacion, Brigada codBrigada) {
+    public Siniestro(Especialidad tipo, LocalDateTime fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
         this.coord_X = coord_X;
@@ -30,7 +31,7 @@ public class Siniestro {
         this.Brigada = codBrigada;
     }
 
-    public Siniestro(int cod_siniestro, Especialidad tipo, LocalDateTime fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDateTime fechaResoluc, int puntuacion, Brigada codBrigada) {
+    public Siniestro(int cod_siniestro, Especialidad tipo, LocalDateTime fechaSinietro, double coord_X, double coord_Y, String detalles, LocalDate fechaResoluc, int puntuacion, Brigada codBrigada) {
         this.codSiniestro = cod_siniestro;
         this.tipo = tipo;
         this.fechaSinietro = fechaSinietro;
@@ -90,11 +91,11 @@ public class Siniestro {
         this.detalles = detalles;
     }
 
-    public LocalDateTime getFechaResoluc() {
+    public LocalDate getFechaResoluc() {
         return fechaResoluc;
     }
 
-    public void setFechaResoluc(LocalDateTime fechaResoluc) {
+    public void setFechaResoluc(LocalDate fechaResoluc) {
         this.fechaResoluc = fechaResoluc;
     }
 
