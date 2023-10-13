@@ -6,6 +6,7 @@
 package grupo76_cuartelbomberos.vistas;
 
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
@@ -22,12 +23,14 @@ public class ViewMenu extends javax.swing.JFrame {
     public ViewMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
     }
-        public Image getIconImage () { 
+
+    public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("grupo76_cuartelbomberos/Imagenes/iconbomber.png"));
-        return retValue ;
+        return retValue;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,7 +157,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         escritorio.removeAll();
         escritorio.repaint();
-        GestionBomber bomber = new GestionBomber ();
+        GestionBomber bomber = new GestionBomber();
         bomber.setVisible(true);
         escritorio.add(bomber);
         escritorio.moveToFront(bomber); // TODO add your handling code here:
@@ -171,53 +174,55 @@ public class ViewMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_Siniestro_DeclararActionPerformed
 
     private void BCuartelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BCuartelMouseClicked
-    
+
         Fondo.setVisible(false);
         escritorio.removeAll();
         escritorio.repaint();
-       Cuarteles cuartel =new Cuarteles ();
-       cuartel.setVisible(true);
+        Cuarteles cuartel = new Cuarteles();
+        cuartel.setVisible(true);
         escritorio.add(cuartel);
         escritorio.moveToFront(cuartel);
 // TODO add your handling code here:
     }//GEN-LAST:event_BCuartelMouseClicked
 
     private void BBrigadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBrigadaMouseClicked
-    
+
         Fondo.setVisible(false);
         escritorio.removeAll();
         escritorio.repaint();
-        Brigadas brigada =new Brigadas ();
+        Brigadas brigada = new Brigadas();
         brigada.setVisible(true);
         escritorio.add(brigada);
         escritorio.moveToFront(brigada);
         // TODO add your handling code here:
     }//GEN-LAST:event_BBrigadaMouseClicked
 
-
-    private void Siniestro_ConcluirActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void Siniestro_ConcluirActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         Fondo.setVisible(false);
         escritorio.removeAll();
         escritorio.repaint();
-        ConcluirSiniestro concluir =new ConcluirSiniestro ();
+        ConcluirSiniestro concluir = new ConcluirSiniestro();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension concluirSize = concluir.getSize();
+        concluir.setLocation((escritorioSize.width - concluirSize.width) / 2,
+                (escritorioSize.height - concluirSize.height) / 2);
         concluir.setVisible(true);
         escritorio.add(concluir);
         escritorio.moveToFront(concluir);
-    }                                                  
+    }
 
     private void MenuConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConsultasMouseClicked
 
         Fondo.setVisible(false);
         escritorio.removeAll();
         escritorio.repaint();
-        Consultas consul =new Consultas ();
+        Consultas consul = new Consultas();
         consul.setVisible(true);
         escritorio.add(consul);
         escritorio.moveToFront(consul);
         // TODO add your handling code here:
     }//GEN-LAST:event_MenuConsultasMouseClicked
-
 
     /**
      * @param args the command line arguments
@@ -245,12 +250,12 @@ public class ViewMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ViewMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-     /*   try {
+        /*   try {
     UIManager.setLookAndFeel(new AcrylLookAndFeel());
     } catch (Exception e) {
     e.printStackTrace();
     }*/
-        /* Create and display the form */
+ /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewMenu().setVisible(true);

@@ -143,6 +143,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TF_CodSin">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TF_CodSinKeyReleased"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="P_Bomberos">
 

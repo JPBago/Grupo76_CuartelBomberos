@@ -72,6 +72,12 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("ID Siniestro: ");
 
+        TF_CodSin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TF_CodSinKeyReleased(evt);
+            }
+        });
+
         T_Bomberos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -344,31 +350,8 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TF_PuntajeKeyReleased
 
     private void B_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarActionPerformed
-        
-        int cod = 0;
-        // validar codigo
-        try {
-            cod = Integer.parseInt(TF_CodSin.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese un código de Reporte válido");
-            return;
-        }
-        // Buscar SINIESTRO por CODIGO
-        SiniestroData sinD = new SiniestroData();
-        Siniestro sin = sinD.buscarSiniestro(cod);
-        
-        // Rellenar campos requeridos
-        if (sin != null){
-            B_Guardar.setVisible(true);
-            RBNoSiniestro.setEnabled(true);
-            RBSiSiniestro.setEnabled(true);
-            DC_FechaFin.setEnabled(true);
-            TF_Puntaje.setEnabled(true);
-            TF_Tipo.setText(sin.getTipo().name());
-//            nombreBrigada(sin.getBrigada().getCodBrigada());
-            llenarTabla(sin.getBrigada().getCodBrigada());
-        }
-        
+        // El boton ejecuta la busqueda de un siniestro
+        buscarSiniestro();
     }//GEN-LAST:event_B_BuscarActionPerformed
 
     private void B_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarActionPerformed
@@ -393,6 +376,13 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         
         limpiarCampos();
     }//GEN-LAST:event_B_GuardarActionPerformed
+
+    private void TF_CodSinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_CodSinKeyReleased
+        // Si se presiona la tecla ENTER se ejecuta la busqueda
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            buscarSiniestro();
+        }
+    }//GEN-LAST:event_TF_CodSinKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -468,5 +458,35 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         BrigadaData brigD = new BrigadaData();
         Brigada brig = null;//brigD.buscargarBrigada(cod);
         TF_Brigada.setText(brig.getNombreBrigada());
+    }
+    
+    private void buscarSiniestro(){
+        
+        int cod = 0;
+        // validar codigo
+        try {
+            cod = Integer.parseInt(TF_CodSin.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un código de Reporte válido");
+            return;
+        }
+        // Buscar SINIESTRO por CODIGO
+        SiniestroData sinD = new SiniestroData();
+        Siniestro sin = sinD.buscarSiniestro(cod);
+        
+        // Rellenar campos requeridos
+        if (sin != null){
+            B_Guardar.setVisible(true);
+            RBNoSiniestro.setEnabled(true);
+            RBSiSiniestro.setEnabled(true);
+            DC_FechaFin.setEnabled(true);
+            TF_Puntaje.setEnabled(true);
+            TF_Tipo.setText(sin.getTipo().name());
+//            nombreBrigada(sin.getBrigada().getCodBrigada());
+            llenarTabla(sin.getBrigada().getCodBrigada());
+        } else {
+            limpiarCampos();
+        }
+        
     }
 }
