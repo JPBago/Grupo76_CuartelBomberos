@@ -45,10 +45,10 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         TF_CodSin = new javax.swing.JTextField();
+        DC_FechaFin = new com.toedter.calendar.JDateChooser();
         P_Bomberos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         T_Bomberos = new javax.swing.JTable();
-        DC_FechaFin = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -67,16 +67,24 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         TF_Tipo = new javax.swing.JTextField();
 
         setTitle("Siniestros Concluidos");
-        setPreferredSize(new java.awt.Dimension(560, 651));
+        setPreferredSize(new java.awt.Dimension(650, 500));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("ID Siniestro: ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 99, 127, -1));
 
+        TF_CodSin.setPreferredSize(new java.awt.Dimension(30, 25));
         TF_CodSin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TF_CodSinKeyReleased(evt);
             }
         });
+        getContentPane().add(TF_CodSin, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 120, 127, -1));
+
+        DC_FechaFin.setEnabled(false);
+        DC_FechaFin.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(DC_FechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 184, 149, -1));
 
         T_Bomberos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,27 +103,37 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         P_Bomberos.setLayout(P_BomberosLayout);
         P_BomberosLayout.setHorizontalGroup(
             P_BomberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addGroup(P_BomberosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         P_BomberosLayout.setVerticalGroup(
             P_BomberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+            .addGroup(P_BomberosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        DC_FechaFin.setEnabled(false);
+        getContentPane().add(P_Bomberos, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 284, 410, 140));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Fecha de Resolución:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 163, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 0, 0));
         jLabel3.setText("Siniestros concluidos");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Puntuacion Resolutiva");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 227, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Fue resulto el siniestro ?");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 163, -1, -1));
 
         RBSiSiniestro.setText("SI");
         RBSiSiniestro.setEnabled(false);
@@ -124,6 +142,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 RBSiSiniestroActionPerformed(evt);
             }
         });
+        getContentPane().add(RBSiSiniestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 180, -1, -1));
 
         RBNoSiniestro.setText("NO");
         RBNoSiniestro.setEnabled(false);
@@ -132,8 +151,10 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 RBNoSiniestroActionPerformed(evt);
             }
         });
+        getContentPane().add(RBNoSiniestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 180, -1, -1));
 
         TF_Puntaje.setEnabled(false);
+        TF_Puntaje.setPreferredSize(new java.awt.Dimension(30, 25));
         TF_Puntaje.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 TF_PuntajeFocusLost(evt);
@@ -144,7 +165,9 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 TF_PuntajeKeyReleased(evt);
             }
         });
+        getContentPane().add(TF_Puntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 248, 119, -1));
 
+        B_Buscar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         B_Buscar.setText("Buscar ID");
         B_Buscar.setPreferredSize(new java.awt.Dimension(77, 32));
         B_Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +176,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             }
         });
 
+        B_Guardar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         B_Guardar.setLabel("Guardar");
         B_Guardar.setPreferredSize(new java.awt.Dimension(77, 32));
         B_Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +185,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             }
         });
 
+        B_Limpiar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         B_Limpiar.setText("Limpiar");
         B_Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +193,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             }
         });
 
+        B_Salir.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         B_Salir.setText("Salir");
         B_Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,107 +223,29 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 .addComponent(B_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(B_Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(B_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        getContentPane().add(P_Botonera, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, 320));
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Brigada a Cargo:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 99, -1, -1));
 
         TF_Brigada.setEnabled(false);
+        TF_Brigada.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(TF_Brigada, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 120, 123, -1));
 
-        jLabel6.setText("Tipo de Siniestro");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Tipo de Siniestro:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 227, 111, -1));
 
-        TF_Tipo.setBackground(new java.awt.Color(255, 255, 255));
         TF_Tipo.setForeground(new java.awt.Color(0, 0, 102));
         TF_Tipo.setEnabled(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(P_Bomberos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TF_CodSin, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(DC_FechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                        .addComponent(TF_Brigada, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TF_Tipo, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(RBSiSiniestro)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(RBNoSiniestro))
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(TF_Puntaje, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addGap(63, 63, 63)))
-                        .addComponent(P_Botonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TF_CodSin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(RBSiSiniestro)
-                                    .addComponent(RBNoSiniestro))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DC_FechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TF_Puntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TF_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TF_Brigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(P_Botonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36)
-                .addComponent(P_Bomberos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
+        TF_Tipo.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(TF_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 248, 149, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

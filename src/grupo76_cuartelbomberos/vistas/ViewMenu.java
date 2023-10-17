@@ -50,6 +50,8 @@ public class ViewMenu extends javax.swing.JFrame {
         Siniestro_Declarar = new javax.swing.JMenuItem();
         Siniestro_Concluir = new javax.swing.JMenuItem();
         MenuConsultas = new javax.swing.JMenu();
+        MConsulSini = new javax.swing.JMenuItem();
+        MConsulBriga = new javax.swing.JMenuItem();
         BSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,11 +129,28 @@ public class ViewMenu extends javax.swing.JFrame {
         jMenuBar1.add(BSiniestro);
 
         MenuConsultas.setText("Consultas");
-        MenuConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuConsultasMouseClicked(evt);
+
+        MConsulSini.setText("Siniestros");
+        MConsulSini.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MConsulSiniActionPerformed(evt);
             }
         });
+        MenuConsultas.add(MConsulSini);
+
+        MConsulBriga.setText("Brigadas");
+        MConsulBriga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MConsulBrigaMouseClicked(evt);
+            }
+        });
+        MConsulBriga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MConsulBrigaActionPerformed(evt);
+            }
+        });
+        MenuConsultas.add(MConsulBriga);
+
         jMenuBar1.add(MenuConsultas);
 
         BSalir.setBorder(null);
@@ -158,6 +177,10 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
         GestionBomber bomber = new GestionBomber();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension bomberSize = bomber.getSize();
+        bomber.setLocation((escritorioSize.width - bomberSize.width) / 2,
+                (escritorioSize.height - bomberSize.height) / 2);
         bomber.setVisible(true);
         escritorio.add(bomber);
         escritorio.moveToFront(bomber); // TODO add your handling code here:
@@ -168,6 +191,10 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
         DeclaracionSiniestro siniestro = new DeclaracionSiniestro();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension siniestroSize = siniestro.getSize();
+        siniestro.setLocation((escritorioSize.width - siniestroSize.width) / 2,
+                (escritorioSize.height - siniestroSize.height) / 2);
         siniestro.setVisible(true);
         escritorio.add(siniestro);
         escritorio.moveToFront(siniestro);
@@ -179,6 +206,10 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
         Cuarteles cuartel = new Cuarteles();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension cuartelSize = cuartel.getSize();
+        cuartel.setLocation((escritorioSize.width - cuartelSize.width) / 2,
+                (escritorioSize.height - cuartelSize.height) / 2);
         cuartel.setVisible(true);
         escritorio.add(cuartel);
         escritorio.moveToFront(cuartel);
@@ -191,11 +222,53 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
         Brigadas brigada = new Brigadas();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension brigadaSize = brigada.getSize();
+        brigada.setLocation((escritorioSize.width - brigadaSize.width) / 2,
+                (escritorioSize.height - brigadaSize.height) / 2);
         brigada.setVisible(true);
         escritorio.add(brigada);
         escritorio.moveToFront(brigada);
         // TODO add your handling code here:
     }//GEN-LAST:event_BBrigadaMouseClicked
+
+    private void MConsulBrigaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MConsulBrigaMouseClicked
+
+         
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MConsulBrigaMouseClicked
+
+    private void MConsulSiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MConsulSiniActionPerformed
+
+         Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        ConsultaSiniestros consul = new ConsultaSiniestros();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension consulSize = consul.getSize();
+        consul.setLocation((escritorioSize.width - consulSize.width) / 2,
+                (escritorioSize.height - consulSize.height) / 2);
+        consul.setVisible(true);
+        escritorio.add(consul);
+        escritorio.moveToFront(consul);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MConsulSiniActionPerformed
+
+    private void MConsulBrigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MConsulBrigaActionPerformed
+
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        ConsultaBrigada consulBri = new ConsultaBrigada();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension consulBriSize = consulBri.getSize();
+        consulBri.setLocation((escritorioSize.width - consulBriSize.width) / 2,
+                (escritorioSize.height - consulBriSize.height) / 2);
+        consulBri.setVisible(true);
+        escritorio.add(consulBri);
+        escritorio.moveToFront(consulBri);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MConsulBrigaActionPerformed
 
     private void Siniestro_ConcluirActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -211,18 +284,6 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.add(concluir);
         escritorio.moveToFront(concluir);
     }
-
-    private void MenuConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConsultasMouseClicked
-
-        Fondo.setVisible(false);
-        escritorio.removeAll();
-        escritorio.repaint();
-        Consultas consul = new Consultas();
-        consul.setVisible(true);
-        escritorio.add(consul);
-        escritorio.moveToFront(consul);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuConsultasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -270,6 +331,8 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenu BSalir;
     private javax.swing.JMenu BSiniestro;
     private javax.swing.JLabel Fondo;
+    private javax.swing.JMenuItem MConsulBriga;
+    private javax.swing.JMenuItem MConsulSini;
     private javax.swing.JMenu MenuConsultas;
     private javax.swing.JMenuItem Siniestro_Concluir;
     private javax.swing.JMenuItem Siniestro_Declarar;
