@@ -351,6 +351,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
 
     private void B_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarActionPerformed
         // El boton ejecuta la busqueda de un siniestro
+        borrarFilas();
         buscarSiniestro();
     }//GEN-LAST:event_B_BuscarActionPerformed
 

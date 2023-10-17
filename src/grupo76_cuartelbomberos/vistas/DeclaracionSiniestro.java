@@ -383,6 +383,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
 
     private void B_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarActionPerformed
         // TODO add your handling code here:
+        borrarFilas();
         if (CB_Esp.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de Incidente");
             return;
