@@ -89,7 +89,7 @@ public class SiniestroData {
                 DatosXEsp.add(datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SiniestroData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No hay Cuarteles que cumplan los requisitos","ERROR !!",2);
         }
 
         return DatosXEsp;
