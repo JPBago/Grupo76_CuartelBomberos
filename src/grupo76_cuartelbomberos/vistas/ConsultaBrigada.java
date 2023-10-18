@@ -5,17 +5,27 @@
  */
 package grupo76_cuartelbomberos.vistas;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eveel
  */
 public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ConsultaBrigada
-     */
+    private DefaultTableModel tabla = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+
     public ConsultaBrigada() {
         initComponents();
+        iniciarTabla();
     }
 
     /**
@@ -29,7 +39,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
         PConsulBri = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        T_Brigadas = new javax.swing.JTable();
         PBotoneBri = new javax.swing.JPanel();
         BConsulBri = new javax.swing.JButton();
         BSalirConBri = new javax.swing.JButton();
@@ -40,7 +50,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(700, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        T_Brigadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,7 +61,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(T_Brigadas);
 
         javax.swing.GroupLayout PConsulBriLayout = new javax.swing.GroupLayout(PConsulBri);
         PConsulBri.setLayout(PConsulBriLayout);
@@ -74,6 +84,11 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
         BConsulBri.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BConsulBri.setText("Consultar");
+        BConsulBri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BConsulBriActionPerformed(evt);
+            }
+        });
 
         BSalirConBri.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BSalirConBri.setText("Salir");
@@ -113,10 +128,20 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
         RBriLibres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         RBriLibres.setText("Brigadas Libres");
+        RBriLibres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBriLibresActionPerformed(evt);
+            }
+        });
         getContentPane().add(RBriLibres, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         BrixCuartel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BrixCuartel.setText("Brigadas por Cuartel");
+        BrixCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BrixCuartelActionPerformed(evt);
+            }
+        });
         getContentPane().add(BrixCuartel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, -1));
 
         pack();
@@ -124,12 +149,31 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
     private void BSalirConBriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirConBriActionPerformed
 
-         ViewMenu ventana = new ViewMenu();
+        ViewMenu ventana = new ViewMenu();
         ventana.setVisible(true);
         this.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BSalirConBriActionPerformed
+
+    private void RBriLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBriLibresActionPerformed
+        BrixCuartel.setSelected(false);
+    }//GEN-LAST:event_RBriLibresActionPerformed
+
+    private void BrixCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrixCuartelActionPerformed
+        RBriLibres.setSelected(false);
+    }//GEN-LAST:event_BrixCuartelActionPerformed
+
+    private void BConsulBriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConsulBriActionPerformed
+        // TODO add your handling code here:
+        if(BrixCuartel.isSelected()){
+            llenarTablaXCuartel();
+        } else if (RBriLibres.isSelected()){
+            llenarTablaLibres();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una condición");
+        }
+    }//GEN-LAST:event_BConsulBriActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,8 +183,33 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
     private javax.swing.JPanel PBotoneBri;
     private javax.swing.JPanel PConsulBri;
     private javax.swing.JRadioButton RBriLibres;
+    private javax.swing.JTable T_Brigadas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void iniciarTabla() {
+        //Inicializar las columnas de la tabla
+        tabla.addColumn("COD");
+        tabla.addColumn("Nombre");
+        tabla.addColumn("Especialidad");
+        tabla.addColumn("Cuartel");
+        tabla.setRowCount(0);
+
+        T_Brigadas.setModel(tabla);
+        PConsulBri.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+                "Miembros de la Brigada", TitledBorder.CENTER, TitledBorder.TOP));
+        T_Brigadas.setBackground(Color.gray);
+        T_Brigadas.setForeground(Color.white);
+        T_Brigadas.setSelectionBackground(Color.green);
+        T_Brigadas.setSelectionForeground(Color.black);
+    }
+
+    private void llenarTablaXCuartel(){
+        
+    }
+    
+    private void llenarTablaLibres(){
+        
+    }
 }

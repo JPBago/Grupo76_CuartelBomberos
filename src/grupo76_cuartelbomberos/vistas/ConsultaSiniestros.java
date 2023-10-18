@@ -1,8 +1,18 @@
 
 package grupo76_cuartelbomberos.vistas;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel tabla = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
     
     public ConsultaSiniestros() {
         initComponents();
@@ -16,7 +26,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         PConsulSini = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Siniestros = new javax.swing.JTable();
         PBotonesConsulta = new javax.swing.JPanel();
         BConsulSini = new javax.swing.JButton();
         BSalirConsulSini = new javax.swing.JButton();
@@ -29,7 +39,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         jLabel1.setText("Consulta Siniestros ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Siniestros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -40,7 +50,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(Tabla_Siniestros);
 
         javax.swing.GroupLayout PConsulSiniLayout = new javax.swing.GroupLayout(PConsulSini);
         PConsulSini.setLayout(PConsulSiniLayout);
@@ -112,8 +122,28 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
     private javax.swing.JButton BSalirConsulSini;
     private javax.swing.JPanel PBotonesConsulta;
     private javax.swing.JPanel PConsulSini;
+    private javax.swing.JTable Tabla_Siniestros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    // Metodos sin eventos
+    private void iniciarTabla() {
+        //Inicializar las columnas de la tabla
+        tabla.addColumn("COD");
+        tabla.addColumn("TIPO");
+        tabla.addColumn("FECHA INICO");
+        tabla.addColumn("FECHA FIN");
+        tabla.addColumn("BRIGADA");
+        tabla.addColumn("CUARTEL");
+        tabla.setRowCount(0);
+
+        Tabla_Siniestros.setModel(tabla);
+        PConsulSini.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+                "Siniestros e Incidentes", TitledBorder.CENTER, TitledBorder.TOP));
+        Tabla_Siniestros.setBackground(Color.gray);
+        Tabla_Siniestros.setForeground(Color.white);
+        Tabla_Siniestros.setSelectionBackground(Color.green);
+        Tabla_Siniestros.setSelectionForeground(Color.black);
+    }
 }
