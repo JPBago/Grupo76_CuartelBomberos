@@ -47,7 +47,8 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         RBriLibres = new javax.swing.JRadioButton();
         BrixCuartel = new javax.swing.JRadioButton();
 
-        setPreferredSize(new java.awt.Dimension(700, 400));
+        setTitle("Consultas de Brigadas");
+        setPreferredSize(new java.awt.Dimension(650, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         T_Brigadas.setModel(new javax.swing.table.DefaultTableModel(
@@ -123,8 +124,8 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel1.setText("Consultas Brigada");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
+        jLabel1.setText("Consultas de Brigada");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         RBriLibres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         RBriLibres.setText("Brigadas Libres");
@@ -133,7 +134,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
                 RBriLibresActionPerformed(evt);
             }
         });
-        getContentPane().add(RBriLibres, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        getContentPane().add(RBriLibres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         BrixCuartel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BrixCuartel.setText("Brigadas por Cuartel");

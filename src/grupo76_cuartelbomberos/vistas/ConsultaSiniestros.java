@@ -30,14 +30,19 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         PBotonesConsulta = new javax.swing.JPanel();
         BConsulSini = new javax.swing.JButton();
         BSalirConsulSini = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(700, 400));
+        setTitle("Consultas de Siniestros");
+        setPreferredSize(new java.awt.Dimension(700, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel1.setText("Consulta Siniestros ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 50));
+        jLabel1.setText("Consulta de Siniestros por fecha ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, 50));
 
         Tabla_Siniestros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,7 +108,21 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(PBotonesConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
+        getContentPane().add(PBotonesConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
+
+        jDateChooser1.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, -1));
+
+        jDateChooser2.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 130, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("Desde:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Hasta:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,7 +142,11 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
     private javax.swing.JPanel PBotonesConsulta;
     private javax.swing.JPanel PConsulSini;
     private javax.swing.JTable Tabla_Siniestros;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
