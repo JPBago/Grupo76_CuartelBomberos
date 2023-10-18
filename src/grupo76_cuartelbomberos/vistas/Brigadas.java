@@ -30,7 +30,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         return false;
         
     }
-}
+};
     /**
      * Creates new form Brigadas
      */
@@ -281,17 +281,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BrigadaData brig = new BrigadaData();
         Brigada bri = new Brigada();
         int briCuartel;
-        
-        if (TextCuartel.getText().compareTo("")!=0) {
-            try{
-                briCuartel = Integer.parseInt(TextCuartel.getText());
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, "Debe ingresar solo Números Enteros.");
-                return;
-            }
-            bri.setCodCuartel();
-            
-        }
+       
         String nomBri =TextBrigada.getText();
         if (!validarString (nomBri)) {
             JOptionPane.showMessageDialog(this, "Ingrese Nombre Completo y Valido");
@@ -410,8 +400,7 @@ private void armarCabecera() {
  
   private void limpiarCampos() {
         CBEspecialidades.setSelectedIndex(-1);
-        TextCuartel.setText("");
-        TextBrigada.setText("");
+                TextBrigada.setText("");
         borrarFilas();
     }
   
