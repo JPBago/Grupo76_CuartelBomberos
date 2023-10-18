@@ -6,8 +6,6 @@ import grupo76_cuartelbomberos.entidades.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 
@@ -62,7 +60,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("ID : ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 47, 15));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 47, 15));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Datos de Bomberos Voluntarios");
@@ -70,40 +68,54 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("DNI : ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Apellido y  Nombre : ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Grupo Sanguineo: ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Fecha de Nacimiento : ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, 20));
-        getContentPane().add(FechaNaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 162, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, 20));
+
+        FechaNaci.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(FechaNaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 162, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Celular : ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 70, 17));
-        getContentPane().add(TextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 160, 20));
-        getContentPane().add(TextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 162, -1));
-        getContentPane().add(TextApeNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 162, -1));
-        getContentPane().add(TextCaracteristicaCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 30, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 70, 17));
+
+        TextId.setMinimumSize(new java.awt.Dimension(30, 25));
+        TextId.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(TextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 160, -1));
+
+        TextDni.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(TextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 162, -1));
+
+        TextApeNom.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(TextApeNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 162, -1));
+
+        TextCaracteristicaCel.setPreferredSize(new java.awt.Dimension(6, 25));
+        getContentPane().add(TextCaracteristicaCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 30, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 321, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("+54 (");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, 19));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, 19));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText(") - 15");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 40, 20));
-        getContentPane().add(TextCelu, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 64, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 40, 20));
 
-        getContentPane().add(CBSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 162, -1));
+        TextCelu.setPreferredSize(new java.awt.Dimension(20, 25));
+        getContentPane().add(TextCelu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 64, -1));
+
+        CBSanguineo.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(CBSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 162, -1));
 
         BBuscarBomberxID.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BBuscarBomberxID.setText("Buscar por ID:");
@@ -173,7 +185,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
                         .addComponent(BBuscarBomberxID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                         .addComponent(BEliminarBomber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(BSalirBom, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,14 +205,14 @@ public class GestionBomber extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 150, 380));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Estado:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         LabelEstado.setText("Estado no asignado.");
-        getContentPane().add(LabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 160, 20));
+        getContentPane().add(LabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 160, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -244,16 +256,15 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             return;
         }
         bomber.setNombreApe(apeNom);
-        String GrupoSan;
-        if (CBSanguineo != null){
-        GrupoSan = (String) CBSanguineo.getSelectedItem();
+        String GrupoSan = (String) CBSanguineo.getSelectedItem();
+        if (CBSanguineo == null){
         } else { 
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
             return;
         }
-        bomber.getGrupoSang();
+        bomber.setGrupoSang(GrupoSan);
         
-        LocalDate cumple ;
+        LocalDate cumple;
         try{
             cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         } catch (NullPointerException e){
@@ -265,13 +276,16 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         String caraCelu = TextCaracteristicaCel.getText();
         String chelu = TextCelu.getText();
          
-        bomber.setCelular(caraCelu);
-        bomber.setCelular(chelu);
+        bomber.setCelular(caraCelu+chelu);
+        validarTelefono ();
+        
         if  (bomber.isActivo()){
             LabelEstado.setText("Bombero Activo");
         } else {
             LabelEstado.setText("Bombero Dado de Baja");
           }
+        bom.guardarBombero(bomber);
+        borrarCampos ();
         
         
     }//GEN-LAST:event_BNuevoBomberActionPerformed
@@ -303,36 +317,43 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         Bomberos bom = new Bomberos () ;
         int bomberCod, bomDni ;
         
+         if (TextId.getText().compareTo("")!= 0){
         try {
             bomberCod = Integer.parseInt(TextId.getText());
             bomDni = Integer.parseInt(TextDni.getText());
   
         }catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Caracteres invalidos, porfavor ingrese números enteros solamente.");
-            return;
-            
+            return;  
         }
+         bom.setCodBombero(bomberCod);
+         bom.setDNI(bomDni);
+         }
          String apeNom = TextApeNom.getText();
         if (!validarString(apeNom)) {
             JOptionPane.showMessageDialog(this, "Caracteres invalidos, porfavor ingrese letras unicamente.");
             return;
         }
-        String GrupoSan;
-        if (CBSanguineo != null){
-        GrupoSan = (String) CBSanguineo.getSelectedItem();
+        bom.setNombreApe(apeNom);
+        String GrupoSan = (String) CBSanguineo.getSelectedItem();
+        if (CBSanguineo == null){
         } else { 
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
             return;
         }
-        LocalDate cumple ;
+        bom.setGrupoSang(GrupoSan);
         try{
-            cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         } catch (NullPointerException e){
             JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
             return;
         }
         String caraCelu = TextCaracteristicaCel.getText();
         String chelu = TextCelu.getText();
+        
+        bom.setCelular(caraCelu+chelu);
+        validarTelefono ();
+        
         if  (bom.isActivo()){
             LabelEstado.setText("Bombero Activo");
         } else {
@@ -449,5 +470,39 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         }
         return flag;
     }
-   
+    
+    
+   private String validarTelefono() {
+        String[] codigos = {"11", "261", "264", "266", "280", "2901", "2920",
+            "2954", "2966", "299", "342", "343", "351", "362", "370", "376",
+            "379", "380", "381", "383", "385", "387", "388"};
+
+        String codArea = TextCaracteristicaCel.getText(), cuerponum = TextCelu.getText();
+        boolean valido = false;
+
+        // Se valida el código de área en base al array con los códigos cargados
+        if (codArea.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área "
+                    + "numérico", "Error Código de Area", 2, frameIcon);
+        } else {
+            for (String aux : codigos) {
+                if (aux.equals(codArea)) {
+                    valido = true;
+                    break;
+                }
+            }
+        }
+
+        // Se valida q el largo del cuerpo del nº complete las 10 cifras según el cód. de área
+        if (valido) {
+            if ((codArea.length() + cuerponum.length()) == 10) {
+                return codArea + cuerponum;
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe ingresar un número "
+                        + "telefónico válido", "Error Código de Area", 2, frameIcon);
+            }
+        }
+
+        return null;
+    }
 }
