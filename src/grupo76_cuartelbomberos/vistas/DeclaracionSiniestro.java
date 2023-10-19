@@ -217,17 +217,11 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         PanelTabla.setLayout(PanelTablaLayout);
         PanelTablaLayout.setHorizontalGroup(
             PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
         );
         PanelTablaLayout.setVerticalGroup(
             PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
         );
 
         getContentPane().add(PanelTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 430, -1));
@@ -293,7 +287,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (TA_Detalles.getText().equals("")) {
+        if (TA_Detalles.getText().equals(" ") || TA_Detalles.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe describir el siniestro !!");
             return;
         } else {
@@ -305,7 +299,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         try {
             codB = Integer.parseInt((String) T_Brigadas.getValueAt(filas, 0));
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una brigada\n" + e);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una brigada");
             return;
         }
         brig.setCodBrigada(codB);
@@ -321,7 +315,8 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         }
         limpiarCampos();
 
-        ocuparBrigada(codB);
+        BrigadaData brigD = new BrigadaData();
+        brigD.ocuparBrigada(codB);
     }//GEN-LAST:event_B_CargarActionPerformed
 
     private void B_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarActionPerformed

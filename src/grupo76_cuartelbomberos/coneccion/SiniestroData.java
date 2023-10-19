@@ -42,7 +42,7 @@ public class SiniestroData {
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero !!\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero !!");
         }
 
         return codSiniestro;
@@ -65,7 +65,7 @@ public class SiniestroData {
             
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero !!\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Bombero !!");
         }
 
     }

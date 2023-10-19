@@ -5,6 +5,7 @@
  */
 package grupo76_cuartelbomberos.vistas;
 
+import com.sun.javafx.binding.BidirectionalBinding;
 import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
 import java.awt.Color;
@@ -103,17 +104,11 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         P_Bomberos.setLayout(P_BomberosLayout);
         P_BomberosLayout.setHorizontalGroup(
             P_BomberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(P_BomberosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
         P_BomberosLayout.setVerticalGroup(
             P_BomberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(P_BomberosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
 
         getContentPane().add(P_Bomberos, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 284, 410, 140));
@@ -278,7 +273,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             if (a < 1 || a > 10) {
                 a = Integer.parseInt(TF_Brigada.getText());
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un Nº entero entre 1 y 10");
         }
     }//GEN-LAST:event_TF_PuntajeFocusLost
@@ -291,7 +286,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 if (a < 1 || a > 10) {
                     a = Integer.parseInt(TF_Brigada.getText());
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Debe ingresar un Nº entero entre 1 y 10");
             }
         }
@@ -307,15 +302,20 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         // Se actualiza el Siniestro en la DB
         LocalDate fechaFin;
         try {
-         fechaFin = DC_FechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } catch (NullPointerException e){
+            fechaFin = DC_FechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Debe indicar la fecha de resolución del incidente");
             return;
         }
         
-        int puntaje = Integer.parseInt(TF_Puntaje.getText());
-        int codigo = Integer.parseInt(TF_CodSin.getText());
-        
+        int puntaje = 0, codigo = 0;
+        try {
+            puntaje = Integer.parseInt(TF_Puntaje.getText());
+            codigo = Integer.parseInt(TF_CodSin.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un valor aceptable");
+        }
+
         Siniestro sin = new Siniestro();
         sin.setFechaResoluc(fechaFin);
         sin.setPuntuacion(puntaje);
@@ -323,6 +323,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         SiniestroData sinD = new SiniestroData();
         sinD.actualizarSiniestro(sin);
         
+        liberarBrigada();
         limpiarCampos();
     }//GEN-LAST:event_B_GuardarActionPerformed
 
@@ -395,22 +396,22 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         }
     }
 
-    private void llenarTabla(int cod){
+    private void llenarTabla(int cod) {
         BomberoData bombD = new BomberoData();
-        
-        for(Bomberos bomb:bombD.listarBomberosXBrigada(cod)){
+
+        for (Bomberos bomb : bombD.listarBomberosXBrigada(cod)) {
             tabla.addRow(new Object[]{bomb.getCodBombero(), bomb.getNombreApe()});
         }
     }
-    
-    private void nombreBrigada(int cod){
+
+    private void nombreBrigada(int cod) {
         BrigadaData brigD = new BrigadaData();
-        Brigada brig = null;//brigD.buscargarBrigada(cod);
-        TF_Brigada.setText(brig.getNombreBrigada());
+        Brigada brig = brigD.buscargarBrigada(cod);
+        TF_Brigada.setText(brig.getCodBrigada()+" | "+brig.getNombreBrigada());
     }
-    
-    private void buscarSiniestro(){
-        
+
+    private void buscarSiniestro() {
+
         int cod = 0;
         // validar codigo
         try {
@@ -422,20 +423,28 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         // Buscar SINIESTRO por CODIGO
         SiniestroData sinD = new SiniestroData();
         Siniestro sin = sinD.buscarSiniestro(cod);
-        
+
         // Rellenar campos requeridos
-        if (sin != null){
+        if (sin != null) {
             B_Guardar.setVisible(true);
             RBNoSiniestro.setEnabled(true);
             RBSiSiniestro.setEnabled(true);
             DC_FechaFin.setEnabled(true);
             TF_Puntaje.setEnabled(true);
             TF_Tipo.setText(sin.getTipo().name());
-//            nombreBrigada(sin.getBrigada().getCodBrigada());
+            nombreBrigada(sin.getBrigada().getCodBrigada());
             llenarTabla(sin.getBrigada().getCodBrigada());
         } else {
             limpiarCampos();
         }
-        
     }
+    
+    private void liberarBrigada(){
+        BrigadaData brigD = new BrigadaData();
+        String text = TF_Brigada.getText();
+        String[] separar = text.split(" ");
+        int codigo = Integer.parseInt(separar[0]);
+        brigD.liberarBrigada(codigo);
+    }
+    //
 }

@@ -42,14 +42,21 @@ public class CuartelData {
         }
     }
 
-    private void modificarCuartel() {
+    public void modificarCuartel() {
 
     }
 
-    private void eliminarCuartel() {
+    public void eliminarCuartel() {
 
     }
 
+    public Cuartel buscarCuartel(int cod){
+        Cuartel cuar = null;
+        String sql = "SELECT `codCuartel`, `nombreCuartel`, `direccion`, `coord_X`, `coord_Y`, `telefono`, `email` FROM `cuartel` WHERE 1";
+        
+        
+        return cuar;
+    }
     public List<Cuartel> listarCuartel() {
         ArrayList<Cuartel> listCuarteles = new ArrayList<>();
         Cuartel cuartel = null;
