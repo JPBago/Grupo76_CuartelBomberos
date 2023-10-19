@@ -73,7 +73,7 @@ public class BrigadaData {
         String sql ="SELECT * FROM bridaga WHERE nombreBrig =?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(0, nom);
+            ps.setString(1, nom);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 brig = new Brigada();
@@ -88,7 +88,7 @@ public class BrigadaData {
                 JOptionPane.showMessageDialog(null, "No hay brigada con el nombre" + nom, "ERROR", 2);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR ", "ERROR CRITICO", 2);
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA", "ERROR CRITICO", 2);
         }
         return brig;
     }
