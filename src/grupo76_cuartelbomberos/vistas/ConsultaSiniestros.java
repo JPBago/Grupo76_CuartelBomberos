@@ -193,6 +193,8 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
     }
 
     private void rellenarTabla(LocalDateTime fecha1, LocalDateTime fecha2) {
+        // Limpiamos la tabla
+        borrarFilas();
         // Inicialización de variables
         SiniestroData sinD = new SiniestroData();
         BrigadaData brigD = new BrigadaData();
@@ -209,6 +211,13 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
             }
             tabla.addRow(new Object[]{sin.getCodSiniestro(), sin.getTipo().name(), sin.getFechaSinietro(),
                 resolucion,brig.getNombreBrigada(),cuar.getNombreCuartel()});
+        }
+    }
+    
+    private void borrarFilas() {
+        int filas = Tabla_Siniestros.getRowCount() - 1;
+        for (; filas >= 0; filas--) {
+            tabla.removeRow(filas);
         }
     }
 }
