@@ -344,16 +344,25 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     }//GEN-LAST:event_BLimpBrigadaActionPerformed
 
     private void BBuscarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBrigadaActionPerformed
-        String brignom="";
-       try{
-           brignom=TextBrigada.getText();
-       }catch(Exception ex){
-           JOptionPane.showMessageDialog(this, "ingrese nombre de la brigada.");
-           return;
-       }
-       BrigadaData brigD=new BrigadaData();
-       Brigada brig = brigD.buscarBrigadaNom(brignom);
+        int cuartCd=0;
+     try{
+     cuartCd = (Integer) CBCuartel.getSelectedItem();
+ 
+     }catch(Exception c){
+         JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+         return;
+     }
+    String nomBrig=TextBrigada.getText(); 
+    
+       if(nomBrig.isEmpty()||nomBrig.equals(" ")){
+                 
+           JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada.");
+           return;}
        
+       BrigadaData brigD=new BrigadaData();
+       Brigada brig = brigD.buscarBrigadaNom(nomBrig);
+       
+       cargarTabla(brig);
     }//GEN-LAST:event_BBuscarBrigadaActionPerformed
 
 
@@ -410,7 +419,7 @@ private void armarCabecera() {
         CBEspecialidades.setSelectedIndex(-1);
     }
  
- public void cargarTabla(){
+ public void cargarTabla(Brigada brig){
         tabla.setRowCount(0);
      int cuartCd=0;
      try{

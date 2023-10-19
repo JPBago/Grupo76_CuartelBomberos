@@ -88,7 +88,7 @@ public class BrigadaData {
                 JOptionPane.showMessageDialog(null, "No hay brigada con el nombre" + nom, "ERROR", 2);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL INGRESAR A LA TRABLA BRIGADA", "ERROR CRITICO", 2);
+            JOptionPane.showMessageDialog(null, "ERROR ", "ERROR CRITICO", 2);
         }
         return brig;
     }
