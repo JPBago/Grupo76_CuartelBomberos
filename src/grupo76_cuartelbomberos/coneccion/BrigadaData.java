@@ -67,6 +67,32 @@ public class BrigadaData {
         }
     }
 
+    public Brigada buscarBrigadaNom(String nom){
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String sql ="SELECT * FROM bridaga WHERE nombreBrig =?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(0, nom);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                brig = new Brigada();
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                brig.setNombreBrigada(rs.getString("nombreBrig"));
+                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                brig.setCodCuartel(cuar);
+                brig.setLibre(rs.getBoolean("libre"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay brigada con el nombre" + nom, "ERROR", 2);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL INGRESAR A LA TRABLA BRIGADA", "ERROR CRITICO", 2);
+        }
+        return brig;
+    }
+    
     public Brigada buscargarBrigada(int cod) {
         Brigada brig = null;
         Cuartel cuar = null;

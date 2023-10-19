@@ -36,6 +36,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
      */
     public Brigadas() {
         initComponents();
+        armarCabecera();
         cargarComboEsp();
         CargarCombo();
     }
@@ -69,6 +70,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BotonLibre = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         CBCuartel = new javax.swing.JComboBox<>();
+        BBuscarBrigada = new javax.swing.JButton();
 
         setTitle("Detalles Brigadas");
 
@@ -133,10 +135,17 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BModiBrigada.setPreferredSize(new java.awt.Dimension(100, 20));
 
         BLimpBrigada.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BLimpBrigada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Limpiar.png"))); // NOI18N
         BLimpBrigada.setText("Limpiar");
         BLimpBrigada.setPreferredSize(new java.awt.Dimension(100, 20));
+        BLimpBrigada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BLimpBrigadaActionPerformed(evt);
+            }
+        });
 
         BotonEliminar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BotonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/eliminar.png"))); // NOI18N
         BotonEliminar.setText("Eliminar");
         BotonEliminar.setPreferredSize(new java.awt.Dimension(100, 20));
         BotonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +155,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         });
 
         BSalirBrigada.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BSalirBrigada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/salida.png"))); // NOI18N
         BSalirBrigada.setText("Salir");
         BSalirBrigada.setPreferredSize(new java.awt.Dimension(100, 20));
         BSalirBrigada.addActionListener(new java.awt.event.ActionListener() {
@@ -159,15 +169,19 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(BLimpBrigada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BModiBrigada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonNuevaBrigada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BAsignarsinie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                        .addComponent(BotonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(BSalirBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(BModiBrigada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BAsignarsinie, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(BLimpBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BSalirBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotonNuevaBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,6 +211,14 @@ private DefaultTableModel tabla=new DefaultTableModel(){
             }
         });
 
+        BBuscarBrigada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Buscar.png"))); // NOI18N
+        BBuscarBrigada.setText("Buscar Brigada");
+        BBuscarBrigada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarBrigadaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,42 +230,45 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(BotonAsignado)
-                                                .addGap(43, 43, 43)
-                                                .addComponent(BotonLibre))
-                                            .addComponent(jLabel5))
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextBrigada)
-                                        .addComponent(CBEspecialidades, 0, 185, Short.MAX_VALUE)
-                                        .addComponent(jLabel2)))
-                                .addGap(171, 171, 171)))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(BotonAsignado)
+                                            .addGap(43, 43, 43)
+                                            .addComponent(BotonLibre))
+                                        .addComponent(jLabel5))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextBrigada)
+                                    .addComponent(CBEspecialidades, 0, 185, Short.MAX_VALUE)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addComponent(BBuscarBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                .addGap(2, 2, 2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BBuscarBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,7 +287,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))
+                        .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
@@ -311,12 +336,30 @@ private DefaultTableModel tabla=new DefaultTableModel(){
 
     private void CBCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBCuartelActionPerformed
 
-        cargarTabla();
+        
     }//GEN-LAST:event_CBCuartelActionPerformed
+
+    private void BLimpBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpBrigadaActionPerformed
+        borrarCampos();
+    }//GEN-LAST:event_BLimpBrigadaActionPerformed
+
+    private void BBuscarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBrigadaActionPerformed
+        String brignom="";
+       try{
+           brignom=TextBrigada.getText();
+       }catch(Exception ex){
+           JOptionPane.showMessageDialog(this, "ingrese nombre de la brigada.");
+           return;
+       }
+       BrigadaData brigD=new BrigadaData();
+       Brigada brig = brigD.buscarBrigadaNom(brignom);
+       
+    }//GEN-LAST:event_BBuscarBrigadaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAsignarsinie;
+    private javax.swing.JButton BBuscarBrigada;
     private javax.swing.JButton BLimpBrigada;
     private javax.swing.JButton BModiBrigada;
     private javax.swing.JButton BSalirBrigada;
@@ -324,9 +367,9 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     private javax.swing.JButton BotonEliminar;
     private javax.swing.JRadioButton BotonLibre;
     private javax.swing.JButton BotonNuevaBrigada;
-    private javax.swing.JComboBox<Cuartel> CBCuartel;
+    private javax.swing.JComboBox<Integer> CBCuartel;
     private javax.swing.JComboBox<Especialidad> CBEspecialidades;
-    private javax.swing.JTable TablaIntBrigada;
+    protected javax.swing.JTable TablaIntBrigada;
     private javax.swing.JTextField TextBrigada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -340,8 +383,9 @@ private DefaultTableModel tabla=new DefaultTableModel(){
 
 public void CargarCombo(){
     CuartelData cuartD = new CuartelData();
+    
     for (Cuartel cuart : cuartD.listarCuartel()) {
-        CBCuartel.addItem(cuart);
+        CBCuartel.addItem(cuart.getCodCuartel());
     }
     CBCuartel.setSelectedIndex(-1);
     borrarFilas();
@@ -367,18 +411,21 @@ private void armarCabecera() {
     }
  
  public void cargarTabla(){
-     Cuartel cuart =(Cuartel) CBCuartel.getSelectedItem();
-     tabla.setRowCount(0);
-     if (cuart==null){
-         return;
-     }
-     int cuartCd = cuart.getCodCuartel();
+        tabla.setRowCount(0);
+     int cuartCd=0;
+     try{
+     cuartCd = (Integer) CBCuartel.getSelectedItem();
+ 
+     }catch(Exception c){
+         JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+         return;}
      borrarFilas();
      BomberoData bomD = new BomberoData();
      
      for (Bomberos  bom : bomD.listarBomberosXBrigada(cuartCd)) {
          tabla.addRow(new Object[]{bom.getNombreApe(),bom.getDNI() ,bom.getGrupoSang(),bom.getFechaNac(),bom.getCelular()});
      }
+ 
  }
  
  private static boolean validarString(String s) {
@@ -427,5 +474,9 @@ private void armarCabecera() {
         TablaIntBrigada.setSelectionBackground(Color.green);
         TablaIntBrigada.setSelectionForeground(Color.black);
 
-    }      
+    }  
+  private void borrarCampos() {
+        TextBrigada.setText("");
+        
+    }
 }
