@@ -7,8 +7,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
@@ -16,6 +18,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
+
     };
 
     public ConsultaSiniestros() {
@@ -29,7 +32,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         PConsulSini = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        JSP_Tabla = new javax.swing.JScrollPane();
         Tabla_Siniestros = new javax.swing.JTable();
         PBotonesConsulta = new javax.swing.JPanel();
         BConsulSini = new javax.swing.JButton();
@@ -59,17 +62,18 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(Tabla_Siniestros);
+        Tabla_Siniestros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JSP_Tabla.setViewportView(Tabla_Siniestros);
 
         javax.swing.GroupLayout PConsulSiniLayout = new javax.swing.GroupLayout(PConsulSini);
         PConsulSini.setLayout(PConsulSiniLayout);
         PConsulSiniLayout.setHorizontalGroup(
             PConsulSiniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(JSP_Tabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
         PConsulSiniLayout.setVerticalGroup(
             PConsulSiniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(JSP_Tabla, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         getContentPane().add(PConsulSini, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 470, 150));
@@ -163,18 +167,18 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
     private javax.swing.JButton BSalirConsulSini;
     private com.toedter.calendar.JDateChooser DC_Fecha1;
     private com.toedter.calendar.JDateChooser DC_Fecha2;
+    private javax.swing.JScrollPane JSP_Tabla;
     private javax.swing.JPanel PBotonesConsulta;
     private javax.swing.JPanel PConsulSini;
     private javax.swing.JTable Tabla_Siniestros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     // Metodos sin eventos
     private void iniciarTabla() {
-        //Inicializar las columnas de la tabla
+        // Inicializar las columnas de la tabla
         tabla.addColumn("COD");
         tabla.addColumn("TIPO");
         tabla.addColumn("FECHA INICO");
@@ -183,13 +187,32 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         tabla.addColumn("CUARTEL");
         tabla.setRowCount(0);
 
+        // Se arma el modelo de la tabla con 
         Tabla_Siniestros.setModel(tabla);
-        PConsulSini.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-                "Siniestros e Incidentes", TitledBorder.CENTER, TitledBorder.TOP));
         Tabla_Siniestros.setBackground(Color.gray);
         Tabla_Siniestros.setForeground(Color.white);
         Tabla_Siniestros.setSelectionBackground(Color.green);
         Tabla_Siniestros.setSelectionForeground(Color.black);
+
+        // Se arma el modelo del panel contenedor de la tabla
+        PConsulSini.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+                "Siniestros e Incidentes", TitledBorder.CENTER, TitledBorder.TOP));
+        TableColumn column = null;
+        for (int i = 0; i < 6; i++) {
+            column = Tabla_Siniestros.getColumnModel().getColumn(i);
+            switch(i){
+                case 0: column.setMinWidth(7); break;
+                case 1: column.setMinWidth(50); break;
+                case 2: column.setMinWidth(100); break;
+                case 3: column.setMinWidth(50); break;
+                case 4: column.setMinWidth(50); break;
+                case 5: column.setMinWidth(100); break;
+                    
+            }
+        }
+        Tabla_Siniestros.setPreferredSize(null);
+        JSP_Tabla.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
     }
 
     private void rellenarTabla(LocalDateTime fecha1, LocalDateTime fecha2) {
@@ -206,14 +229,14 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         for (Siniestro sin : sinD.listarSiniestrosXFecha(fecha1, fecha2)) {
             brig = brigD.buscargarBrigada(sin.getBrigada().getCodBrigada());
             cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
-            if (sin.getFechaResoluc()!=null){
+            if (sin.getFechaResoluc() != null) {
                 resolucion = sin.getFechaResoluc().toString();
             }
             tabla.addRow(new Object[]{sin.getCodSiniestro(), sin.getTipo().name(), sin.getFechaSinietro(),
-                resolucion,brig.getNombreBrigada(),cuar.getNombreCuartel()});
+                resolucion, brig.getNombreBrigada(), cuar.getNombreCuartel()});
         }
     }
-    
+
     private void borrarFilas() {
         int filas = Tabla_Siniestros.getRowCount() - 1;
         for (; filas >= 0; filas--) {

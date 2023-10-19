@@ -485,7 +485,5 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         return true;
     }
 
-    private void ocuparBrigada(int codB) {
-        // Generar un codigo para modificar el campo ocupado de la brigada
-    }
+    
 }
