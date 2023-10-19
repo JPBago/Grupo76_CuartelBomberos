@@ -1,8 +1,12 @@
-
 package grupo76_cuartelbomberos.vistas;
 
+import grupo76_cuartelbomberos.coneccion.*;
+import grupo76_cuartelbomberos.entidades.*;
 import java.awt.Color;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,12 +17,12 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    
+
     public ConsultaSiniestros() {
         initComponents();
-      
+        iniciarTabla();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,8 +34,8 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         PBotonesConsulta = new javax.swing.JPanel();
         BConsulSini = new javax.swing.JButton();
         BSalirConsulSini = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        DC_Fecha1 = new com.toedter.calendar.JDateChooser();
+        DC_Fecha2 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -61,23 +65,22 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         PConsulSini.setLayout(PConsulSiniLayout);
         PConsulSiniLayout.setHorizontalGroup(
             PConsulSiniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PConsulSiniLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
         PConsulSiniLayout.setVerticalGroup(
             PConsulSiniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PConsulSiniLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         getContentPane().add(PConsulSini, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 470, 150));
 
         BConsulSini.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BConsulSini.setText("Consultar");
+        BConsulSini.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BConsulSiniActionPerformed(evt);
+            }
+        });
 
         BSalirConsulSini.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BSalirConsulSini.setText("Salir");
@@ -110,11 +113,11 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
         getContentPane().add(PBotonesConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
-        jDateChooser1.setPreferredSize(new java.awt.Dimension(30, 25));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, -1));
+        DC_Fecha1.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(DC_Fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, -1));
 
-        jDateChooser2.setPreferredSize(new java.awt.Dimension(30, 25));
-        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 130, -1));
+        DC_Fecha2.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(DC_Fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 130, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Desde:");
@@ -135,15 +138,34 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BSalirConsulSiniActionPerformed
 
+    private void BConsulSiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConsulSiniActionPerformed
+        // Verificar q las fechas sean válidas
+        LocalDateTime fecha1, fecha2;
+        try {
+            fecha1 = DC_Fecha1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Coloque fecha de inicio válida");
+            return;
+        }
+        try {
+            fecha2 = DC_Fecha2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Coloque fecha de fin válida");
+            return;
+        }
+
+        rellenarTabla(fecha1, fecha2);
+    }//GEN-LAST:event_BConsulSiniActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BConsulSini;
     private javax.swing.JButton BSalirConsulSini;
+    private com.toedter.calendar.JDateChooser DC_Fecha1;
+    private com.toedter.calendar.JDateChooser DC_Fecha2;
     private javax.swing.JPanel PBotonesConsulta;
     private javax.swing.JPanel PConsulSini;
     private javax.swing.JTable Tabla_Siniestros;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -168,5 +190,25 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         Tabla_Siniestros.setForeground(Color.white);
         Tabla_Siniestros.setSelectionBackground(Color.green);
         Tabla_Siniestros.setSelectionForeground(Color.black);
+    }
+
+    private void rellenarTabla(LocalDateTime fecha1, LocalDateTime fecha2) {
+        // Inicialización de variables
+        SiniestroData sinD = new SiniestroData();
+        BrigadaData brigD = new BrigadaData();
+        CuartelData cuarD = new CuartelData();
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String resolucion = "Incidente en curso";
+        // Carga de la tabla
+        for (Siniestro sin : sinD.listarSiniestrosXFecha(fecha1, fecha2)) {
+            brig = brigD.buscargarBrigada(sin.getBrigada().getCodBrigada());
+            cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
+            if (sin.getFechaResoluc()!=null){
+                resolucion = sin.getFechaResoluc().toString();
+            }
+            tabla.addRow(new Object[]{sin.getCodSiniestro(), sin.getTipo().name(), sin.getFechaSinietro(),
+                resolucion,brig.getNombreBrigada(),cuar.getNombreCuartel()});
+        }
     }
 }

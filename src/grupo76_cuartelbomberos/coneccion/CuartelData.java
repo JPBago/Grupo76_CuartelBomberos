@@ -52,8 +52,25 @@ public class CuartelData {
 
     public Cuartel buscarCuartel(int cod){
         Cuartel cuar = null;
-        String sql = "SELECT `codCuartel`, `nombreCuartel`, `direccion`, `coord_X`, `coord_Y`, `telefono`, `email` FROM `cuartel` WHERE 1";
+        String sql = "SELECT * FROM cuartel WHERE codCuartel=?";
         
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cod);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                cuar.setNombreCuartel(rs.getString("nombreCuartel"));
+                cuar.setDireccion(rs.getString("direccion"));
+                cuar.setCoord_X(rs.getDouble("coord_X"));
+                cuar.setCoord_Y(rs.getDouble("coord_Y"));
+                cuar.setTelefono(rs.getString("telefono"));
+                cuar.setEmail(rs.getString("email"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla Cuartel");
+        }
         
         return cuar;
     }

@@ -178,14 +178,14 @@ public class SiniestroData {
         return listaSin;
     }
     
-    public ArrayList<Siniestro> listarSiniestrosXFecha(Date fecha1, Date fecha2){
+    public ArrayList<Siniestro> listarSiniestrosXFecha(LocalDateTime fecha1, LocalDateTime fecha2){
         ArrayList<Siniestro> listaSin = new ArrayList<>();
         Siniestro sin; Brigada brig;
         String sql = "SELECT * FROM siniestro WHERE fechaSinietro BETWEEN ? AND ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDate(1, fecha1);
-            ps.setDate(2, fecha2);
+            ps.setObject(1, fecha1);
+            ps.setObject(2, fecha2);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 sin = new Siniestro();
