@@ -325,13 +325,13 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     }//GEN-LAST:event_CBEspecialidadesActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        
+  borrarCampos();        
         
         
     }//GEN-LAST:event_BotonEliminarActionPerformed
 
     private void BSalirBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBrigadaActionPerformed
-        limpiarCampos();
+        
     }//GEN-LAST:event_BSalirBrigadaActionPerformed
 
     private void CBCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBCuartelActionPerformed
@@ -340,7 +340,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     }//GEN-LAST:event_CBCuartelActionPerformed
 
     private void BLimpBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpBrigadaActionPerformed
-        borrarCampos();
+      limpiarCampos();
     }//GEN-LAST:event_BLimpBrigadaActionPerformed
 
     private void BBuscarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBrigadaActionPerformed
