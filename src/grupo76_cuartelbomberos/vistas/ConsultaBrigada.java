@@ -5,9 +5,15 @@
  */
 package grupo76_cuartelbomberos.vistas;
 
+import grupo76_cuartelbomberos.coneccion.*;
+import grupo76_cuartelbomberos.entidades.*;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +44,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         PConsulBri = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        JSP_Tabla = new javax.swing.JScrollPane();
         T_Brigadas = new javax.swing.JTable();
         PBotoneBri = new javax.swing.JPanel();
         BConsulBri = new javax.swing.JButton();
@@ -62,23 +68,17 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(T_Brigadas);
+        JSP_Tabla.setViewportView(T_Brigadas);
 
         javax.swing.GroupLayout PConsulBriLayout = new javax.swing.GroupLayout(PConsulBri);
         PConsulBri.setLayout(PConsulBriLayout);
         PConsulBriLayout.setHorizontalGroup(
             PConsulBriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PConsulBriLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(JSP_Tabla, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
         PConsulBriLayout.setVerticalGroup(
             PConsulBriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PConsulBriLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(JSP_Tabla, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         getContentPane().add(PConsulBri, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 470, 150));
@@ -167,9 +167,11 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
     private void BConsulBriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConsulBriActionPerformed
         // TODO add your handling code here:
-        if(BrixCuartel.isSelected()){
+        if (BrixCuartel.isSelected()) {
+            borrarFilas();
             llenarTablaXCuartel();
-        } else if (RBriLibres.isSelected()){
+        } else if (RBriLibres.isSelected()) {
+            borrarFilas();
             llenarTablaLibres();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una condición");
@@ -181,12 +183,12 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
     private javax.swing.JButton BConsulBri;
     private javax.swing.JButton BSalirConBri;
     private javax.swing.JRadioButton BrixCuartel;
+    private javax.swing.JScrollPane JSP_Tabla;
     private javax.swing.JPanel PBotoneBri;
     private javax.swing.JPanel PConsulBri;
     private javax.swing.JRadioButton RBriLibres;
     private javax.swing.JTable T_Brigadas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void iniciarTabla() {
@@ -198,19 +200,51 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         tabla.setRowCount(0);
 
         T_Brigadas.setModel(tabla);
-        PConsulBri.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-                "Miembros de la Brigada", TitledBorder.CENTER, TitledBorder.TOP));
         T_Brigadas.setBackground(Color.gray);
         T_Brigadas.setForeground(Color.white);
         T_Brigadas.setSelectionBackground(Color.green);
         T_Brigadas.setSelectionForeground(Color.black);
+
+        PConsulBri.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+                "Miembros de la Brigada", TitledBorder.CENTER, TitledBorder.TOP));
+        JSP_Tabla.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     }
 
-    private void llenarTablaXCuartel(){
-        
+    private void borrarFilas() {
+        int filas = T_Brigadas.getRowCount() - 1;
+        for (; filas >= 0; filas--) {
+            tabla.removeRow(filas);
+        }
     }
-    
-    private void llenarTablaLibres(){
-        
+
+    private void llenarTablaXCuartel() {
+        BrigadaData brigD = new BrigadaData();
+        CuartelData cuarD = new CuartelData();
+        Cuartel cuar = null;
+        ArrayList<Brigada> brigadas = brigD.listarBrigadas();
+        // ordenar la lista basada en el codigo de cuartel
+        Collections.sort(brigadas, new Comparator<Brigada>() {
+            @Override
+            public int compare(Brigada o1, Brigada o2) {
+                return Integer.compare(o1.getCodCuartel().getCodCuartel(), o2.getCodCuartel().getCodCuartel());
+            }
+        });
+        // armar la tabla con la lista ordenada por cuartel
+        for (Brigada brig : brigadas) {
+            cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
+            tabla.addRow(new Object[]{brig.getCodBrigada(), brig.getNombreBrigada(),
+                brig.getEspecialidad().name(), cuar.getNombreCuartel()});
+        }
+    }
+
+    private void llenarTablaLibres() {
+        BrigadaData brigD = new BrigadaData();
+        CuartelData cuarD = new CuartelData();
+        Cuartel cuar = null;
+        for (Brigada brig : brigD.listarBrigadasLibres()) {
+            cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
+            tabla.addRow(new Object[]{brig.getCodBrigada(), brig.getNombreBrigada(),
+                brig.getEspecialidad().name(), cuar.getNombreCuartel()});
+        }
     }
 }

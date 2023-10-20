@@ -6,8 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -67,10 +66,10 @@ public class BrigadaData {
         }
     }
 
-    public Brigada buscarBrigadaNom(String nom){
+    public Brigada buscarBrigadaNom(String nom) {
         Brigada brig = null;
         Cuartel cuar = null;
-        String sql ="SELECT * FROM bridaga WHERE nombreBrig =?";
+        String sql = "SELECT * FROM bridaga WHERE nombreBrig =?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, nom);
@@ -92,7 +91,7 @@ public class BrigadaData {
         }
         return brig;
     }
-    
+
     public Brigada buscargarBrigada(int cod) {
         Brigada brig = null;
         Cuartel cuar = null;
@@ -175,5 +174,55 @@ public class BrigadaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada.\n" + ex.getMessage());
         }
+    }
+
+    public ArrayList<Brigada> listarBrigadas() {
+        ArrayList<Brigada> listaBrigada = new ArrayList<>();
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM bridaga";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                brig = new Brigada();
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                brig.setNombreBrigada(rs.getString("nombreBrig"));
+                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
+                brig.setLibre(rs.getBoolean("libre"));
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                brig.setCodCuartel(cuar);
+                listaBrigada.add(brig);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR al conectar la tabla BRIGADA");
+        }
+        return listaBrigada;
+    }
+
+    public ArrayList<Brigada> listarBrigadasLibres() {
+        ArrayList<Brigada> listaBrigada = new ArrayList<>();
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM bridaga WHERE libre=1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                brig = new Brigada();
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                brig.setNombreBrigada(rs.getString("nombreBrig"));
+                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
+                brig.setLibre(rs.getBoolean("libre"));
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                brig.setCodCuartel(cuar);
+                listaBrigada.add(brig);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR al conectar la tabla BRIGADA");
+        }
+        return listaBrigada;
     }
 }
