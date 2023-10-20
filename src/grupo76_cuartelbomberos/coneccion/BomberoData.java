@@ -93,7 +93,7 @@ public class BomberoData {
     }
     
     public Bomberos buscarBombero(int id){
-        Bomberos bomb=new Bomberos();
+        Bomberos bomb = null;
         Brigada brig=new Brigada();
         String sql="SELECT * FROM bombero Where codBombero = ?";
         
@@ -102,6 +102,7 @@ public class BomberoData {
             ps.setInt(1, id);
             ResultSet rs= ps.executeQuery();
             if (rs.next()){
+                bomb =new Bomberos();
                 bomb.setCodBombero(rs.getInt("codBombero"));
                 bomb.setDNI(rs.getInt("DNI"));
                 bomb.setNombreApe(rs.getString("nombreApe"));

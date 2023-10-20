@@ -61,6 +61,8 @@ public class ViewMenu extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Fondo.setBackground(new java.awt.Color(0, 0, 0));
+        Fondo.setForeground(new java.awt.Color(255, 255, 255));
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/byn.jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -77,11 +79,14 @@ public class ViewMenu extends javax.swing.JFrame {
 
         getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1000, 680));
 
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenuBar1.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
+        jMenuBar1.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
 
+        BBomberos.setBackground(new java.awt.Color(0, 0, 0));
         BBomberos.setBorder(null);
         BBomberos.setText("Bomberos");
+        BBomberos.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         BBomberos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BBomberosMouseClicked(evt);
@@ -91,6 +96,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BCuartel.setBorder(null);
         BCuartel.setText("Cuarteles");
+        BCuartel.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         BCuartel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BCuartelMouseClicked(evt);
@@ -100,6 +106,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BBrigada.setBorder(null);
         BBrigada.setText("Brigadas");
+        BBrigada.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         BBrigada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BBrigadaMouseClicked(evt);
@@ -109,7 +116,9 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BSiniestro.setBorder(null);
         BSiniestro.setText("Siniestros");
+        BSiniestro.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
 
+        Siniestro_Declarar.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         Siniestro_Declarar.setText("Declarar");
         Siniestro_Declarar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +127,7 @@ public class ViewMenu extends javax.swing.JFrame {
         });
         BSiniestro.add(Siniestro_Declarar);
 
+        Siniestro_Concluir.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         Siniestro_Concluir.setText("Concluir");
         Siniestro_Concluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +139,9 @@ public class ViewMenu extends javax.swing.JFrame {
         jMenuBar1.add(BSiniestro);
 
         MenuConsultas.setText("Consultas");
+        MenuConsultas.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
 
+        MConsulSini.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         MConsulSini.setText("Siniestros");
         MConsulSini.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,12 +150,8 @@ public class ViewMenu extends javax.swing.JFrame {
         });
         MenuConsultas.add(MConsulSini);
 
+        MConsulBriga.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         MConsulBriga.setText("Brigadas");
-        MConsulBriga.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MConsulBrigaMouseClicked(evt);
-            }
-        });
         MConsulBriga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MConsulBrigaActionPerformed(evt);
@@ -155,6 +163,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         BSalir.setBorder(null);
         BSalir.setText("Salir");
+        BSalir.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         BSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BSalirMouseClicked(evt);
@@ -173,7 +182,7 @@ public class ViewMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BSalirMouseClicked
 
     private void BBomberosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBomberosMouseClicked
-
+        Fondo.setVisible(false);
         escritorio.removeAll();
         escritorio.repaint();
         GestionBomber bomber = new GestionBomber();
@@ -216,28 +225,6 @@ public class ViewMenu extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_BCuartelMouseClicked
 
-    private void BBrigadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBrigadaMouseClicked
-
-        Fondo.setVisible(false);
-        escritorio.removeAll();
-        escritorio.repaint();
-        Brigadas brigada = new Brigadas();
-        Dimension escritorioSize = escritorio.getSize();
-        Dimension brigadaSize = brigada.getSize();
-        brigada.setLocation((escritorioSize.width - brigadaSize.width) / 2,
-                (escritorioSize.height - brigadaSize.height) / 2);
-        brigada.setVisible(true);
-        escritorio.add(brigada);
-        escritorio.moveToFront(brigada);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BBrigadaMouseClicked
-
-    private void MConsulBrigaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MConsulBrigaMouseClicked
-
-         
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MConsulBrigaMouseClicked
-
     private void MConsulSiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MConsulSiniActionPerformed
 
          Fondo.setVisible(false);
@@ -269,6 +256,22 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.moveToFront(consulBri);
         // TODO add your handling code here:
     }//GEN-LAST:event_MConsulBrigaActionPerformed
+
+    private void BBrigadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BBrigadaMouseClicked
+
+        Fondo.setVisible(false);
+        escritorio.removeAll();
+        escritorio.repaint();
+        Brigadas brigada = new Brigadas();
+        Dimension escritorioSize = escritorio.getSize();
+        Dimension brigadaSize = brigada.getSize();
+        brigada.setLocation((escritorioSize.width - brigadaSize.width) / 2,
+            (escritorioSize.height - brigadaSize.height) / 2);
+        brigada.setVisible(true);
+        escritorio.add(brigada);
+        escritorio.moveToFront(brigada);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BBrigadaMouseClicked
 
     private void Siniestro_ConcluirActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:

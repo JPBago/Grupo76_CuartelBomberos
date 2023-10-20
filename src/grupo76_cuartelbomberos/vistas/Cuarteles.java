@@ -95,6 +95,11 @@ public class Cuarteles extends javax.swing.JInternalFrame {
 
         BSalirCuar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BSalirCuar.setText("Salir");
+        BSalirCuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BSalirCuarActionPerformed(evt);
+            }
+        });
 
         BModifCuartel.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BModifCuartel.setText("Modificar Datos");
@@ -221,6 +226,14 @@ public class Cuarteles extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BSalirCuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirCuarActionPerformed
+
+         ViewMenu ventana = new ViewMenu();
+        ventana.setVisible(true);
+        this.dispose();
+            // TODO add your handling code here:
+    }//GEN-LAST:event_BSalirCuarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
