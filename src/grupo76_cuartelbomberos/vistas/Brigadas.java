@@ -13,6 +13,7 @@ import grupo76_cuartelbomberos.entidades.Brigada;
 import grupo76_cuartelbomberos.entidades.Cuartel;
 import grupo76_cuartelbomberos.entidades.Especialidad;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
@@ -89,6 +90,12 @@ private DefaultTableModel tabla=new DefaultTableModel(){
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nombre de la Brigada :");
+
+        TextBrigada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextBrigadaKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Integrantes de la Brigada :");
@@ -331,7 +338,9 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     }//GEN-LAST:event_BotonEliminarActionPerformed
 
     private void BSalirBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBrigadaActionPerformed
-        
+        ViewMenu ventana = new ViewMenu();
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BSalirBrigadaActionPerformed
 
     private void CBCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBCuartelActionPerformed
@@ -344,6 +353,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     }//GEN-LAST:event_BLimpBrigadaActionPerformed
 
     private void BBuscarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBrigadaActionPerformed
+       borrarFilas();
         int cuartCd=0;
      try{
      cuartCd = (Integer) CBCuartel.getSelectedItem();
@@ -361,9 +371,21 @@ private DefaultTableModel tabla=new DefaultTableModel(){
        
        BrigadaData brigD=new BrigadaData();
        Brigada brig = brigD.buscarBrigadaNom(nomBrig);
+        if (brig!=null) {
+            JOptionPane.showMessageDialog(this, brig.getNombreBrigada());
+            cargarTabla(brig);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al buscar Brigada.");
+        }
        
-       cargarTabla(brig);
     }//GEN-LAST:event_BBuscarBrigadaActionPerformed
+
+    private void TextBrigadaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextBrigadaKeyReleased
+       
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+        }
+    }//GEN-LAST:event_TextBrigadaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -421,17 +443,12 @@ private void armarCabecera() {
  
  public void cargarTabla(Brigada brig){
         tabla.setRowCount(0);
-     int cuartCd=0;
-     try{
-     cuartCd = (Integer) CBCuartel.getSelectedItem();
- 
-     }catch(Exception c){
-         JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
-         return;}
+     String nomBrig=brig.getNombreBrigada();
+     
      borrarFilas();
      BomberoData bomD = new BomberoData();
      
-     for (Bomberos  bom : bomD.listarBomberosXBrigada(cuartCd)) {
+     for (Bomberos  bom : bomD.listarBomberosXBrigada(nomBrig)) {
          tabla.addRow(new Object[]{bom.getNombreApe(),bom.getDNI() ,bom.getGrupoSang(),bom.getFechaNac(),bom.getCelular()});
      }
  

@@ -185,4 +185,37 @@ public class BomberoData {
         
         return listaBom;
     }
+    
+    public List<Bomberos>listarBomberosXBrigada(String nomBrig){
+        List<Bomberos>listaBom=new ArrayList<>();
+        Bomberos bom; Brigada brig=new Brigada();
+        String sql="SELECT * FROM bombero JOIN bridaga ON (bombero.codBrigada=bridaga.codBrigada)\n" +
+"WHERE nombreBrig = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nomBrig);
+            ResultSet rs= ps.executeQuery();
+            while (rs.next())  {
+                bom = new Bomberos();
+                bom.setCodBombero(rs.getInt("codBombero"));
+                bom.setDNI(rs.getInt("DNI"));
+                bom.setNombreApe(rs.getString("nombreApe"));
+                bom.setGrupoSang(rs.getString("grupoSang"));
+                bom.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                bom.setCelular(rs.getString("celular"));
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                bom.setBrigada(brig);
+                bom.setActivo(rs.getBoolean("activo"));
+                listaBom.add(bom);  
+            }
+            rs.close();
+            ps.close();
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n"+ex.getMessage());
+        }
+        
+        return listaBom;
+    }
 }
