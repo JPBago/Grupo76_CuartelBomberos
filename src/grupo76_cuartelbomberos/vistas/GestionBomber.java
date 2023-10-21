@@ -1,24 +1,21 @@
-
-
 package grupo76_cuartelbomberos.vistas;
+
 import grupo76_cuartelbomberos.coneccion.BomberoData;
 import grupo76_cuartelbomberos.entidades.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
-
 
 public class GestionBomber extends javax.swing.JInternalFrame {
 
-     
     public GestionBomber() {
         initComponents();
-        cargarComboSanguineo ();
-        
+        cargarComboSanguineo();
+
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -218,13 +215,13 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BLimpBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpBomberActionPerformed
-    
-          borrarCampos();
-        
+
+        borrarCampos();
+
     }//GEN-LAST:event_BLimpBomberActionPerformed
 
     private void BSalirBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBomActionPerformed
-        
+
         ViewMenu ventana = new ViewMenu();
         ventana.setVisible(true);
         this.dispose();
@@ -232,28 +229,30 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BSalirBomActionPerformed
 
     private void BNuevoBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoBomberActionPerformed
-        
+
         BomberoData bom = new BomberoData();
-        Bomberos bomber =new Bomberos ();
-        
+        Bomberos bomber = new Bomberos();
+
         int bomId = 0;
         int bomDni = 0;
-        
-        if (TextId.getText().compareTo("")!= 0){
-            
+
+        if (TextId.getText().compareTo("") != 0) {
+
             try {
-                  bomId = Integer.parseInt (TextId.getText ());
-                  bomDni = Integer.parseInt (TextDni.getText());
+                bomId = Integer.parseInt(TextId.getText());
+                bomDni = Integer.parseInt(TextDni.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");  
+                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
+                return;
             }
             bomber.setCodBombero(bomId);
             bomber.setDNI(bomDni);
-            } else { 
+        } else {
             try {
-                  bomDni = Integer.parseInt (TextDni.getText());
+                bomDni = Integer.parseInt(TextDni.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");  
+                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
+                return;
             }
             bomber.setDNI(bomDni);
         }
@@ -264,33 +263,48 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         }
         bomber.setNombreApe(apeNom);
         String GrupoSan = (String) CBSanguineo.getSelectedItem();
-        if (GrupoSan == null){
-        } else { 
+        if (GrupoSan != null) {
+            bomber.setGrupoSang(GrupoSan);
+        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
             return;
         }
-        bomber.setGrupoSang(GrupoSan);
-        
+
         LocalDate cumple;
-        try{
+        try {
             cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
             return;
         }
         bomber.setFechaNac(cumple);
-        
-        String celular = null ;
-        validarTelefono ();
-        
-        if  (celular != null){
-           bomber.setCelular(celular);
-        }else {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un Numero de Telefono.");
+
+        String celular = validarTelefono();
+        switch (celular) {
+            case "codArea Vacio":
+                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área",
+                        "Error Código de Area", 2, frameIcon);
+                return;
+            case "cuerpoNum Vacio":
+                JOptionPane.showMessageDialog(this, "Debe ingresar un Número de Teléfono",
+                        "Error Código de Area", 2, frameIcon);
+                return;
+            case "codArea NO":
+                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área"
+                        + " válido", "Error Código de Area", 2, frameIcon);
+                return;
+            case "caracteres":
+                JOptionPane.showMessageDialog(this, "No puede ingresar carácteres", "Error Código de Area", 2, frameIcon);
+                return;
+            case "Longitud":
+                JOptionPane.showMessageDialog(this, "Verifique el Número Telefónico", "Error Código de Area", 2, frameIcon);
+                return;
+            default:
+                bomber.setCelular(celular);
         }
         bom.guardarBombero(bomber);
-        borrarCampos ();
-        
+        borrarCampos();
+
     }//GEN-LAST:event_BNuevoBomberActionPerformed
 
     private void BBuscarBomberxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBomberxIDActionPerformed
@@ -310,74 +324,84 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         Bomberos bomb = bombId.buscarBombero(numId);
 
         // Rellenamos el resto de los campos segun la búsqueda obtenida
-       rellenarCampos(bomb);
-       borrarCampos ();
+        rellenarCampos(bomb);
+//       borrarCampos ();
     }//GEN-LAST:event_BBuscarBomberxIDActionPerformed
 
     private void BModiBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModiBomberActionPerformed
-        
-        BomberoData bomber = new BomberoData () ;
-        Bomberos bom = new Bomberos () ;
-        int bomberCod, bomDni ;
-        
-        
+
+        BomberoData bomber = new BomberoData();
+        Bomberos bom = new Bomberos();
+        int bomberCod, bomDni;
+
         try {
             bomberCod = Integer.parseInt(TextId.getText());
             bomDni = Integer.parseInt(TextDni.getText());
-  
-        }catch (NumberFormatException ex) {
+
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Caracteres invalidos, porfavor ingrese números enteros solamente.");
-            return;  
+            return;
         }
-         bom.setCodBombero(bomberCod);
-         bom.setDNI(bomDni);
-         
-         String apeNom = TextApeNom.getText();
+        bom.setCodBombero(bomberCod);
+        bom.setDNI(bomDni);
+
+        String apeNom = TextApeNom.getText();
         if (!validarString(apeNom)) {
             JOptionPane.showMessageDialog(this, "Caracteres invalidos, porfavor ingrese letras unicamente.");
             return;
         }
         bom.setNombreApe(apeNom);
         String GrupoSan = (String) CBSanguineo.getSelectedItem();
-        if (GrupoSan == null){
+        if (GrupoSan == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
-       }
+            return;
+        }
         bom.setGrupoSang(GrupoSan);
-        LocalDate cumple ;
-        try{
+        LocalDate cumple;
+        try {
             cumple = FechaNaci.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
             return;
         }
-         bom.setFechaNac(cumple);
-        String celular = null ;
-        validarTelefono ();
-        
-        if  (celular != null){
-           bom.setCelular(celular);
-        }else {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un Numero de Telefono.");
+        bom.setFechaNac(cumple);
+        String celular = validarTelefono();
+        switch (celular) {
+            case "codArea Vacio":
+                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área",
+                        "Error Código de Area", 2, frameIcon);
+                return;
+            case "cuerpoNum Vacio":
+                JOptionPane.showMessageDialog(this, "Debe ingresar un Número de Teléfono",
+                        "Error Código de Area", 2, frameIcon);
+                return;
+            case "codArea NO":
+                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área"
+                        + " válido", "Error Código de Area", 2, frameIcon);
+                return;
+            case "caracteres":
+                JOptionPane.showMessageDialog(this, "No puede ingresar carácteres", "Error Código de Area", 2, frameIcon);
+                return;
+            case "Longitud":
+                JOptionPane.showMessageDialog(this, "Verifique el Número Telefónico", "Error Código de Area", 2, frameIcon);
+                return;
+            default:
+                bom.setCelular(celular);
         }
-        
-        
+
         bomber.ActualizarBombero(bom);
         borrarCampos();
         
-              
-        
-       
     }//GEN-LAST:event_BModiBomberActionPerformed
 
     private void BEliminarBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBomberActionPerformed
 
-            BomberoData bomber = new BomberoData ();
-            int bomId = Integer.parseInt(TextId.getText());
-            
-            bomber.eliminarBombero(bomId);
-            borrarCampos();
-            
-      
+        BomberoData bomber = new BomberoData();
+        int bomId = Integer.parseInt(TextId.getText());
+
+        bomber.eliminarBombero(bomId);
+        borrarCampos();
+
     }//GEN-LAST:event_BEliminarBomberActionPerformed
 
 
@@ -411,21 +435,19 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-
-    private void borrarCampos (){
+    private void borrarCampos() {
         TextId.setText("");
-        TextDni.setText ("");
+        TextDni.setText("");
         TextApeNom.setText("");
         CBSanguineo.setSelectedIndex(-1);
         FechaNaci.setDate(null);
-        TextCaracteristicaCel.setText ("");
+        TextCaracteristicaCel.setText("");
         TextCelu.setText("");
-        LabelEstado.setText (" ------ ");
-}
+        LabelEstado.setText(" ------ ");
+    }
 
+    private void cargarComboSanguineo() {
 
-    private void cargarComboSanguineo(){
-      
         CBSanguineo.addItem("(A+)");
         CBSanguineo.addItem("(A-)");
         CBSanguineo.addItem("(B+)");
@@ -434,28 +456,27 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         CBSanguineo.addItem("(AB-)");
         CBSanguineo.addItem("(O+)");
         CBSanguineo.addItem("(O-)");
-        
+
         CBSanguineo.setSelectedIndex(-1);
     }
-    
-    private void rellenarCampos (Bomberos bomber){
-        
-        if (bomber != null ) {
-        TextId.setText(bomber.getCodBombero()+ "");
-        TextDni.setText(bomber.getDNI()+ "");
-        TextApeNom.setText(bomber.getNombreApe()+"");
-        CBSanguineo.setSelectedItem(bomber.getGrupoSang()+ "");
-        FechaNaci.setDate(Date.valueOf(bomber.getFechaNac() +""));
-        TextCaracteristicaCel.setText(bomber.getCelular()+"");
-        TextCelu.setText(bomber.getCelular()+"");
-        if  (bomber.isActivo()){
-            LabelEstado.setText("Bombero Activo");
-        } else {
-            LabelEstado.setText("Bombero Dado de Baja");
-          }
-        } 
+
+    private void rellenarCampos(Bomberos bomber) {
+
+        if (bomber != null) {
+            TextId.setText(bomber.getCodBombero() + "");
+            TextDni.setText(bomber.getDNI() + "");
+            TextApeNom.setText(bomber.getNombreApe() + "");
+            CBSanguineo.setSelectedItem(bomber.getGrupoSang() + "");
+            FechaNaci.setDate(Date.valueOf(bomber.getFechaNac() + ""));
+            dividirCel(bomber.getCelular());
+            if (bomber.isActivo()) {
+                LabelEstado.setText("Bombero Activo");
+            } else {
+                LabelEstado.setText("Bombero Dado de Baja");
+            }
+        }
     }
-    
+
     private static boolean validarString(String s) {
         if (s == null || s.equals("")) {
             return false;
@@ -472,39 +493,47 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         }
         return flag;
     }
-    
-    
-   private String validarTelefono() {
+
+    private String validarTelefono() {
         String[] codigos = {"11", "261", "264", "266", "280", "2901", "2920",
             "2954", "2966", "299", "342", "343", "351", "362", "370", "376",
             "379", "380", "381", "383", "385", "387", "388"};
 
-        String codArea = TextCaracteristicaCel.getText(), cuerponum = TextCelu.getText();
-        boolean valido = false;
+        String codArea = TextCaracteristicaCel.getText(), cuerpoNum = TextCelu.getText();
 
-        // Se valida el código de área en base al array con los códigos cargados
+        // Se verifican q los campos no esten vacios
         if (codArea.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área "
-                    + "numérico", "Error Código de Area", 2, frameIcon);
-        } else {
-            for (String aux : codigos) {
-                if (aux.equals(codArea)) {
-                    valido = true;
-                    break;
-                }
-            }
+            return "codArea Vacio";
+        } else if (cuerpoNum.isEmpty()) {
+            return "cuerpoNum Vacio";
         }
 
-        // Se valida q el largo del cuerpo del nº complete las 10 cifras según el cód. de área
-        if (valido) {
-            if ((codArea.length() + cuerponum.length()) == 10) {
-                return codArea +"-"+ cuerponum;
-            } else {
-                JOptionPane.showMessageDialog(this, "Debe ingresar un número "
-                        + "telefónico válido", "Error Código de Area", 2, frameIcon);
-            }
+        // Se valida el código de área en base al array con los códigos cargados 
+        if (!Arrays.asList(codigos).contains(codArea)) {
+            return "codArea NO";
         }
 
-        return null;
+        // Se valida los campos como numéricos
+        try {
+            Integer.parseInt(codArea);
+            Integer.parseInt(cuerpoNum);
+        } catch (NumberFormatException e) {
+            return "caracteres";
+        }
+
+        // Verificar si la longitud total es igual a 10
+        int longitudTotal = codArea.length() + cuerpoNum.length();
+        if (longitudTotal != 10) {
+            return "Longitud";
+        }
+
+        // Si pasa ambas validaciones, el número es válido
+        return codArea + "-" + cuerpoNum;
+    }
+    
+    private void dividirCel(String cel) {
+       String[] division = cel.split("-");
+       TextCaracteristicaCel.setText(division[0]);
+       TextCelu.setText(division[1]);
     }
 }
