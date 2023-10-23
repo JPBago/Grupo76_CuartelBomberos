@@ -280,29 +280,17 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         bomber.setFechaNac(cumple);
 
         String celular = validarTelefono();
-        switch (celular) {
-            case "codArea Vacio":
-                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área",
-                        "Error Código de Area", 2, frameIcon);
-                return;
-            case "cuerpoNum Vacio":
-                JOptionPane.showMessageDialog(this, "Debe ingresar un Número de Teléfono",
-                        "Error Código de Area", 2, frameIcon);
-                return;
-            case "codArea NO":
-                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área"
-                        + " válido", "Error Código de Area", 2, frameIcon);
-                return;
-            case "caracteres":
-                JOptionPane.showMessageDialog(this, "No puede ingresar carácteres", "Error Código de Area", 2, frameIcon);
-                return;
-            case "Longitud":
-                JOptionPane.showMessageDialog(this, "Verifique el Número Telefónico", "Error Código de Area", 2, frameIcon);
-                return;
-            default:
-                bomber.setCelular(celular);
+        if (celular != null) {
+            bomber.setCelular(celular);
+        } else {
+            return;
         }
-        bom.guardarBombero(bomber);
+        
+        int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de ingresar al agente \n"
+                + apeNom + " al cuerpo de bomberos ??", "CONFIRMAR !!", 2, 3);
+        if (resp == 0) {
+            bom.guardarBombero(bomber);
+        }
         borrarCampos();
 
     }//GEN-LAST:event_BNuevoBomberActionPerformed
@@ -366,32 +354,19 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         }
         bom.setFechaNac(cumple);
         String celular = validarTelefono();
-        switch (celular) {
-            case "codArea Vacio":
-                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área",
-                        "Error Código de Area", 2, frameIcon);
-                return;
-            case "cuerpoNum Vacio":
-                JOptionPane.showMessageDialog(this, "Debe ingresar un Número de Teléfono",
-                        "Error Código de Area", 2, frameIcon);
-                return;
-            case "codArea NO":
-                JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área"
-                        + " válido", "Error Código de Area", 2, frameIcon);
-                return;
-            case "caracteres":
-                JOptionPane.showMessageDialog(this, "No puede ingresar carácteres", "Error Código de Area", 2, frameIcon);
-                return;
-            case "Longitud":
-                JOptionPane.showMessageDialog(this, "Verifique el Número Telefónico", "Error Código de Area", 2, frameIcon);
-                return;
-            default:
-                bom.setCelular(celular);
+        if (celular != null) {
+            bom.setCelular(celular);
+        } else {
+            return;
         }
-
-        bomber.ActualizarBombero(bom);
-        borrarCampos();
         
+        int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de modificar al agente \n"
+                + apeNom + " ??", "CONFIRMAR !!", 2, 3);
+        if (resp == 0) {
+            bomber.ActualizarBombero(bom);
+        }
+        borrarCampos();
+
     }//GEN-LAST:event_BModiBomberActionPerformed
 
     private void BEliminarBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBomberActionPerformed
@@ -503,14 +478,20 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         // Se verifican q los campos no esten vacios
         if (codArea.isEmpty()) {
-            return "codArea Vacio";
+            JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área",
+                    "Error Código de Area", 2, frameIcon);
+            return null;
         } else if (cuerpoNum.isEmpty()) {
-            return "cuerpoNum Vacio";
+            JOptionPane.showMessageDialog(this, "Debe ingresar un Número de Teléfono",
+                    "Error Número Telefónico", 2, frameIcon);
+            return null;
         }
 
         // Se valida el código de área en base al array con los códigos cargados 
         if (!Arrays.asList(codigos).contains(codArea)) {
-            return "codArea NO";
+            JOptionPane.showMessageDialog(this, "Debe ingresar un Código de Área"
+                    + " válido", "Error Código de Area", 2, frameIcon);
+            return null;
         }
 
         // Se valida los campos como numéricos
@@ -518,22 +499,26 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             Integer.parseInt(codArea);
             Integer.parseInt(cuerpoNum);
         } catch (NumberFormatException e) {
-            return "caracteres";
+            JOptionPane.showMessageDialog(this, "No puede ingresar carácteres",
+                    "Error Número Telefónico", 2, frameIcon);
+            return null;
         }
 
         // Verificar si la longitud total es igual a 10
         int longitudTotal = codArea.length() + cuerpoNum.length();
         if (longitudTotal != 10) {
-            return "Longitud";
+            JOptionPane.showMessageDialog(this, "Verifique el Número Telefónico",
+                    "Error Número Telefónico", 2, frameIcon);
+            return null;
         }
 
-        // Si pasa ambas validaciones, el número es válido
+        // Si pasa todas las verificaciones, el número es válido
         return codArea + "-" + cuerpoNum;
     }
-    
+
     private void dividirCel(String cel) {
-       String[] division = cel.split("-");
-       TextCaracteristicaCel.setText(division[0]);
-       TextCelu.setText(division[1]);
+        String[] division = cel.split("-");
+        TextCaracteristicaCel.setText(division[0]);
+        TextCelu.setText(division[1]);
     }
 }
