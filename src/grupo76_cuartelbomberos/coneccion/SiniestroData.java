@@ -48,7 +48,7 @@ public class SiniestroData {
         return codSiniestro;
     }
     
-    public void actualizarSiniestro(Siniestro sin){
+    public void concluirSiniestro(Siniestro sin){
         String sql = "UPDATE siniestro SET fechaResoluc=?,puntuacion=? "
                 + "WHERE cod_siniestro=?";
         try {

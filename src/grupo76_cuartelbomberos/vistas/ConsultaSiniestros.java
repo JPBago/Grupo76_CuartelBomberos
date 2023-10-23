@@ -227,7 +227,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         String resolucion = "Incidente en curso";
         // Carga de la tabla
         for (Siniestro sin : sinD.listarSiniestrosXFecha(fecha1, fecha2)) {
-            brig = brigD.buscargarBrigada(sin.getBrigada().getCodBrigada());
+            brig = brigD.buscarBrigada(sin.getBrigada().getCodBrigada());
             cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
             if (sin.getFechaResoluc() != null) {
                 resolucion = sin.getFechaResoluc().toString();

@@ -271,14 +271,24 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
 
         sin.setTipo((Especialidad) CB_Esp.getSelectedItem());
 
-        LocalDateTime fechaSin;
+        LocalDateTime fechaSin, aux = LocalDateTime.now();
         try {
             fechaSin = DC_FechaSiniestro.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "Coloque fecha y hora válidos");
+            JOptionPane.showMessageDialog(this, "Coloque fecha y hora válidos", "FECHA", 1);
             return;
         }
-        sin.setFechaSinietro(fechaSin);
+        if (aux.isAfter(fechaSin)) {
+            int resp = JOptionPane.showConfirmDialog(this, "Esta seguro/a de ingresar una fecha "
+                    + "anterior a la actual ??", null, 2, 1);
+            if (resp == 0) {
+                sin.setFechaSinietro(fechaSin);
+            } else {
+                return;
+            }
+        } else {
+            sin.setFechaSinietro(fechaSin);
+        }
 
         if (validarCoordenadas()) {
             sin.setCoord_X(Double.parseDouble(TF_CoordX.getText()));
@@ -288,7 +298,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         }
 
         if (TA_Detalles.getText().equals(" ") || TA_Detalles.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe describir el siniestro !!");
+            JOptionPane.showMessageDialog(this, "Debe describir el siniestro !!", "DESCRIPCION", 1);
             return;
         } else {
             sin.setDetalles(TA_Detalles.getText());
@@ -299,7 +309,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         try {
             codB = Integer.parseInt((String) T_Brigadas.getValueAt(filas, 0));
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una brigada");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una brigada", "BRIGADA", 1);
             return;
         }
         brig.setCodBrigada(codB);
@@ -313,17 +323,18 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         } else {
             return;
         }
-        limpiarCampos();
-
+        
         BrigadaData brigD = new BrigadaData();
         brigD.ocuparBrigada(codB);
+        
+        limpiarCampos();
     }//GEN-LAST:event_B_CargarActionPerformed
 
     private void B_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BuscarActionPerformed
         // TODO add your handling code here:
         borrarFilas();
         if (CB_Esp.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de Incidente");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de Incidente", "TIPO DE EVENTO", 1);
             return;
         }
 
@@ -348,7 +359,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         try {
             double aux = Double.parseDouble(TF_CoordX.getText());
         } catch (ClassCastException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese la COORDENADA usan decimales");
+            JOptionPane.showMessageDialog(this, "Ingrese la COORDENADA usando decimales");
             return;
         }
     }//GEN-LAST:event_TF_CoordYFocusLost
@@ -485,5 +496,4 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         return true;
     }
 
-    
 }

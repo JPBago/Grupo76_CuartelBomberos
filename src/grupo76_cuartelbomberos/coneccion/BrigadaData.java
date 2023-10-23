@@ -92,7 +92,7 @@ public class BrigadaData {
         return brig;
     }
 
-    public Brigada buscargarBrigada(int cod) {
+    public Brigada buscarBrigada(int cod) {
         Brigada brig = null;
         Cuartel cuar = null;
         String sql = "SELECT * FROM bridaga WHERE codBrigada=?";

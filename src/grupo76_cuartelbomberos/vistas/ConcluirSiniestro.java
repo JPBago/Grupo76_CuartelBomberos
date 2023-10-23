@@ -5,13 +5,15 @@
  */
 package grupo76_cuartelbomberos.vistas;
 
-import com.sun.javafx.binding.BidirectionalBinding;
 import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
 import java.time.ZoneId;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
@@ -300,6 +302,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
 
     private void B_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarActionPerformed
         // Se actualiza el Siniestro en la DB
+
         LocalDate fechaFin;
         try {
             fechaFin = DC_FechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -307,7 +310,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe indicar la fecha de resolución del incidente");
             return;
         }
-        
+
         int puntaje = 0, codigo = 0;
         try {
             puntaje = Integer.parseInt(TF_Puntaje.getText());
@@ -316,14 +319,30 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un valor aceptable");
         }
 
-        Siniestro sin = new Siniestro();
-        sin.setFechaResoluc(fechaFin);
-        sin.setPuntuacion(puntaje);
-        sin.setCodSiniestro(codigo);
         SiniestroData sinD = new SiniestroData();
-        sinD.actualizarSiniestro(sin);
-        
-        liberarBrigada();
+        Siniestro sin = sinD.buscarSiniestro(codigo);
+
+        // verificar q la fecha de resolucion no sea anterior a la de inicio
+        LocalDateTime aux = fechaFin.atTime(LocalTime.now());
+        if (sin.getFechaSinietro().isBefore(aux)) {
+            sin.setFechaResoluc(fechaFin);
+            sin.setPuntuacion(puntaje);
+            sin.setCodSiniestro(codigo);
+        } else {
+            JOptionPane.showMessageDialog(this, "La Fecha de Resolución no puede "
+                    + "ser anterior a la del Inicio del Reporte","ERROR CRITICO",0);
+            return;
+        }
+
+        int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de Finalizar "
+                + "el Reporte " + codigo + " ??", "CONFIRMAR", 0, 3);
+        if (resp == 0) {
+            sinD.concluirSiniestro(sin);
+            liberarBrigada();
+        } else {
+            return;
+        }
+
         limpiarCampos();
     }//GEN-LAST:event_B_GuardarActionPerformed
 
@@ -406,14 +425,14 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
 
     private void nombreBrigada(int cod) {
         BrigadaData brigD = new BrigadaData();
-        Brigada brig = brigD.buscargarBrigada(cod);
-        TF_Brigada.setText(brig.getCodBrigada()+" | "+brig.getNombreBrigada());
+        Brigada brig = brigD.buscarBrigada(cod);
+        TF_Brigada.setText(brig.getCodBrigada() + " | " + brig.getNombreBrigada());
     }
 
     private void buscarSiniestro() {
 
         int cod = 0;
-        // validar codigo
+        // validar codigo de siniestro
         try {
             cod = Integer.parseInt(TF_CodSin.getText());
         } catch (NumberFormatException e) {
@@ -425,21 +444,30 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         Siniestro sin = sinD.buscarSiniestro(cod);
 
         // Rellenar campos requeridos
+        limpiarCampos();
         if (sin != null) {
-            B_Guardar.setVisible(true);
-            RBNoSiniestro.setEnabled(true);
+            TF_CodSin.setText(sin.getCodSiniestro() + "");
             RBSiSiniestro.setEnabled(true);
             DC_FechaFin.setEnabled(true);
             TF_Puntaje.setEnabled(true);
             TF_Tipo.setText(sin.getTipo().name());
             nombreBrigada(sin.getBrigada().getCodBrigada());
             llenarTabla(sin.getBrigada().getCodBrigada());
-        } else {
-            limpiarCampos();
+            if (sin.getFechaResoluc() != null) {
+                B_Guardar.setVisible(false);
+                RBSiSiniestro.setSelected(true);
+                RBNoSiniestro.setEnabled(false);
+                TF_Puntaje.setText(sin.getPuntuacion() + "");
+                DC_FechaFin.setDate(Date.valueOf(sin.getFechaResoluc()));
+            } else {
+                B_Guardar.setVisible(true);
+                RBNoSiniestro.setEnabled(true);
+                RBSiSiniestro.setSelected(false);
+            }
         }
     }
-    
-    private void liberarBrigada(){
+
+    private void liberarBrigada() {
         BrigadaData brigD = new BrigadaData();
         String text = TF_Brigada.getText();
         String[] separar = text.split(" ");
