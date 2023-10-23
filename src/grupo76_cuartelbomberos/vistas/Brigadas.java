@@ -66,7 +66,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BotonNuevaBrigada = new javax.swing.JButton();
         BModiBrigada = new javax.swing.JButton();
         BLimpBrigada = new javax.swing.JButton();
-        BotonEliminar = new javax.swing.JButton();
+        BEliminarBrig = new javax.swing.JButton();
         BSalirBrigada = new javax.swing.JButton();
         BotonLibre = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
@@ -151,13 +151,13 @@ private DefaultTableModel tabla=new DefaultTableModel(){
             }
         });
 
-        BotonEliminar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        BotonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/eliminar.png"))); // NOI18N
-        BotonEliminar.setText("Eliminar");
-        BotonEliminar.setPreferredSize(new java.awt.Dimension(100, 20));
-        BotonEliminar.addActionListener(new java.awt.event.ActionListener() {
+        BEliminarBrig.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BEliminarBrig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/eliminar.png"))); // NOI18N
+        BEliminarBrig.setText("Eliminar");
+        BEliminarBrig.setPreferredSize(new java.awt.Dimension(100, 20));
+        BEliminarBrig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEliminarActionPerformed(evt);
+                BEliminarBrigActionPerformed(evt);
             }
         });
 
@@ -183,7 +183,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                         .addComponent(BAsignarsinie, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(BLimpBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BEliminarBrig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BSalirBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,7 +202,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                 .addGap(18, 18, 18)
                 .addComponent(BLimpBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BotonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BEliminarBrig, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(BSalirBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -320,6 +320,11 @@ private DefaultTableModel tabla=new DefaultTableModel(){
             return;
         }
         bri.setNombreBrigada(nomBri);
+        boolean libre= BotonLibre.isSelected();
+        bri.setLibre(libre);
+        
+        brig.NuevaBrigada(bri);
+        limpiarCampos();
         
     }//GEN-LAST:event_BotonNuevaBrigadaActionPerformed
 
@@ -328,14 +333,14 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BotonAsignado.setSelected(false);
         BotonLibre.setSelected(false);
         BotonNuevaBrigada.setEnabled(false);
-        BotonEliminar.setEnabled(false);
+        BEliminarBrig.setEnabled(false);
     }//GEN-LAST:event_CBEspecialidadesActionPerformed
 
-    private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-  borrarCampos();        
+    private void BEliminarBrigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBrigActionPerformed
+  limpiarCampos();        
         
         
-    }//GEN-LAST:event_BotonEliminarActionPerformed
+    }//GEN-LAST:event_BEliminarBrigActionPerformed
 
     private void BSalirBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBrigadaActionPerformed
         ViewMenu ventana = new ViewMenu();
@@ -377,7 +382,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         }else{
             JOptionPane.showMessageDialog(this, "Error al buscar Brigada.");
         }
-       
+       rellenarCampos(brig);
     }//GEN-LAST:event_BBuscarBrigadaActionPerformed
 
     private void TextBrigadaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextBrigadaKeyReleased
@@ -391,11 +396,11 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAsignarsinie;
     private javax.swing.JButton BBuscarBrigada;
+    private javax.swing.JButton BEliminarBrig;
     private javax.swing.JButton BLimpBrigada;
     private javax.swing.JButton BModiBrigada;
     private javax.swing.JButton BSalirBrigada;
     private javax.swing.JRadioButton BotonAsignado;
-    private javax.swing.JButton BotonEliminar;
     private javax.swing.JRadioButton BotonLibre;
     private javax.swing.JButton BotonNuevaBrigada;
     private javax.swing.JComboBox<Integer> CBCuartel;
@@ -473,7 +478,9 @@ private void armarCabecera() {
  
   private void limpiarCampos() {
         CBEspecialidades.setSelectedIndex(-1);
-                TextBrigada.setText("");
+        CBCuartel.setSelectedIndex(-1);
+        TextBrigada.setText("");
+        BotonLibre.setSelected(false);
         borrarFilas();
     }
   
@@ -501,8 +508,21 @@ private void armarCabecera() {
         TablaIntBrigada.setSelectionForeground(Color.black);
 
     }  
-  private void borrarCampos() {
-        TextBrigada.setText("");
-        
+    
+   private void rellenarCampos(Brigada bri) {
+        if (bri != null) {
+            TextBrigada.setText(bri.getNombreBrigada());
+            
+            BotonLibre.setSelected(bri.isLibre());
+            BEliminarBrig.setEnabled(true);
+            BModiBrigada.setEnabled(true);
+            BotonNuevaBrigada.setEnabled(false);
+        } else {
+            limpiarCampos();
+            BotonNuevaBrigada.setEnabled(true);
+            BEliminarBrig.setEnabled(false);
+            BModiBrigada.setEnabled(false);
+        }
     }
+   
 }

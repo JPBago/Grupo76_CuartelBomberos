@@ -217,7 +217,7 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="BLimpBrigada" alignment="0" max="32767" attributes="0"/>
-                      <Component id="BotonEliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="BEliminarBrig" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="BSalirBrigada" min="-2" pref="129" max="-2" attributes="0"/>
@@ -240,7 +240,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BLimpBrigada" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="BotonEliminar" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="BEliminarBrig" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
                   <Component id="BSalirBrigada" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -302,7 +302,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BLimpBrigadaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="BotonEliminar">
+        <Component class="javax.swing.JButton" name="BEliminarBrig">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
@@ -316,7 +316,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonEliminarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BEliminarBrigActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BSalirBrigada">

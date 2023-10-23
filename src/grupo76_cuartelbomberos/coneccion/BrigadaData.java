@@ -35,12 +35,12 @@ public class BrigadaData {
             ps.setInt(4, brig.getCodCuartel().getCodCuartel());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            JOptionPane.showMessageDialog(null, "Cuartel agregado correctamente");
+            JOptionPane.showMessageDialog(null, "Brigada agregada correctamente");
             rs.close();
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cuartel !!\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada !!\n" + ex.getMessage());
         }
     }
 
