@@ -140,6 +140,11 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BModiBrigada.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BModiBrigada.setText("Modificar");
         BModiBrigada.setPreferredSize(new java.awt.Dimension(100, 20));
+        BModiBrigada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BModiBrigadaActionPerformed(evt);
+            }
+        });
 
         BLimpBrigada.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BLimpBrigada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Limpiar.png"))); // NOI18N
@@ -312,11 +317,13 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         // Agregar nueva Brigada
         BrigadaData brig = new BrigadaData();
         Brigada bri = new Brigada();
-        int briCuartel;
-       
+        Cuartel codCuartel= (Cuartel)CBCuartel.getSelectedItem();
+        bri.setCodCuartel(codCuartel);
+        Especialidad esp= (Especialidad)CBEspecialidades.getSelectedItem();
+        bri.setEspecialidad(esp);
         String nomBri =TextBrigada.getText();
         if (!validarString (nomBri)) {
-            JOptionPane.showMessageDialog(this, "Ingrese Nombre Completo y Valido");
+            JOptionPane.showMessageDialog(this, "Ingrese nombre de la Brigada ");
             return;
         }
         bri.setNombreBrigada(nomBri);
@@ -332,14 +339,15 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         borrarFilas();
         BotonAsignado.setSelected(false);
         BotonLibre.setSelected(false);
-        BotonNuevaBrigada.setEnabled(false);
+        BotonNuevaBrigada.setEnabled(true);
         BEliminarBrig.setEnabled(false);
     }//GEN-LAST:event_CBEspecialidadesActionPerformed
 
     private void BEliminarBrigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBrigActionPerformed
-  limpiarCampos();        
-        
-        
+       BrigadaData brigD= new BrigadaData();
+       int cod = Integer.parseInt( CBCuartel.getName());
+        brigD.eliminaBrigada(cod);
+        limpiarCampos();
     }//GEN-LAST:event_BEliminarBrigActionPerformed
 
     private void BSalirBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBrigadaActionPerformed
@@ -391,6 +399,20 @@ private DefaultTableModel tabla=new DefaultTableModel(){
             
         }
     }//GEN-LAST:event_TextBrigadaKeyReleased
+
+    private void BModiBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModiBrigadaActionPerformed
+       //modificar cambios
+       BrigadaData brigD = new BrigadaData();
+       String nomBrig = TextBrigada.getText();
+        if (!validarString(nomBrig)) {
+            JOptionPane.showMessageDialog(this, " Ingrese nombre de una  Brigada ");
+            return;
+        }
+        boolean libre = BotonLibre.isSelected();
+        Brigada brig= new Brigada();
+        brigD.ModificarBrigada(brig);
+        limpiarCampos();
+    }//GEN-LAST:event_BModiBrigadaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
