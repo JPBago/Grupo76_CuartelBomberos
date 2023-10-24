@@ -23,7 +23,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel9" min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -256,7 +256,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Limpiar Datos"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/limpieza-de-datos (1).png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Limpiar "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
@@ -264,13 +267,19 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/Nuevo cuartel.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nuevo "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BSalirCuar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/salida-de-emergencia.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
@@ -283,7 +292,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Modificar Datos"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/Guardar.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Modificar "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
@@ -291,7 +303,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Eliminar Cuartel"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/papelera-de-reciclaje.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Eliminar "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
@@ -299,7 +314,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar por C&#xf3;digo"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/buscar (3).png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Buscar C&#xf3;digo"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -1,6 +1,7 @@
 package grupo76_cuartelbomberos.vistas;
 
 import grupo76_cuartelbomberos.coneccion.BomberoData;
+import grupo76_cuartelbomberos.coneccion.BrigadaData;
 import grupo76_cuartelbomberos.entidades.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     public GestionBomber() {
         initComponents();
         cargarComboSanguineo();
+        cargarComboBrigadas ();
 
     }
 
@@ -47,11 +49,13 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BSalirBom = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         LabelEstado = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        CBBrigbomb = new javax.swing.JComboBox<>();
 
         jLabel13.setText("jLabel13");
 
         setTitle("Datos Bomberos");
-        setPreferredSize(new java.awt.Dimension(425, 550));
+        setPreferredSize(new java.awt.Dimension(450, 600));
         setVerifyInputWhenFocusTarget(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -59,9 +63,9 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         jLabel1.setText("ID : ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 47, 15));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Datos de Bomberos Voluntarios");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("DNI : ");
@@ -98,7 +102,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         TextCaracteristicaCel.setPreferredSize(new java.awt.Dimension(6, 25));
         getContentPane().add(TextCaracteristicaCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 30, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 321, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 321, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("+54 (");
@@ -115,7 +119,8 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         getContentPane().add(CBSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 162, -1));
 
         BBuscarBomberxID.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        BBuscarBomberxID.setText("Buscar por ID:");
+        BBuscarBomberxID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
+        BBuscarBomberxID.setText("Buscar ID");
         BBuscarBomberxID.setPreferredSize(new java.awt.Dimension(100, 20));
         BBuscarBomberxID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +129,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         });
 
         BNuevoBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BNuevoBomber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/agregar-usuario.png"))); // NOI18N
         BNuevoBomber.setText("Nuevo");
         BNuevoBomber.setPreferredSize(new java.awt.Dimension(100, 20));
         BNuevoBomber.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +139,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         });
 
         BModiBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BModiBomber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Guardar.png"))); // NOI18N
         BModiBomber.setText("Modificar");
         BModiBomber.setPreferredSize(new java.awt.Dimension(100, 20));
         BModiBomber.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +149,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         });
 
         BLimpBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BLimpBomber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/limpieza-de-datos (1).png"))); // NOI18N
         BLimpBomber.setText("Limpiar");
         BLimpBomber.setPreferredSize(new java.awt.Dimension(100, 20));
         BLimpBomber.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +159,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         });
 
         BEliminarBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BEliminarBomber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/eliminar-usuario.png"))); // NOI18N
         BEliminarBomber.setText("Eliminar");
         BEliminarBomber.setPreferredSize(new java.awt.Dimension(100, 20));
         BEliminarBomber.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +169,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         });
 
         BSalirBom.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BSalirBom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/salida-de-emergencia.png"))); // NOI18N
         BSalirBom.setText("Salir");
         BSalirBom.setPreferredSize(new java.awt.Dimension(100, 20));
         BSalirBom.addActionListener(new java.awt.event.ActionListener() {
@@ -197,19 +207,27 @@ public class GestionBomber extends javax.swing.JInternalFrame {
                 .addComponent(BLimpBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BEliminarBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(BSalirBom, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 150, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 150, 420));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Estado:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
 
         LabelEstado.setText("Estado no asignado.");
-        getContentPane().add(LabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 160, 20));
+        getContentPane().add(LabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 160, 20));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Brigada Asignada : ");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+
+        CBBrigbomb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        CBBrigbomb.setPreferredSize(new java.awt.Dimension(30, 25));
+        getContentPane().add(CBBrigbomb, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -232,7 +250,8 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         BomberoData bom = new BomberoData();
         Bomberos bomber = new Bomberos();
-
+        Brigada briga = new Brigada();
+  
         int bomId = 0;
         int bomDni = 0;
 
@@ -285,6 +304,14 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         } else {
             return;
         }
+         briga = (Brigada) CBBrigbomb.getSelectedItem();
+        
+        if (briga != null) {
+            bomber.setBrigada(briga);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
+            return;
+        }
         
         int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de ingresar al agente \n"
                 + apeNom + " al cuerpo de bomberos ??", "CONFIRMAR !!", 2, 3);
@@ -320,6 +347,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
         BomberoData bomber = new BomberoData();
         Bomberos bom = new Bomberos();
+        Brigada briga = new Brigada();
         int bomberCod, bomDni;
 
         try {
@@ -359,6 +387,16 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         } else {
             return;
         }
+        try {
+            
+        briga = (Brigada) CBBrigbomb.getSelectedItem();
+     
+        } catch (ClassCastException e){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
+            return;
+        }
+ 
+            bom.setBrigada(briga);
         
         int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de modificar al agente \n"
                 + apeNom + " ??", "CONFIRMAR !!", 2, 3);
@@ -387,6 +425,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private javax.swing.JButton BModiBomber;
     private javax.swing.JButton BNuevoBomber;
     private javax.swing.JButton BSalirBom;
+    private javax.swing.JComboBox<String> CBBrigbomb;
     private javax.swing.JComboBox<String> CBSanguineo;
     private com.toedter.calendar.JDateChooser FechaNaci;
     private javax.swing.JLabel LabelEstado;
@@ -396,6 +435,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextDni;
     private javax.swing.JTextField TextId;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -521,4 +561,19 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         TextCaracteristicaCel.setText(division[0]);
         TextCelu.setText(division[1]);
     }
+    
+    private void cargarComboBrigadas (){
+        
+        BrigadaData brigD =new BrigadaData ();
+        
+        for (Brigada brig : brigD.listarBrigadas()){
+            int codBrig = brig.getCodBrigada();
+            String codBrigada  = String.valueOf(codBrig);
+            CBBrigbomb.addItem(codBrigada);
+            
+        }
+         CBBrigbomb.setSelectedIndex(-1);
+       
+    }
+      
 }

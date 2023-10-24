@@ -6,10 +6,17 @@
 package grupo76_cuartelbomberos.vistas;
 
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.bernstein.BernsteinLookAndFeel;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -54,11 +61,12 @@ public class ViewMenu extends javax.swing.JFrame {
         MConsulBriga = new javax.swing.JMenuItem();
         BSalir = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cuartel de bomberos Voluntarios");
         setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(1000, 682));
         setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Fondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -74,7 +82,7 @@ public class ViewMenu extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 682, Short.MAX_VALUE)
         );
 
         getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1000, 680));
@@ -322,7 +330,13 @@ public class ViewMenu extends javax.swing.JFrame {
  /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewMenu().setVisible(true);
+                
+                try {
+                    UIManager.setLookAndFeel(new BernsteinLookAndFeel());
+                    new ViewMenu().setVisible(true);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(ViewMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

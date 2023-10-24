@@ -85,6 +85,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         getContentPane().add(PConsulBri, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 470, 150));
 
         BConsulBri.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BConsulBri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
         BConsulBri.setText("Consultar");
         BConsulBri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +94,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         });
 
         BSalirConBri.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BSalirConBri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/salida-de-emergencia.png"))); // NOI18N
         BSalirConBri.setText("Salir");
         BSalirConBri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +109,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
             .addGroup(PBotoneBriLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PBotoneBriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BConsulBri, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(BConsulBri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BSalirConBri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -121,7 +123,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(PBotoneBri, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 120, 160));
+        getContentPane().add(PBotoneBri, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 140, 160));
 
         jLabel1.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));

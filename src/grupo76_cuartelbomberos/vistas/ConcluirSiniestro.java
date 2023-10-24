@@ -165,8 +165,9 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         getContentPane().add(TF_Puntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 248, 119, -1));
 
         B_Buscar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        B_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
         B_Buscar.setText("Buscar ID");
-        B_Buscar.setPreferredSize(new java.awt.Dimension(77, 32));
+        B_Buscar.setPreferredSize(new java.awt.Dimension(100, 20));
         B_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_BuscarActionPerformed(evt);
@@ -174,6 +175,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         });
 
         B_Guardar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        B_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Guardar.png"))); // NOI18N
         B_Guardar.setLabel("Guardar");
         B_Guardar.setPreferredSize(new java.awt.Dimension(77, 32));
         B_Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +185,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         });
 
         B_Limpiar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        B_Limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/limpieza-de-datos (1).png"))); // NOI18N
         B_Limpiar.setText("Limpiar");
         B_Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +194,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         });
 
         B_Salir.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        B_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/salida-de-emergencia.png"))); // NOI18N
         B_Salir.setText("Salir");
         B_Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +210,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(P_BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(B_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                    .addComponent(B_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                     .addComponent(B_Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(B_Limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -225,7 +229,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(P_Botonera, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, 320));
+        getContentPane().add(P_Botonera, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 90, 130, 320));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Brigada a Cargo:");

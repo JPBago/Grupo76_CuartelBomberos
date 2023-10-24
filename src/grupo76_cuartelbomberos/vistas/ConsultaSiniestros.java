@@ -79,6 +79,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         getContentPane().add(PConsulSini, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 470, 150));
 
         BConsulSini.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BConsulSini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
         BConsulSini.setText("Consultar");
         BConsulSini.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +88,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         });
 
         BSalirConsulSini.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BSalirConsulSini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/salida-de-emergencia.png"))); // NOI18N
         BSalirConsulSini.setText("Salir");
         BSalirConsulSini.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -88,12 +88,15 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         jLabel11.setText(") - 15");
 
         BLimpiarCuartel.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        BLimpiarCuartel.setText("Limpiar Datos");
+        BLimpiarCuartel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/limpieza-de-datos (1).png"))); // NOI18N
+        BLimpiarCuartel.setText("Limpiar ");
 
         jButton2.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        jButton2.setText("Agregar");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Nuevo cuartel.png"))); // NOI18N
+        jButton2.setText("Nuevo ");
 
         BSalirCuar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BSalirCuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/salida-de-emergencia.png"))); // NOI18N
         BSalirCuar.setText("Salir");
         BSalirCuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,13 +105,16 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         });
 
         BModifCuartel.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        BModifCuartel.setText("Modificar Datos");
+        BModifCuartel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Guardar.png"))); // NOI18N
+        BModifCuartel.setText("Modificar ");
 
         jButton4.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        jButton4.setText("Eliminar Cuartel");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/papelera-de-reciclaje.png"))); // NOI18N
+        jButton4.setText("Eliminar ");
 
         jButton3.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        jButton3.setText("Buscar por Código");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
+        jButton3.setText("Buscar Código");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,7 +154,7 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
