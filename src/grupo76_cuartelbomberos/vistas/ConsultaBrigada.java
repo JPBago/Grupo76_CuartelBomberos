@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -199,15 +200,28 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         tabla.addColumn("Cuartel");
         tabla.setRowCount(0);
 
+        // Se arma el modelo de la tabla con 
         T_Brigadas.setModel(tabla);
         T_Brigadas.setBackground(Color.gray);
         T_Brigadas.setForeground(Color.white);
         T_Brigadas.setSelectionBackground(Color.green);
         T_Brigadas.setSelectionForeground(Color.black);
 
+        // Se arma el modelo del panel contenedor de la tabla
         PConsulBri.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
                 "Miembros de la Brigada", TitledBorder.CENTER, TitledBorder.TOP));
+        TableColumn column = null;
+        for (int i = 0; i < 4; i++) {
+            column = T_Brigadas.getColumnModel().getColumn(i);
+            switch(i){
+                case 0: column.setMinWidth(4);column.setMaxWidth(50); break;
+                case 1: column.setMinWidth(4);column.setMaxWidth(50); break;
+                case 2: column.setPreferredWidth(20); break;
+                case 3: column.setPreferredWidth(20); break;       
+            }
+        }
         JSP_Tabla.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
     }
 
     private void borrarFilas() {
@@ -230,9 +244,11 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
             }
         });
         // armar la tabla con la lista ordenada por cuartel
+        String aux;
         for (Brigada brig : brigadas) {
             cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
-            tabla.addRow(new Object[]{brig.getCodBrigada(), brig.getNombreBrigada(),
+            aux=String.format("%05d", brig.getCodBrigada());
+            tabla.addRow(new Object[]{aux, brig.getNombreBrigada(),
                 brig.getEspecialidad().name(), cuar.getNombreCuartel()});
         }
     }
@@ -241,9 +257,11 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         BrigadaData brigD = new BrigadaData();
         CuartelData cuarD = new CuartelData();
         Cuartel cuar = null;
+        String aux;
         for (Brigada brig : brigD.listarBrigadasLibres()) {
             cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
-            tabla.addRow(new Object[]{brig.getCodBrigada(), brig.getNombreBrigada(),
+            aux=String.format("%05d", brig.getCodBrigada());
+            tabla.addRow(new Object[]{aux, brig.getNombreBrigada(),
                 brig.getEspecialidad().name(), cuar.getNombreCuartel()});
         }
     }
