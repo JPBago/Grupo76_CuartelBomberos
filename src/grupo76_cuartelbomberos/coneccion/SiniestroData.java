@@ -5,8 +5,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class SiniestroData {
@@ -125,13 +123,13 @@ public class SiniestroData {
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 sin.setBrigada(brig);
             } else {
-                JOptionPane.showMessageDialog(null, "No hay Reportes con el código " + cod,"ERROR !!",2);
+                JOptionPane.showMessageDialog(null, "No hay Reportes con el código " + cod);
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla Siniestros\n"+ex);
-            System.out.println("Error: " + ex);
+            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla Siniestros\n"+ex,"ERROR CRITICO !!",2);
+//            System.out.println("Error: " + ex);
             sin = null;
         }
 
@@ -174,7 +172,6 @@ public class SiniestroData {
             JOptionPane.showMessageDialog(null, "No hay Reportes en la tabla Siniestros","ERROR !!",2);
 //            System.out.println("Error: " + ex);
         }
-        
         return listaSin;
     }
     
