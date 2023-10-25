@@ -5,6 +5,7 @@ import grupo76_cuartelbomberos.entidades.*;
 import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -187,9 +188,9 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
     // Metodos sin eventos
     private void iniciarTabla() {
         // Inicializar las columnas de la tabla
-        tabla.addColumn("COD");
+        tabla.addColumn("Nº");
         tabla.addColumn("TIPO");
-        tabla.addColumn("FECHA INICO");
+        tabla.addColumn("FECHA INICIO");
         tabla.addColumn("FECHA FIN");
         tabla.addColumn("BRIGADA");
         tabla.addColumn("CUARTEL");
@@ -209,18 +210,19 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         for (int i = 0; i < 6; i++) {
             column = Tabla_Siniestros.getColumnModel().getColumn(i);
             switch(i){
-                case 0: column.setMinWidth(7); break;
-                case 1: column.setMinWidth(50); break;
-                case 2: column.setMinWidth(100); break;
-                case 3: column.setMinWidth(50); break;
-                case 4: column.setMinWidth(50); break;
-                case 5: column.setMinWidth(100); break;
-                    
+                case 0: column.setMinWidth(15); 
+                column.setMaxWidth(20);break;
+                case 1: column.setMinWidth(60); 
+                column.setMaxWidth(150);break;
+                case 2: column.setMinWidth(125); 
+                column.setMaxWidth(130);break;
+                case 3: column.setMinWidth(60); 
+                column.setMaxWidth(70);break;
+                case 4: column.setMinWidth(50); 
+                column.setMaxWidth(60);break;
+                case 5: column.setMinWidth(100); break;      
             }
         }
-        Tabla_Siniestros.setPreferredSize(null);
-        JSP_Tabla.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
     }
 
     private void rellenarTabla(LocalDateTime fecha1, LocalDateTime fecha2) {
@@ -232,15 +234,18 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         CuartelData cuarD = new CuartelData();
         Brigada brig = null;
         Cuartel cuar = null;
-        String resolucion = "Incidente en curso";
+        String resolucion = "En Curso";
+        final DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss");
         // Carga de la tabla
         for (Siniestro sin : sinD.listarSiniestrosXFecha(fecha1, fecha2)) {
             brig = brigD.buscarBrigada(sin.getBrigada().getCodBrigada());
             cuar = cuarD.buscarCuartel(brig.getCodCuartel().getCodCuartel());
             if (sin.getFechaResoluc() != null) {
                 resolucion = sin.getFechaResoluc().toString();
+            } else {
+                resolucion = "En Curso";
             }
-            tabla.addRow(new Object[]{sin.getCodSiniestro(), sin.getTipo().name(), sin.getFechaSinietro(),
+            tabla.addRow(new Object[]{sin.getCodSiniestro(), sin.getTipo().name(), sin.getFechaSinietro().format(formatoFecha),
                 resolucion, brig.getNombreBrigada(), cuar.getNombreCuartel()});
         }
     }
