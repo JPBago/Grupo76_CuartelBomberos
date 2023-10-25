@@ -47,6 +47,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BLimpBomber = new javax.swing.JButton();
         BEliminarBomber = new javax.swing.JButton();
         BSalirBom = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         LabelEstado = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -64,6 +65,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 47, 15));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
         jLabel2.setText("Datos de Bomberos Voluntarios");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
@@ -178,6 +180,11 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/dardealta.png"))); // NOI18N
+        jButton1.setText("Habilitar");
+        jButton1.setPreferredSize(new java.awt.Dimension(100, 20));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -185,14 +192,20 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(BLimpBomber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BModiBomber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BNuevoBomber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BBuscarBomberxID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                        .addComponent(BEliminarBomber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(BSalirBom, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addComponent(BLimpBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(BModiBomber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BNuevoBomber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BBuscarBomberxID, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                .addComponent(BSalirBom, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(BEliminarBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,10 +217,12 @@ public class GestionBomber extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(BModiBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(BLimpBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BEliminarBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(BSalirBom, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -304,14 +319,21 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         } else {
             return;
         }
-         briga = (Brigada) CBBrigbomb.getSelectedItem();
-        
-        if (briga != null) {
-            bomber.setBrigada(briga);
-        } else {
+        // briga = (Brigada) CBBrigbomb.getSelectedItem();
+        int codBrig = 0  ;
+         try {
+        String bri = (String) CBBrigbomb.getSelectedItem();
+       
+        String[] dividir = bri.split(" ");
+        codBrig = Integer.parseInt(dividir[0]);
+        } catch ( NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
             return;
+            
         }
+        Brigada brigada = new Brigada ();
+        brigada.setCodBrigada(codBrig);
+        bomber.setBrigada(brigada);
         
         int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de ingresar al agente \n"
                 + apeNom + " al cuerpo de bomberos ??", "CONFIRMAR !!", 2, 3);
@@ -387,16 +409,20 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         } else {
             return;
         }
-        try {
-            
-        briga = (Brigada) CBBrigbomb.getSelectedItem();
-     
-        } catch (ClassCastException e){
+         int codBrig = 0  ;
+         try {
+        String bri = (String) CBBrigbomb.getSelectedItem();
+       
+        String[] dividir = bri.split(" ");
+        codBrig = Integer.parseInt(dividir[0]);
+        } catch ( NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Debe seleccionar una opción");
             return;
+            
         }
- 
-            bom.setBrigada(briga);
+         Brigada brigada = new Brigada ();
+        brigada.setCodBrigada(codBrig);
+        bom.setBrigada(brigada);
         
         int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de modificar al agente \n"
                 + apeNom + " ??", "CONFIRMAR !!", 2, 3);
@@ -434,6 +460,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextCelu;
     private javax.swing.JTextField TextDni;
     private javax.swing.JTextField TextId;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -458,10 +485,12 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         FechaNaci.setDate(null);
         TextCaracteristicaCel.setText("");
         TextCelu.setText("");
+        CBBrigbomb.setSelectedIndex(-1);
         LabelEstado.setText(" ------ ");
     }
 
     private void cargarComboSanguineo() {
+        
 
         CBSanguineo.addItem("(A+)");
         CBSanguineo.addItem("(A-)");
@@ -484,7 +513,8 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             CBSanguineo.setSelectedItem(bomber.getGrupoSang() + "");
             FechaNaci.setDate(Date.valueOf(bomber.getFechaNac() + ""));
             dividirCel(bomber.getCelular());
-            if (bomber.isActivo()) {
+            CBBrigbomb.setSelectedItem(bomber.getBrigada().getCodBrigada() + "");
+            if (bomber.isActivo() == true) {
                 LabelEstado.setText("Bombero Activo");
             } else {
                 LabelEstado.setText("Bombero Dado de Baja");
@@ -567,9 +597,8 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BrigadaData brigD =new BrigadaData ();
         
         for (Brigada brig : brigD.listarBrigadas()){
-            int codBrig = brig.getCodBrigada();
-            String codBrigada  = String.valueOf(codBrig);
-            CBBrigbomb.addItem(codBrigada);
+            
+            CBBrigbomb.addItem(brig.getCodBrigada() + " - " + brig.getNombreBrigada());
             
         }
          CBBrigbomb.setSelectedIndex(-1);

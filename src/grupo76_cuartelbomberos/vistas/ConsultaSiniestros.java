@@ -43,7 +43,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Consultas de Siniestros");
-        setPreferredSize(new java.awt.Dimension(700, 350));
+        setPreferredSize(new java.awt.Dimension(670, 410));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -69,14 +69,20 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
         PConsulSini.setLayout(PConsulSiniLayout);
         PConsulSiniLayout.setHorizontalGroup(
             PConsulSiniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JSP_Tabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addGroup(PConsulSiniLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JSP_Tabla, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                .addContainerGap())
         );
         PConsulSiniLayout.setVerticalGroup(
             PConsulSiniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JSP_Tabla, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addGroup(PConsulSiniLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JSP_Tabla, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        getContentPane().add(PConsulSini, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 470, 150));
+        getContentPane().add(PConsulSini, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 610, 170));
 
         BConsulSini.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BConsulSini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
@@ -102,28 +108,28 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
             PBotonesConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PBotonesConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PBotonesConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BConsulSini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BSalirConsulSini, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                .addComponent(BConsulSini, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
+                .addComponent(BSalirConsulSini, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         PBotonesConsultaLayout.setVerticalGroup(
             PBotonesConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PBotonesConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BConsulSini, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(BSalirConsulSini, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(PBotonesConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BConsulSini, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BSalirConsulSini, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(PBotonesConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
+        getContentPane().add(PBotonesConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 610, 60));
 
         DC_Fecha1.setPreferredSize(new java.awt.Dimension(30, 25));
         getContentPane().add(DC_Fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, -1));
 
         DC_Fecha2.setPreferredSize(new java.awt.Dimension(30, 25));
-        getContentPane().add(DC_Fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 130, -1));
+        getContentPane().add(DC_Fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 130, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Desde:");
@@ -131,7 +137,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Hasta:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

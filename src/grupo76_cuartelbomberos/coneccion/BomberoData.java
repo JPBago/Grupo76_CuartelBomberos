@@ -37,7 +37,7 @@ public class BomberoData {
             ps.setDate(4, Date.valueOf(bombero.getFechaNac()));
             ps.setString(5, bombero.getCelular());
             ps.setInt(6, bombero.getBrigada().getCodBrigada());
-            ps.setBoolean(7, bombero.isActivo());
+            ps.setBoolean(7, true);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

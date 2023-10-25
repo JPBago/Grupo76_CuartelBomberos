@@ -55,9 +55,11 @@ public class ViewMenu extends javax.swing.JFrame {
         BBrigada = new javax.swing.JMenu();
         BSiniestro = new javax.swing.JMenu();
         Siniestro_Declarar = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         Siniestro_Concluir = new javax.swing.JMenuItem();
         MenuConsultas = new javax.swing.JMenu();
         MConsulSini = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         MConsulBriga = new javax.swing.JMenuItem();
         BSalir = new javax.swing.JMenu();
 
@@ -82,7 +84,7 @@ public class ViewMenu extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
 
         getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1000, 680));
@@ -134,6 +136,7 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
         BSiniestro.add(Siniestro_Declarar);
+        BSiniestro.add(jSeparator1);
 
         Siniestro_Concluir.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         Siniestro_Concluir.setText("Concluir");
@@ -157,6 +160,7 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
         MenuConsultas.add(MConsulSini);
+        MenuConsultas.add(jSeparator2);
 
         MConsulBriga.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         MConsulBriga.setText("Brigadas");
@@ -355,5 +359,7 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Siniestro_Declarar;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
