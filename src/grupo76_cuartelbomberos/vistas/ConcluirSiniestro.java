@@ -38,7 +38,9 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         iniciarTabla();
         B_Guardar.setVisible(false);
         TF_Brigada.setEditable(false);
+        TF_Brigada.setOpaque(false);
         TF_Tipo.setEditable(false);
+        TF_Tipo.setOpaque(false);
     }
 
     /**
@@ -415,9 +417,9 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         T_Bomberos.setModel(tabla);
         P_Bomberos.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
                 "Miembros de la Brigada", TitledBorder.CENTER, TitledBorder.TOP));
-        T_Bomberos.setBackground(Color.gray);
-        T_Bomberos.setForeground(Color.white);
-        T_Bomberos.setSelectionBackground(Color.green);
+        T_Bomberos.setBackground(Color.yellow);
+        T_Bomberos.setForeground(Color.darkGray);
+        T_Bomberos.setSelectionBackground(Color.orange);
         T_Bomberos.setSelectionForeground(Color.black);
 
         DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
@@ -437,7 +439,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         BomberoData bombD = new BomberoData();
         String aux;
         for (Bomberos bomb : bombD.listarBomberosXBrigada(cod)) {
-            aux = String.format("%05d", bomb.getCodBombero());
+            aux = String.format("%03d", bomb.getCodBombero());
             tabla.addRow(new Object[]{aux, bomb.getNombreApe()});
         }
     }
@@ -445,7 +447,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
     private void nombreBrigada(int cod) {
         BrigadaData brigD = new BrigadaData();
         Brigada brig = brigD.buscarBrigada(cod);
-        TF_Brigada.setText(brig.getCodBrigada() + " | " + brig.getNombreBrigada());
+        TF_Brigada.setText(brig.getCodBrigada() + "  |  " + brig.getNombreBrigada());
     }
 
     private void buscarSiniestro() {
