@@ -11,8 +11,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -327,10 +330,10 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         } else {
             return;
         }
-        
+
         BrigadaData brigD = new BrigadaData();
         brigD.ocuparBrigada(codB);
-        
+
         limpiarCampos();
     }//GEN-LAST:event_B_CargarActionPerformed
 
@@ -417,6 +420,32 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         T_Brigadas.setSelectionBackground(Color.green);
         T_Brigadas.setSelectionForeground(Color.black);
 
+        TableColumn column = null;
+        for (int i = 0; i < 4; i++) {
+            column = T_Brigadas.getColumnModel().getColumn(i);
+            switch (i) {
+                case 0:
+                    column.setMinWidth(30);
+                    column.setMaxWidth(50);
+                    break;
+                case 1:
+                    column.setMinWidth(55);
+                    column.setMaxWidth(70);
+                    break;
+                case 2:
+                    column.setMinWidth(125);
+                    column.setMaxWidth(300);
+                    break;
+                case 3:
+                    column.setMinWidth(60);
+                    break;
+            }
+        }
+
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        T_Brigadas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        T_Brigadas.getColumnModel().getColumn(1).setCellRenderer(Alinear);
     }
 
     private void borrarFilas() {
@@ -446,12 +475,16 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No hay Brigadas Disponibles para la especialidad: " + esp);
             return;
         }
-        // 
-        for (double[] aux1 : cuartelDistancia) {
-            for (String[] aux2 : CuartelesXEsp) {
-                String temp = (int) aux1[0] + "";
-                if (temp.equals(aux2[3])) {
-                    tabla.addRow(new Object[]{aux2[0], aux2[1], aux2[2], aux1[1]});
+        //
+        String codigo;
+        int aux;
+        for (double[] distancias : cuartelDistancia) {
+            for (String[] cuarteles : CuartelesXEsp) {
+                String temp = (int) distancias[0] + "";
+                if (temp.equals(cuarteles[3])) {
+                    aux = Integer.parseInt(cuarteles[0]);
+                    codigo = String.format("%05d", aux);
+                    tabla.addRow(new Object[]{codigo, cuarteles[1], cuarteles[2], distancias[1]});
                 }
             }
         }

@@ -16,7 +16,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,6 +37,8 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         initComponents();
         iniciarTabla();
         B_Guardar.setVisible(false);
+        TF_Brigada.setEditable(false);
+        TF_Tipo.setEditable(false);
     }
 
     /**
@@ -77,6 +81,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         jLabel1.setText("ID Siniestro: ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 99, 127, -1));
 
+        TF_CodSin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TF_CodSin.setPreferredSize(new java.awt.Dimension(30, 25));
         TF_CodSin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -150,6 +155,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         });
         getContentPane().add(RBNoSiniestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 180, -1, -1));
 
+        TF_Puntaje.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TF_Puntaje.setEnabled(false);
         TF_Puntaje.setPreferredSize(new java.awt.Dimension(30, 25));
         TF_Puntaje.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -235,7 +241,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         jLabel7.setText("Brigada a Cargo:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 99, -1, -1));
 
-        TF_Brigada.setEnabled(false);
+        TF_Brigada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TF_Brigada.setPreferredSize(new java.awt.Dimension(30, 25));
         getContentPane().add(TF_Brigada, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 120, 123, -1));
 
@@ -244,7 +250,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 227, 111, -1));
 
         TF_Tipo.setForeground(new java.awt.Color(0, 0, 102));
-        TF_Tipo.setEnabled(false);
+        TF_Tipo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TF_Tipo.setPreferredSize(new java.awt.Dimension(30, 25));
         getContentPane().add(TF_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 248, 149, -1));
 
@@ -265,11 +271,15 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
     private void RBSiSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBSiSiniestroActionPerformed
         // Si se elegi opsion SI, la opcion NO se des-selecciona
         RBNoSiniestro.setSelected(false);
+        TF_Puntaje.setEnabled(true);
+        DC_FechaFin.setEnabled(true);
     }//GEN-LAST:event_RBSiSiniestroActionPerformed
 
     private void RBNoSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBNoSiniestroActionPerformed
         // Si se elegi opsion NO, la opcion SI se des-selecciona
         RBSiSiniestro.setSelected(false);
+        TF_Puntaje.setEnabled(false);
+        DC_FechaFin.setEnabled(false);
     }//GEN-LAST:event_RBNoSiniestroActionPerformed
 
     private void TF_PuntajeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TF_PuntajeFocusLost
@@ -334,7 +344,7 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
             sin.setCodSiniestro(codigo);
         } else {
             JOptionPane.showMessageDialog(this, "La Fecha de Resolución no puede "
-                    + "ser anterior a la del Inicio del Reporte","ERROR CRITICO",0);
+                    + "ser anterior a la del Inicio del Reporte", "ERROR CRITICO", 0);
             return;
         }
 
@@ -410,6 +420,10 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
         T_Bomberos.setSelectionBackground(Color.green);
         T_Bomberos.setSelectionForeground(Color.black);
 
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        T_Bomberos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        T_Bomberos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
     }
 
     private void borrarFilas() {
@@ -421,9 +435,10 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
 
     private void llenarTabla(int cod) {
         BomberoData bombD = new BomberoData();
-
+        String aux;
         for (Bomberos bomb : bombD.listarBomberosXBrigada(cod)) {
-            tabla.addRow(new Object[]{bomb.getCodBombero(), bomb.getNombreApe()});
+            aux = String.format("%05d", bomb.getCodBombero());
+            tabla.addRow(new Object[]{aux, bomb.getNombreApe()});
         }
     }
 

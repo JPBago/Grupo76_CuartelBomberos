@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
