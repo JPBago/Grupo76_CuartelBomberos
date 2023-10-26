@@ -310,12 +310,18 @@ private DefaultTableModel tabla=new DefaultTableModel(){
 
     private void BotonNuevaBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevaBrigadaActionPerformed
         // Agregar nueva Brigada
+      
         BrigadaData brig = new BrigadaData();
         Brigada bri = new Brigada();
-        Cuartel codCuartel= (Cuartel)CBCuartel.getSelectedItem();
-        bri.setCodCuartel(codCuartel);
+          int cuartCd=0;
+          cuartCd=(Integer)CBCuartel.getSelectedItem();
+        Cuartel cuart = new Cuartel();
+        cuart.setCodCuartel(cuartCd);
+        bri.setCodCuartel(cuart);
+        
         Especialidad esp= (Especialidad)CBEspecialidades.getSelectedItem();
         bri.setEspecialidad(esp);
+        
         String nomBri =TextBrigada.getText();
         if (!validarString (nomBri)) {
             JOptionPane.showMessageDialog(this, "Ingrese nombre de la Brigada ");
@@ -362,6 +368,14 @@ private DefaultTableModel tabla=new DefaultTableModel(){
 
     private void BBuscarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBrigadaActionPerformed
        borrarFilas();
+     String esp=" ";
+       try{ 
+      
+           esp = CBEspecialidades.getSelectedItem().toString();
+      }catch(Exception ex){
+          JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
+         return;
+      }
         int cuartCd=0;
      try{
      cuartCd = (Integer) CBCuartel.getSelectedItem();
@@ -398,13 +412,33 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     private void BModiBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModiBrigadaActionPerformed
        //modificar cambios
        BrigadaData brigD = new BrigadaData();
+       Brigada brig = new Brigada();
        String nomBrig = TextBrigada.getText();
         if (!validarString(nomBrig)) {
-            JOptionPane.showMessageDialog(this, " Ingrese nombre de una  Brigada ");
+            JOptionPane.showMessageDialog(this, " Ingrese nombre de una  Brigada Valida ");
             return;
         }
-        boolean libre = BotonLibre.isSelected();
-        Brigada brig= new Brigada();
+        brig.setNombreBrigada(nomBrig);
+         Especialidad esp = (Especialidad)CBEspecialidades.getSelectedItem();
+        if (esp == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una Especialidad");
+            return;
+        }
+        brig.setEspecialidad(esp);
+        
+         int cuartCd=0;
+     try{
+     cuartCd = (Integer) CBCuartel.getSelectedItem();
+ 
+     }catch(Exception c){
+         JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+         return;
+     }
+     Cuartel cuart = new Cuartel();
+     cuart.setCodCuartel(cuartCd);
+     brig.setCodCuartel(cuart);
+     boolean libre = BotonLibre.isSelected();
+     brig.setLibre(libre);
         brigD.ModificarBrigada(brig);
         limpiarCampos();
     }//GEN-LAST:event_BModiBrigadaActionPerformed
