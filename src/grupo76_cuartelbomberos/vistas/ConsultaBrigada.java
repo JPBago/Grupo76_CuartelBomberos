@@ -216,14 +216,15 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
         for (int i = 0; i < 4; i++) {
             column = T_Brigadas.getColumnModel().getColumn(i);
             switch(i){
-                case 0: column.setMinWidth(4);column.setMaxWidth(50); break;
-                case 1: column.setMinWidth(4);column.setMaxWidth(50); break;
-                case 2: column.setPreferredWidth(20); break;
-                case 3: column.setPreferredWidth(20); break;       
+                case 0: column.setMinWidth(40); 
+                column.setMaxWidth(50);break;
+                case 1: column.setMinWidth(50); 
+                column.setMaxWidth(60);break;
+                case 2: column.setMinWidth(80); 
+                column.setMaxWidth(150);break;
+                case 3: column.setMinWidth(100); break;       
             }
         }
-        JSP_Tabla.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
     }
 
     private void borrarFilas() {
