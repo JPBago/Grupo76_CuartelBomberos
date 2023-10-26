@@ -40,13 +40,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="TextCelu" min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="TextCodCuartel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextId" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="TNomCuartel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="TextCodCuartel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="TNomCuartel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="TNomCuartel2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="TNomCuartel3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextNomCuar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextDomicilio" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextCoordX" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextCoordY" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextCorreo" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -69,23 +69,23 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="TextCodCuartel" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextId" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TNomCuartel" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextNomCuar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TextCodCuartel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextDomicilio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TNomCuartel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextCoordX" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TNomCuartel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextCoordY" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" pref="17" max="-2" attributes="0"/>
                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TNomCuartel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextCorreo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -131,7 +131,7 @@
         <Property name="text" type="java.lang.String" value="Codigo Cuartel : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextCodCuartel">
+    <Component class="javax.swing.JTextField" name="TextId">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -141,7 +141,7 @@
         <Property name="text" type="java.lang.String" value="Nombre del Cuartel : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TNomCuartel">
+    <Component class="javax.swing.JTextField" name="TextNomCuar">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -151,7 +151,7 @@
         <Property name="text" type="java.lang.String" value="Domicilio:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextCodCuartel1">
+    <Component class="javax.swing.JTextField" name="TextDomicilio">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -161,7 +161,7 @@
         <Property name="text" type="java.lang.String" value="Coordenada X:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TNomCuartel1">
+    <Component class="javax.swing.JTextField" name="TextCoordX">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -171,7 +171,7 @@
         <Property name="text" type="java.lang.String" value="Coordenada Y : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TNomCuartel2">
+    <Component class="javax.swing.JTextField" name="TextCoordY">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -181,7 +181,7 @@
         <Property name="text" type="java.lang.String" value="Correo : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TNomCuartel3">
+    <Component class="javax.swing.JTextField" name="TextCorreo">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -220,8 +220,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="BSalirCuar" max="32767" attributes="0"/>
-                      <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="BBuscarCuartelxID" alignment="0" max="32767" attributes="0"/>
+                      <Component id="BNuevoCuartel" alignment="0" max="32767" attributes="0"/>
                       <Component id="BModifCuartel" alignment="0" max="32767" attributes="0"/>
                       <Component id="BLimpiarCuartel" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
@@ -234,9 +234,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="BBuscarCuartelxID" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="BNuevoCuartel" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Component id="BModifCuartel" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -262,7 +262,7 @@
             <Property name="text" type="java.lang.String" value="Limpiar "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="BNuevoCuartel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
@@ -272,6 +272,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BNuevoCuartelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BSalirCuar">
           <Properties>
@@ -309,7 +312,7 @@
             <Property name="text" type="java.lang.String" value="Eliminar "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="BBuscarCuartelxID">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
@@ -319,6 +322,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar C&#xf3;digo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BBuscarCuartelxIDActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
