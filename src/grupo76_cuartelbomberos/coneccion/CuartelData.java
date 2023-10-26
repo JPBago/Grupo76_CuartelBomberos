@@ -38,7 +38,7 @@ public class CuartelData {
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al guardar Cuartel nuevo:\n" + ex.getMessage());
+            System.out.println("Error al guardar Cuartel nuevo:\\n\" + ex.getMessage()");
         }
     }
 
