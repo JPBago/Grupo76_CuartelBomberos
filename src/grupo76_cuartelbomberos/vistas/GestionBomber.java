@@ -47,7 +47,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         BLimpBomber = new javax.swing.JButton();
         BEliminarBomber = new javax.swing.JButton();
         BSalirBom = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        habiliBomber = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         LabelEstado = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -180,10 +180,15 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/dardealta.png"))); // NOI18N
-        jButton1.setText("Habilitar");
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 20));
+        habiliBomber.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        habiliBomber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/dardealta.png"))); // NOI18N
+        habiliBomber.setText("Habilitar");
+        habiliBomber.setPreferredSize(new java.awt.Dimension(100, 20));
+        habiliBomber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                habiliBomberActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,7 +207,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
                                 .addComponent(BNuevoBomber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BBuscarBomberxID, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                                 .addComponent(BSalirBom, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(habiliBomber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(BEliminarBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -217,7 +222,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(BModiBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(habiliBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(BLimpBomber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -443,6 +448,22 @@ public class GestionBomber extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_BEliminarBomberActionPerformed
 
+    private void habiliBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habiliBomberActionPerformed
+
+        BomberoData bomber = new BomberoData ();
+       // Bomberos bom = new Bomberos () ;
+       int bom = Integer.parseInt (TextId.getText());
+        
+        //if (!bom.isActivo()){
+          //  bom.setActivo(true);
+            LabelEstado.setText("Bombero Activo");
+            
+            bomber.habilitarBombero(bom);
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_habiliBomberActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscarBomberxID;
@@ -460,7 +481,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextCelu;
     private javax.swing.JTextField TextDni;
     private javax.swing.JTextField TextId;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton habiliBomber;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -513,7 +534,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
             CBSanguineo.setSelectedItem(bomber.getGrupoSang() + "");
             FechaNaci.setDate(Date.valueOf(bomber.getFechaNac() + ""));
             dividirCel(bomber.getCelular());
-            CBBrigbomb.setSelectedItem(bomber.getBrigada().getCodBrigada() + "");
+            recorroCB (bomber.getBrigada().getCodBrigada());
             if (bomber.isActivo() == true) {
                 LabelEstado.setText("Bombero Activo");
             } else {
@@ -598,11 +619,24 @@ public class GestionBomber extends javax.swing.JInternalFrame {
         
         for (Brigada brig : brigD.listarBrigadas()){
             
-            CBBrigbomb.addItem(brig.getCodBrigada() + " - " + brig.getNombreBrigada());
+            CBBrigbomb.addItem(brig.identificarBrigada());
             
         }
          CBBrigbomb.setSelectedIndex(-1);
        
+    }
+     
+    private void recorroCB (int codBrig){
+         
+        for (int i = 0 ; i < CBBrigbomb.getItemCount() -1; i++ ){
+            String recorrido = (String) CBBrigbomb.getItemAt(i);
+            String [] reco = recorrido.split(" ");
+            if (codBrig == Integer.parseInt(reco [0])) {
+                CBBrigbomb.setSelectedIndex(i);
+                break ;
+            }
+                
+        }
     }
       
 }

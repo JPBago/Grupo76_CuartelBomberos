@@ -279,7 +279,7 @@
                                   <Component id="BNuevoBomber" alignment="0" max="32767" attributes="0"/>
                                   <Component id="BBuscarBomberxID" alignment="0" pref="129" max="32767" attributes="0"/>
                                   <Component id="BSalirBom" alignment="0" pref="129" max="32767" attributes="0"/>
-                                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="habiliBomber" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="BEliminarBomber" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                           </Group>
@@ -300,7 +300,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BModiBomber" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="habiliBomber" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="BLimpBomber" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -415,7 +415,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BSalirBomActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="habiliBomber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="12" style="1"/>
@@ -428,6 +428,9 @@
               <Dimension value="[100, 20]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="habiliBomberActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

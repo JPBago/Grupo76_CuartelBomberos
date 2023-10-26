@@ -219,4 +219,20 @@ public class BomberoData {
         
         return listaBom;
     }
+    
+    public void habilitarBombero(int codBombero){
+        String sql= "UPDATE bombero SET activo=1 WHERE codBombero=? ";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, codBombero);
+            int uno =ps.executeUpdate();
+            if (uno==1) {
+               JOptionPane.showMessageDialog(null, "Se habilito el bombero correctamente.");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n"+ ex.getMessage());
+        }   
+    }
 }

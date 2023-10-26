@@ -66,25 +66,13 @@ public class Brigada {
         this.codCuartel = codCuartel;
     }
 
-   // @Override
-    //public String toString() {
-      //  return "codBrigada=" + codBrigada + ", nombreBrigada=" + nombreBrigada 
-        //+ ", especialidad=" + especialidad.name() + ", libre=" + libre + ", codCuartel=" + codCuartel.getCodCuartel();
-    //}
     @Override
-public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("codBrigada=");
-    sb.append(codBrigada);
-    sb.append(", nombreBrigada=");
-    sb.append(nombreBrigada);
-    sb.append(", especialidad=");
-    sb.append(especialidad != null ? especialidad.name() : "N/A");
-    sb.append(", libre=");
-    sb.append(libre);
-    sb.append(", codCuartel=");
-    sb.append(codCuartel != null ? codCuartel.getCodCuartel() : "N/A");
-    return sb.toString();
+    public String toString() {
+      return "codBrigada=" + codBrigada + ", nombreBrigada=" + nombreBrigada 
+       + ", especialidad=" + especialidad.name() + ", libre=" + libre + ", codCuartel=" + codCuartel.getCodCuartel();
+    }
+    public String identificarBrigada(){
+    return codBrigada+" - "+nombreBrigada;
 }
 
 }
