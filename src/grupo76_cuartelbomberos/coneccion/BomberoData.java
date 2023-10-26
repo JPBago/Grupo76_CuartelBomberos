@@ -190,8 +190,8 @@ public class BomberoData {
     public List<Bomberos>listarBomberosXBrigada(String nomBrig){
         List<Bomberos>listaBom=new ArrayList<>();
         Bomberos bom; Brigada brig=new Brigada();
-        String sql="SELECT * FROM bombero JOIN bridaga ON (bombero.codBrigada=bridaga.codBrigada)\n" +
-"WHERE nombreBrig = ?";
+        String sql="SELECT * FROM bombero JOIN brigada ON (bombero.codBrigada=brigada.codBrigada)\n" +
+"WHERE nombreBrig = ? AND especialidad = ? AND codCuartel = ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
