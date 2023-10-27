@@ -3,7 +3,9 @@ package grupo76_cuartelbomberos.vistas;
 import grupo76_cuartelbomberos.coneccion.BomberoData;
 import grupo76_cuartelbomberos.coneccion.BrigadaData;
 import grupo76_cuartelbomberos.entidades.*;
+import static grupo76_cuartelbomberos.vistas.ViewMenu.restaurarFondo;
 import java.sql.Date;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -259,11 +261,12 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BLimpBomberActionPerformed
 
     private void BSalirBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBomActionPerformed
-
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+        restaurarFondo();
+        //ViewMenu ventana = new ViewMenu();
+        //ventana.setVisible(true);
         this.dispose();
-
+        
+      
     }//GEN-LAST:event_BSalirBomActionPerformed
 
     private void BNuevoBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoBomberActionPerformed
@@ -454,8 +457,7 @@ public class GestionBomber extends javax.swing.JInternalFrame {
        // Bomberos bom = new Bomberos () ;
        int bom = Integer.parseInt (TextId.getText());
         
-        //if (!bom.isActivo()){
-          //  bom.setActivo(true);
+     
             LabelEstado.setText("Bombero Activo");
             
             bomber.habilitarBombero(bom);
