@@ -335,8 +335,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BEliminarBrigActionPerformed
 
     private void BSalirBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBrigadaActionPerformed
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+        ViewMenu.restaurarFondo();
         this.dispose();
     }//GEN-LAST:event_BSalirBrigadaActionPerformed
 

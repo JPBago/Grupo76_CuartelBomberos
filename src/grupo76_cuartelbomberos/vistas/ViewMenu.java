@@ -69,6 +69,8 @@ public class ViewMenu extends javax.swing.JFrame {
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/byn.jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        escritorio.setOpaque(false);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
@@ -405,13 +407,13 @@ public class MiApp {
     private javax.swing.JMenu BCuartel;
     private javax.swing.JMenu BSalir;
     private javax.swing.JMenu BSiniestro;
-    private javax.swing.JLabel Fondo;
+    private static javax.swing.JLabel Fondo;
     private javax.swing.JMenuItem MConsulBriga;
     private javax.swing.JMenuItem MConsulSini;
     private javax.swing.JMenu MenuConsultas;
     private javax.swing.JMenuItem Siniestro_Concluir;
     private javax.swing.JMenuItem Siniestro_Declarar;
-    private javax.swing.JDesktopPane escritorio;
+    private static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -419,30 +421,19 @@ public class MiApp {
 
     
     public static void restaurarFondo () { 
-        JDesktopPane menu = new JDesktopPane();
-        JLabel fondis = new JLabel(new ImageIcon ("grupo76_cuartelbomberos.Imagenes.byn.jpg"));
-        
-        //configuro el fondo
-        fondis.setBounds(0, 0,1000,682);
-        menu.add (fondis);
-        menu.moveToBack(fondis);
+//        JDesktopPane menu = new JDesktopPane();
+//        JLabel fondis = new JLabel(new ImageIcon ("grupo76_cuartelbomberos.Imagenes.byn.jpg"));
+//        
+//        //configuro el fondo
+//        fondis.setBounds(0, 0,1000,682);
+//        menu.add (fondis);
+//        menu.moveToBack(fondis);
        // escritorio.add(menu);
+       escritorio.add(Fondo);
+        escritorio.moveToBack(Fondo);
+        Fondo.setVisible(true);
     }
-/* public MiApp() {
-        // Inicializa tu JDesktopPane y fondo aquí
-        escritorio = new JDesktopPane();
-        fondo = new JLabel(new ImageIcon("ruta/a/tu/imagen.png"));
-
-        // Configura el fondo
-        fondo.setBounds(0, 0, escritorio.getWidth(), escritorio.getHeight());
-        escritorio.add(fondo);
-        escritorio.moveToBack(fondo);
-
-        // Crea un método para restaurar el fondo
-        restaurarFondo();
-    }
-
-    public void restaurarFondo() {
+/*  public void restaurarFondo() {
         escritorio.add(fondo);
         escritorio.moveToBack(fondo);
     }*/

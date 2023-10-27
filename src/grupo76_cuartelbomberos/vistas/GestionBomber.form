@@ -268,25 +268,17 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                          <Component id="BLimpBomber" min="-2" pref="129" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="BModiBomber" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BNuevoBomber" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BBuscarBomberxID" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="BSalirBom" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="habiliBomber" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="BModiBomber" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="BNuevoBomber" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="BBuscarBomberxID" alignment="0" pref="129" max="32767" attributes="0"/>
-                                  <Component id="BSalirBom" alignment="0" pref="129" max="32767" attributes="0"/>
-                                  <Component id="habiliBomber" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="BEliminarBomber" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="BEliminarBomber" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
+                      <Component id="BLimpBomber" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -305,7 +297,7 @@
                   <Component id="BLimpBomber" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BEliminarBomber" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="61" max="32767" attributes="0"/>
+                  <EmptySpace pref="71" max="32767" attributes="0"/>
                   <Component id="BSalirBom" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
