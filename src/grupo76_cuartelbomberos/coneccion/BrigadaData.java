@@ -25,7 +25,6 @@ public class BrigadaData {
 
         String sql = "INSERT INTO bridaga(nombreBrig, especialidad, libre, codCuartel)"
                 + "VALUES (?,?,?,?)";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -40,7 +39,7 @@ public class BrigadaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada !!\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
     }
 
@@ -53,7 +52,6 @@ public class BrigadaData {
             ps.setString(2, brig.getEspecialidad().name());
             ps.setBoolean(3, brig.isLibre());
             ps.setInt(4, brig.getCodCuartel().getCodCuartel());
-
             int aux = ps.executeUpdate();
             if (aux == 1) {
                 JOptionPane.showMessageDialog(null, "La Brigada  ha sido Actualizado exitosamente . ");
@@ -62,34 +60,8 @@ public class BrigadaData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada.\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
-    }
-
-    public Brigada buscarBrigadaNom(String nom) {
-        Brigada brig = null;
-        Cuartel cuar = null;
-        String sql = "SELECT * FROM bridaga WHERE nombreBrig =?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, nom);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                brig = new Brigada();
-                brig.setCodBrigada(rs.getInt("codBrigada"));
-                brig.setNombreBrigada(rs.getString("nombreBrig"));
-                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
-                cuar = new Cuartel();
-                cuar.setCodCuartel(rs.getInt("codCuartel"));
-                brig.setCodCuartel(cuar);
-                brig.setLibre(rs.getBoolean("libre"));
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay brigada con el nombre" + nom, "ERROR", 2);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA", "ERROR CRITICO", 2);
-        }
-        return brig;
     }
 
     public Brigada buscarBrigada(int cod) {
@@ -114,14 +86,14 @@ public class BrigadaData {
                 JOptionPane.showMessageDialog(null, "No hay brigada con el código" + cod, "ERROR", 2);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL INGRESAR A LA TRABLA BRIGADA", "ERROR CRITICO", 2);
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
 
         return brig;
     }
 
     public void eliminaBrigada(int codBrigada) {
-        String sql = "UPDATE bombero SET activo=0 WHERE codBrigada=? ";
+        String sql = "DELETE FROM bridaga WHERE codBrigada=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -132,8 +104,108 @@ public class BrigadaData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Brigada\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
+    }
+
+    public void eliminaBrigada(String nom, String esp, int codCuartel) {
+        String sql = "DELETE FROM bridaga WHERE nombreBrig =? AND especialidad=? AND codCuartel=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nom);
+            ps.setString(2, esp);
+            ps.setInt(3, codCuartel);
+            int uno = ps.executeUpdate();
+            if (uno == 1) {
+                JOptionPane.showMessageDialog(null, "Se eliminó la Brigada "+nom+" Correctamente.", "ATENCION !!",1);
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay brigada que cumpla los requisitos", "ERROR", 2);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
+        }
+    }
+    
+    public Brigada buscarBrigadaNom(String nom) {
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM bridaga WHERE nombreBrig =?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nom);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                brig = new Brigada();
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                brig.setNombreBrigada(rs.getString("nombreBrig"));
+                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                brig.setCodCuartel(cuar);
+                brig.setLibre(rs.getBoolean("libre"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay brigada con el nombre" + nom, "ERROR", 2);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
+        }
+        return brig;
+    }
+
+    public Brigada buscarBrigadaEspecifica(String nom, String esp, int cod) {
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM bridaga WHERE nombreBrig =? AND especialidad=? AND codCuartel=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nom);
+            ps.setString(2, esp);
+            ps.setInt(3, cod);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                brig = new Brigada();
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                brig.setNombreBrigada(rs.getString("nombreBrig"));
+                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                brig.setCodCuartel(cuar);
+                brig.setLibre(rs.getBoolean("libre"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay brigada que cumpla los requisitos", "ERROR", 2);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
+        }
+        return brig;
+    }
+    
+    public Brigada buscarBrigadaEspecifica(String nom, int cod) {
+        Brigada brig = null;
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM bridaga WHERE nombreBrig =? AND codCuartel=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nom);
+            ps.setInt(2, cod);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                brig = new Brigada();
+                brig.setCodBrigada(rs.getInt("codBrigada"));
+                brig.setNombreBrigada(rs.getString("nombreBrig"));
+                brig.setEspecialidad(Especialidad.valueOf(rs.getString("especialidad")));
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                brig.setCodCuartel(cuar);
+                brig.setLibre(rs.getBoolean("libre"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay brigada que cumpla los requisitos", "ERROR", 2);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
+        }
+        return brig;
     }
 
     public void ocuparBrigada(int cod) {
@@ -152,7 +224,7 @@ public class BrigadaData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada.\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
     }
 
@@ -172,7 +244,7 @@ public class BrigadaData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Brigada.\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
     }
 
@@ -196,7 +268,7 @@ public class BrigadaData {
                 listaBrigada.add(brig);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR al conectar la tabla BRIGADA");
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
         return listaBrigada;
     }
@@ -221,7 +293,7 @@ public class BrigadaData {
                 listaBrigada.add(brig);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR al conectar la tabla BRIGADA");
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
         }
         return listaBrigada;
     }

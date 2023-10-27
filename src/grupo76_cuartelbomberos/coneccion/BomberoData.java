@@ -76,33 +76,33 @@ public class BomberoData {
         }
     }
 
-    public void eliminarBombero(int codBombero){
-        String sql= "UPDATE bombero SET activo=0 WHERE codBombero=? ";
-        
+    public void eliminarBombero(int codBombero) {
+        String sql = "UPDATE bombero SET activo=0 WHERE codBombero=? ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codBombero);
-            int uno =ps.executeUpdate();
-            if (uno==1) {
-               JOptionPane.showMessageDialog(null, "Se eliminó el Bombero Correctamente.");
+            int uno = ps.executeUpdate();
+            if (uno == 1) {
+                JOptionPane.showMessageDialog(null, "Se eliminó el Bombero Correctamente.");
             }
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n"+ ex.getMessage());
-        }   
+            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n" + ex.getMessage());
+        }
     }
-    
-    public Bomberos buscarBombero(int id){
+
+    public Bomberos buscarBombero(int id) {
         Bomberos bomb = null;
-        Brigada brig=new Brigada();
-        String sql="SELECT * FROM bombero Where codBombero = ?";
-        
+        Brigada brig = new Brigada();
+        String sql = "SELECT * FROM bombero Where codBombero = ?";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet rs= ps.executeQuery();
-            if (rs.next()){
-                bomb =new Bomberos();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                bomb = new Bomberos();
                 bomb.setCodBombero(rs.getInt("codBombero"));
                 bomb.setDNI(rs.getInt("DNI"));
                 bomb.setNombreApe(rs.getString("nombreApe"));
@@ -112,27 +112,29 @@ public class BomberoData {
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 bomb.setBrigada(brig);
                 bomb.setActivo(rs.getBoolean("activo"));
-                
+
             } else {
-                JOptionPane.showMessageDialog(null,"No hay Bombero con la ID = "+id);
+                JOptionPane.showMessageDialog(null, "No hay Bombero con la ID = " + id);
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"ERROR Al ACCEDER A LA TABLA BOMBERO\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR Al ACCEDER A LA TABLA BOMBERO\n" + ex.getMessage());
         }
-        
+
         return bomb;
     }
-    public List<Bomberos>listarBomberosActivos(){
-        List<Bomberos>listaBom=new ArrayList<>();
-        Bomberos bom; Brigada brig=new Brigada();
-        String sql="SELECT * FROM bombero Where activo = 1";
-        
+
+    public List<Bomberos> listarBomberosActivos() {
+        List<Bomberos> listaBom = new ArrayList<>();
+        Bomberos bom;
+        Brigada brig = new Brigada();
+        String sql = "SELECT * FROM bombero Where activo = 1";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs= ps.executeQuery();
-            while (rs.next())  {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 bom = new Bomberos();
                 bom.setCodBombero(rs.getInt("codBombero"));
                 bom.setDNI(rs.getInt("DNI"));
@@ -143,28 +145,29 @@ public class BomberoData {
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 bom.setBrigada(brig);
                 bom.setActivo(rs.getBoolean("activo"));
-                listaBom.add(bom);  
+                listaBom.add(bom);
             }
             rs.close();
             ps.close();
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n" + ex.getMessage());
         }
-        
+
         return listaBom;
     }
-    
-    public List<Bomberos>listarBomberosXBrigada(int codBrigada){
-        List<Bomberos>listaBom=new ArrayList<>();
-        Bomberos bom; Brigada brig=new Brigada();
-        String sql="SELECT * FROM bombero WHERE codBrigada=? ";
-        
+
+    public List<Bomberos> listarBomberosXBrigada(int codBrigada) {
+        List<Bomberos> listaBom = new ArrayList<>();
+        Bomberos bom;
+        Brigada brig = new Brigada();
+        String sql = "SELECT * FROM bombero WHERE codBrigada=? ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codBrigada);
-            ResultSet rs= ps.executeQuery();
-            while (rs.next())  {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 bom = new Bomberos();
                 bom.setCodBombero(rs.getInt("codBombero"));
                 bom.setDNI(rs.getInt("DNI"));
@@ -175,29 +178,30 @@ public class BomberoData {
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 bom.setBrigada(brig);
                 bom.setActivo(rs.getBoolean("activo"));
-                listaBom.add(bom);  
+                listaBom.add(bom);
             }
             rs.close();
             ps.close();
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n" + ex.getMessage());
         }
-        
+
         return listaBom;
     }
-    
-    public List<Bomberos>listarBomberosXBrigada(String nomBrig){
-        List<Bomberos>listaBom=new ArrayList<>();
-        Bomberos bom; Brigada brig=new Brigada();
-        String sql="SELECT * FROM bombero JOIN brigada ON (bombero.codBrigada=brigada.codBrigada)\n" +
-"WHERE nombreBrig = ? AND especialidad = ? AND codCuartel = ?";
-        
+
+    public List<Bomberos> listarBomberosXBrigada(String nomBrig) {
+        List<Bomberos> listaBom = new ArrayList<>();
+        Bomberos bom;
+        Brigada brig = new Brigada();
+        String sql = "SELECT * FROM bombero JOIN brigada ON (bombero.codBrigada=brigada.codBrigada) "
+                + "WHERE nombreBrig = ? AND especialidad = ? AND codCuartel = ?";
+        // ESTA SENTENCIA SQL NUNCA VA A FUNCINAR PORQ LE FALTAN DATOS
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, nomBrig);
-            ResultSet rs= ps.executeQuery();
-            while (rs.next())  {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 bom = new Bomberos();
                 bom.setCodBombero(rs.getInt("codBombero"));
                 bom.setDNI(rs.getInt("DNI"));
@@ -208,31 +212,31 @@ public class BomberoData {
                 brig.setCodBrigada(rs.getInt("codBrigada"));
                 bom.setBrigada(brig);
                 bom.setActivo(rs.getBoolean("activo"));
-                listaBom.add(bom);  
+                listaBom.add(bom);
             }
             rs.close();
             ps.close();
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Bombero\n" + ex.getMessage());
         }
-        
+
         return listaBom;
     }
-    
-    public void habilitarBombero(int codBombero){
-        String sql= "UPDATE bombero SET activo=1 WHERE codBombero=? ";
-        
+
+    public void habilitarBombero(int codBombero) {
+        String sql = "UPDATE bombero SET activo=1 WHERE codBombero=? ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codBombero);
-            int uno =ps.executeUpdate();
-            if (uno==1) {
-               JOptionPane.showMessageDialog(null, "Se habilito el bombero correctamente.");
+            int uno = ps.executeUpdate();
+            if (uno == 1) {
+                JOptionPane.showMessageDialog(null, "Se habilito el bombero correctamente.");
             }
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n"+ ex.getMessage());
-        }   
+            JOptionPane.showMessageDialog(null, " Error al acceder a la Tabla Bombero\n" + ex.getMessage());
+        }
     }
 }

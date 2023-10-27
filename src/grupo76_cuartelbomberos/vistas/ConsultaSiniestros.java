@@ -8,11 +8,14 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+/**
+ *
+ * @author JPBago
+ */
 public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tabla = new DefaultTableModel() {

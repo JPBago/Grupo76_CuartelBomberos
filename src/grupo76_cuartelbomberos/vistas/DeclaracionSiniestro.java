@@ -20,7 +20,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author JP
+ * @author JPBago
  */
 public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
 

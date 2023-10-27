@@ -13,10 +13,9 @@ import grupo76_cuartelbomberos.entidades.Brigada;
 import grupo76_cuartelbomberos.entidades.Cuartel;
 import grupo76_cuartelbomberos.entidades.Especialidad;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,22 +23,25 @@ import javax.swing.table.DefaultTableModel;
  * @author Eveel
  */
 public class Brigadas extends javax.swing.JInternalFrame {
-private DefaultTableModel tabla=new DefaultTableModel(){
-    
-    public boolean isCellEditable(int f, int c){
-       
-        return false;
-        
-    }
-};
+
+    private DefaultTableModel tabla = new DefaultTableModel() {
+
+        public boolean isCellEditable(int f, int c) {
+
+            return false;
+
+        }
+    };
+
     /**
      * Creates new form Brigadas
      */
     public Brigadas() {
         initComponents();
-        armarCabecera();
+        prepararTabla();
         cargarComboEsp();
-        CargarCombo();
+        cargarComboCuartel();
+        limpiarCampos();
     }
 
     /**
@@ -57,10 +59,11 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         jLabel2 = new javax.swing.JLabel();
         TextBrigada = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        SP_TablaBomberos = new javax.swing.JScrollPane();
         TablaIntBrigada = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         BotonAsignado = new javax.swing.JRadioButton();
+        BotonLibre = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         BAsignarsinie = new javax.swing.JButton();
         BotonNuevaBrigada = new javax.swing.JButton();
@@ -69,7 +72,6 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BEliminarBrig = new javax.swing.JButton();
         BSalirBrigada = new javax.swing.JButton();
         BBuscarBrigada = new javax.swing.JButton();
-        BotonLibre = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         CBCuartel = new javax.swing.JComboBox<>();
 
@@ -84,21 +86,11 @@ private DefaultTableModel tabla=new DefaultTableModel(){
 
         CBEspecialidades.setMinimumSize(new java.awt.Dimension(30, 20));
         CBEspecialidades.setPreferredSize(new java.awt.Dimension(30, 25));
-        CBEspecialidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBEspecialidadesActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nombre de la Brigada :");
 
         TextBrigada.setPreferredSize(new java.awt.Dimension(30, 25));
-        TextBrigada.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TextBrigadaKeyReleased(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Integrantes de la Brigada :");
@@ -115,7 +107,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                 "Apellido", "Nombre", "ID"
             }
         ));
-        jScrollPane1.setViewportView(TablaIntBrigada);
+        SP_TablaBomberos.setViewportView(TablaIntBrigada);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Asignado Accidente/Siniestro:");
@@ -124,6 +116,13 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         BotonAsignado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAsignadoActionPerformed(evt);
+            }
+        });
+
+        BotonLibre.setText("LIBRE");
+        BotonLibre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLibreActionPerformed(evt);
             }
         });
 
@@ -224,52 +223,53 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                 .addContainerGap())
         );
 
-        BotonLibre.setText("LIBRE");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Código Cuartel :");
 
         CBCuartel.setPreferredSize(new java.awt.Dimension(30, 25));
-        CBCuartel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBCuartelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BotonAsignado)
-                        .addGap(43, 43, 43)
-                        .addComponent(BotonLibre))
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3)
-                    .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jLabel1)
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BotonAsignado)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(BotonLibre))
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3)
+                                    .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(85, 85, 85)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,11 +277,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CBCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -290,8 +286,8 @@ private DefaultTableModel tabla=new DefaultTableModel(){
                 .addGap(15, 15, 15)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
@@ -304,50 +300,82 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonAsignadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAsignadoActionPerformed
-
-        
+        BotonLibre.setSelected(false);
     }//GEN-LAST:event_BotonAsignadoActionPerformed
 
     private void BotonNuevaBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevaBrigadaActionPerformed
         // Agregar nueva Brigada
-      
-        BrigadaData brig = new BrigadaData();
+        BrigadaData brigD = new BrigadaData();
         Brigada bri = new Brigada();
-          int cuartCd=0;
-          cuartCd=(Integer)CBCuartel.getSelectedItem();
-        Cuartel cuart = new Cuartel();
-        cuart.setCodCuartel(cuartCd);
-        bri.setCodCuartel(cuart);
-        
-        Especialidad esp= (Especialidad)CBEspecialidades.getSelectedItem();
-        bri.setEspecialidad(esp);
-        
-        String nomBri =TextBrigada.getText();
-        if (!validarString (nomBri)) {
-            JOptionPane.showMessageDialog(this, "Ingrese nombre de la Brigada ");
+
+        String nomBrig = TextBrigada.getText();
+        if (nomBrig.isEmpty() || nomBrig.equals(" ")) {
+            JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada.");
             return;
         }
-        bri.setNombreBrigada(nomBri);
-        boolean libre= BotonLibre.isSelected();
-        bri.setLibre(libre);
+        bri.setNombreBrigada(nomBrig);
+
+        Especialidad esp = (Especialidad) CBEspecialidades.getSelectedItem();
+        if (esp == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una Especialidad");
+            return;
+        }
+        bri.setEspecialidad(esp);
+
+        int cod = 0;
+        try {
+            cod = (Integer) CBCuartel.getSelectedItem();
+        } catch (Exception c) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar un Cuartel");
+            return;
+        }
+        Cuartel cuart = new Cuartel();
+        cuart.setCodCuartel(cod);
+        bri.setCodCuartel(cuart);
+
+        bri.setLibre(true);
         
-        brig.NuevaBrigada(bri);
+        Brigada bri2 = brigD.buscarBrigadaEspecifica(nomBrig, cod);
+        if (bri2 != null){
+            JOptionPane.showMessageDialog(this, "Ya existe una brigada "+ nomBrig +" en el Cuartel "+cod);
+            return;
+        }
+        
+        int resp = JOptionPane.showConfirmDialog(this, "Confirma el alta de la brigada " + nomBrig + " ?", "CONFIRMAR", 2, 3);
+        if (resp == 0) {
+            brigD.NuevaBrigada(bri);
+        } else {
+            return;
+        }
         limpiarCampos();
-        
     }//GEN-LAST:event_BotonNuevaBrigadaActionPerformed
 
-    private void CBEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBEspecialidadesActionPerformed
-        borrarFilas();
-        BotonAsignado.setSelected(false);
-        BotonLibre.setSelected(false);
-        BotonNuevaBrigada.setEnabled(true);
-        BEliminarBrig.setEnabled(false);
-    }//GEN-LAST:event_CBEspecialidadesActionPerformed
-
     private void BEliminarBrigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBrigActionPerformed
-       BrigadaData brigD= new BrigadaData();
-       int cod = Integer.parseInt( CBCuartel.getName());
-        brigD.eliminaBrigada(cod);
+        BrigadaData brigD = new BrigadaData();
+        
+        String nomBrig = TextBrigada.getText();
+        if (nomBrig.isEmpty() || nomBrig.equals(" ")) {
+            JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada.");
+            return;
+        }
+
+        String esp = " ";
+        try {
+            esp = CBEspecialidades.getSelectedItem().toString();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
+            return;
+        }
+
+        int cod = 0;
+        try {
+            cod = (Integer) CBCuartel.getSelectedItem();
+        } catch (Exception c) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+            return;
+        }
+        
+        brigD.eliminaBrigada(nomBrig,esp,cod);
         limpiarCampos();
     }//GEN-LAST:event_BEliminarBrigActionPerformed
 
@@ -357,91 +385,79 @@ private DefaultTableModel tabla=new DefaultTableModel(){
         this.dispose();
     }//GEN-LAST:event_BSalirBrigadaActionPerformed
 
-    private void CBCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBCuartelActionPerformed
-
-        
-    }//GEN-LAST:event_CBCuartelActionPerformed
-
     private void BLimpBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpBrigadaActionPerformed
-      limpiarCampos();
+        limpiarCampos();
     }//GEN-LAST:event_BLimpBrigadaActionPerformed
 
     private void BBuscarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarBrigadaActionPerformed
-       borrarFilas();
-     String esp=" ";
-       try{ 
-      
-           esp = CBEspecialidades.getSelectedItem().toString();
-      }catch(Exception ex){
-          JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
-         return;
-      }
-        int cuartCd=0;
-     try{
-     cuartCd = (Integer) CBCuartel.getSelectedItem();
- 
-     }catch(Exception c){
-         JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
-         return;
-     }
-    String nomBrig=TextBrigada.getText(); 
-    
-       if(nomBrig.isEmpty()||nomBrig.equals(" ")){
-                 
-           JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada.");
-           return;}
-       
-       BrigadaData brigD=new BrigadaData();
-       Brigada brig = brigD.buscarBrigadaNom(nomBrig);
-        if (brig!=null) {
-            JOptionPane.showMessageDialog(this, brig.getNombreBrigada());
-            cargarTabla(brig);
-        }else{
-            JOptionPane.showMessageDialog(this, "Error al buscar Brigada.");
+
+        String nomBrig = TextBrigada.getText();
+        if (nomBrig.isEmpty() || nomBrig.equals(" ")) {
+            JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada.");
+            return;
         }
-       rellenarCampos(brig);
+
+        String esp = " ";
+        try {
+            esp = CBEspecialidades.getSelectedItem().toString();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
+            return;
+        }
+
+        int cod = 0;
+        try {
+            cod = (Integer) CBCuartel.getSelectedItem();
+        } catch (Exception c) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+            return;
+        }
+
+        BrigadaData brigD = new BrigadaData();
+        Brigada brig = brigD.buscarBrigadaEspecifica(nomBrig, esp, cod);
+
+        rellenarCampos(brig);
     }//GEN-LAST:event_BBuscarBrigadaActionPerformed
 
-    private void TextBrigadaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextBrigadaKeyReleased
-       
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            
-        }
-    }//GEN-LAST:event_TextBrigadaKeyReleased
-
     private void BModiBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModiBrigadaActionPerformed
-       //modificar cambios
-       BrigadaData brigD = new BrigadaData();
-       Brigada brig = new Brigada();
-       String nomBrig = TextBrigada.getText();
+        //modificar cambios
+        BrigadaData brigD = new BrigadaData();
+        Brigada brig = new Brigada();
+
+        String nomBrig = TextBrigada.getText();
         if (!validarString(nomBrig)) {
             JOptionPane.showMessageDialog(this, " Ingrese nombre de una  Brigada Valida ");
             return;
         }
         brig.setNombreBrigada(nomBrig);
-         Especialidad esp = (Especialidad)CBEspecialidades.getSelectedItem();
+
+        Especialidad esp = (Especialidad) CBEspecialidades.getSelectedItem();
         if (esp == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una Especialidad");
             return;
         }
         brig.setEspecialidad(esp);
-        
-         int cuartCd=0;
-     try{
-     cuartCd = (Integer) CBCuartel.getSelectedItem();
- 
-     }catch(Exception c){
-         JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
-         return;
-     }
-     Cuartel cuart = new Cuartel();
-     cuart.setCodCuartel(cuartCd);
-     brig.setCodCuartel(cuart);
-     boolean libre = BotonLibre.isSelected();
-     brig.setLibre(libre);
+
+        int codCuartel = 0;
+        try {
+            codCuartel = (Integer) CBCuartel.getSelectedItem();
+        } catch (Exception c) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+            return;
+        }
+        Cuartel cuart = new Cuartel();
+        cuart.setCodCuartel(codCuartel);
+        brig.setCodCuartel(cuart);
+
+        brig.setLibre(BotonLibre.isSelected());
+
         brigD.ModificarBrigada(brig);
         limpiarCampos();
     }//GEN-LAST:event_BModiBrigadaActionPerformed
+
+    private void BotonLibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLibreActionPerformed
+        BotonAsignado.setSelected(false);
+    }//GEN-LAST:event_BotonLibreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -456,6 +472,7 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     private javax.swing.JButton BotonNuevaBrigada;
     private javax.swing.JComboBox<Integer> CBCuartel;
     private javax.swing.JComboBox<Especialidad> CBEspecialidades;
+    private javax.swing.JScrollPane SP_TablaBomberos;
     protected javax.swing.JTable TablaIntBrigada;
     private javax.swing.JTextField TextBrigada;
     private javax.swing.JLabel jLabel1;
@@ -465,53 +482,56 @@ private DefaultTableModel tabla=new DefaultTableModel(){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-public void CargarCombo(){
-    CuartelData cuartD = new CuartelData();
-    
-    for (Cuartel cuart : cuartD.listarCuartel()) {
-        CBCuartel.addItem(cuart.getCodCuartel());
+    public void cargarComboCuartel() {
+        CuartelData cuartD = new CuartelData();
+        for (Cuartel cuart : cuartD.listarCuartel()) {
+            CBCuartel.addItem(cuart.getCodCuartel());
+        }
+        CBCuartel.setSelectedIndex(-1);
     }
-    CBCuartel.setSelectedIndex(-1);
-    borrarFilas();
-}    
-    
-private void armarCabecera() {
 
+    private void prepararTabla() {
+
+        tabla.addColumn("CODIGO");
         tabla.addColumn("Nombre Completo");
-        tabla.addColumn("DNI");
-        tabla.addColumn("Tipo Sangre");
-        tabla.addColumn("Fecha Nacimiento ");
-        tabla.addColumn("Celular ");
+        tabla.addColumn("Celular");
         tabla.setRowCount(0);
         TablaIntBrigada.setModel(tabla);
-    }    
-    
- public void cargarComboEsp() {
-  
+        TablaIntBrigada.setBackground(Color.pink);
+        TablaIntBrigada.setForeground(Color.darkGray);
+        TablaIntBrigada.setSelectionBackground(Color.yellow);
+        TablaIntBrigada.setSelectionForeground(Color.black);
+        
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        TablaIntBrigada.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+        TablaIntBrigada.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+    }
+
+    public void cargarComboEsp() {
         for (Especialidad esp : Especialidad.values()) {
             CBEspecialidades.addItem(esp);
         }
         CBEspecialidades.setSelectedIndex(-1);
     }
- 
- public void cargarTabla(Brigada brig){
+
+    public void cargarTabla(Brigada brig) {
         tabla.setRowCount(0);
-     String nomBrig=brig.getNombreBrigada();
-     
-     borrarFilas();
-     BomberoData bomD = new BomberoData();
-     
-     for (Bomberos  bom : bomD.listarBomberosXBrigada(nomBrig)) {
-         tabla.addRow(new Object[]{bom.getNombreApe(),bom.getDNI() ,bom.getGrupoSang(),bom.getFechaNac(),bom.getCelular()});
-     }
- 
- }
- 
- private static boolean validarString(String s) {
-        if (s == null || s.equals("")) {
+        int codBrig = brig.getCodBrigada();
+
+        borrarFilas();
+        BomberoData bomD = new BomberoData();
+        String aux;
+        for (Bomberos bom : bomD.listarBomberosXBrigada(codBrig)) {
+            aux = String.format("%03d", bom.getCodBombero());
+            tabla.addRow(new Object[]{bom.getCodBombero(), bom.getNombreApe(), bom.getCelular()});
+        }
+    }
+
+    private static boolean validarString(String s) {
+        if (s == null || s.equals(" ")) {
             return false;
         }
         char c;
@@ -526,54 +546,46 @@ private void armarCabecera() {
         }
         return flag;
     }
- 
-  private void limpiarCampos() {
+
+    private void limpiarCampos() {
         CBEspecialidades.setSelectedIndex(-1);
         CBCuartel.setSelectedIndex(-1);
         TextBrigada.setText("");
         BotonLibre.setSelected(false);
+        BotonAsignado.setSelected(false);
+        BotonNuevaBrigada.setVisible(true);
+        BEliminarBrig.setVisible(false);
+        BModiBrigada.setVisible(false);
+        BAsignarsinie.setVisible(false);
         borrarFilas();
     }
-  
-  private void borrarFilas() {
+
+    private void borrarFilas() {
         int filas = TablaIntBrigada.getRowCount() - 1;
-//        if (filas > 0) {
-            for (; filas >= 0; filas--) {
-                tabla.removeRow(filas);
-            }
-//        }
-    }
-  
-  private void iniciarTabla() {
-        //Inicializar las columnas de la tabla
-        tabla.addColumn(" COD ");
-        tabla.addColumn("Nombre");
-        tabla.addColumn("Cuartel");
-        tabla.addColumn("Distancia (Kmts)");
-        tabla.setRowCount(0);
-
-        TablaIntBrigada.setModel(tabla);
-        TablaIntBrigada.setBackground(Color.gray);
-        TablaIntBrigada.setForeground(Color.white);
-        TablaIntBrigada.setSelectionBackground(Color.green);
-        TablaIntBrigada.setSelectionForeground(Color.black);
-
-    }  
-    
-   private void rellenarCampos(Brigada bri) {
-        if (bri != null) {
-            TextBrigada.setText(bri.getNombreBrigada());
-            
-            BotonLibre.setSelected(bri.isLibre());
-            BEliminarBrig.setEnabled(true);
-            BModiBrigada.setEnabled(true);
-            BotonNuevaBrigada.setEnabled(false);
-        } else {
-            limpiarCampos();
-            BotonNuevaBrigada.setEnabled(true);
-            BEliminarBrig.setEnabled(false);
-            BModiBrigada.setEnabled(false);
+        for (; filas >= 0; filas--) {
+            tabla.removeRow(filas);
         }
     }
-   
+
+    private void rellenarCampos(Brigada brig) {
+        if (brig != null) {
+            TextBrigada.setText(brig.getNombreBrigada());
+            if (brig.isLibre()) {
+                BotonLibre.setSelected(true);
+                BotonAsignado.setSelected(false);
+                BAsignarsinie.setVisible(true);
+            } else {
+                BotonLibre.setSelected(false);
+                BotonAsignado.setSelected(true);
+                BAsignarsinie.setVisible(false);
+            }
+            BEliminarBrig.setVisible(true);
+            BModiBrigada.setVisible(true);
+            BotonNuevaBrigada.setVisible(false);
+            cargarTabla(brig);
+        } else {
+            limpiarCampos();
+        }
+    }
+
 }
