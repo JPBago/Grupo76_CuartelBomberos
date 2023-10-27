@@ -203,9 +203,9 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
         // Se arma el modelo de la tabla con 
         T_Brigadas.setModel(tabla);
-        T_Brigadas.setBackground(Color.gray);
-        T_Brigadas.setForeground(Color.white);
-        T_Brigadas.setSelectionBackground(Color.green);
+        T_Brigadas.setBackground(Color.pink);
+        T_Brigadas.setForeground(Color.darkGray);
+        T_Brigadas.setSelectionBackground(Color.orange);
         T_Brigadas.setSelectionForeground(Color.black);
 
         // Se arma el modelo del panel contenedor de la tabla

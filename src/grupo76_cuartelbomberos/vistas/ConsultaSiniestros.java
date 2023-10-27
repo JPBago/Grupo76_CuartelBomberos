@@ -198,9 +198,9 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
         // Se arma el modelo de la tabla con 
         Tabla_Siniestros.setModel(tabla);
-        Tabla_Siniestros.setBackground(Color.gray);
-        Tabla_Siniestros.setForeground(Color.white);
-        Tabla_Siniestros.setSelectionBackground(Color.green);
+        Tabla_Siniestros.setBackground(Color.pink);
+        Tabla_Siniestros.setForeground(Color.darkGray);
+        Tabla_Siniestros.setSelectionBackground(Color.orange);
         Tabla_Siniestros.setSelectionForeground(Color.black);
 
         // Se arma el modelo del panel contenedor de la tabla

@@ -4,6 +4,7 @@ import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -409,15 +410,15 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         tabla.addColumn(" COD ");
         tabla.addColumn("Nombre");
         tabla.addColumn("Cuartel");
-        tabla.addColumn("Distancia (Kmts)");
+        tabla.addColumn("Distancia (Kms)");
         tabla.setRowCount(0);
 
         T_Brigadas.setModel(tabla);
         PanelTabla.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
                 "BRIGADAS DISPONIBLES", TitledBorder.CENTER, TitledBorder.TOP));
-        T_Brigadas.setBackground(Color.gray);
-        T_Brigadas.setForeground(Color.white);
-        T_Brigadas.setSelectionBackground(Color.green);
+        T_Brigadas.setBackground(Color.YELLOW);
+        T_Brigadas.setForeground(Color.DARK_GRAY);
+        T_Brigadas.setSelectionBackground(Color.orange);
         T_Brigadas.setSelectionForeground(Color.black);
 
         TableColumn column = null;
@@ -433,11 +434,11 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
                     column.setMaxWidth(70);
                     break;
                 case 2:
-                    column.setMinWidth(125);
+                    column.setMinWidth(200);
                     column.setMaxWidth(300);
                     break;
                 case 3:
-                    column.setMinWidth(60);
+                    column.setMinWidth(50);
                     break;
             }
         }
@@ -446,6 +447,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         T_Brigadas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
         T_Brigadas.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+        T_Brigadas.getColumnModel().getColumn(3).setCellRenderer(Alinear);
     }
 
     private void borrarFilas() {
@@ -477,26 +479,33 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
         }
         //
         String codigo;
-        int aux;
+        int aux; DecimalFormat df = new DecimalFormat("###.##");
         for (double[] distancias : cuartelDistancia) {
             for (String[] cuarteles : CuartelesXEsp) {
                 String temp = (int) distancias[0] + "";
                 if (temp.equals(cuarteles[3])) {
                     aux = Integer.parseInt(cuarteles[0]);
-                    codigo = String.format("%05d", aux);
-                    tabla.addRow(new Object[]{codigo, cuarteles[1], cuarteles[2], distancias[1]});
+                    codigo = String.format("%02d", aux);
+                    tabla.addRow(new Object[]{codigo, cuarteles[1], cuarteles[2], df.format(distancias[1])});
                 }
             }
         }
     }
 
-    private double calcularDistancia(double coordX2, double coordY2) {
-        double dist = 0, coordX, coordX1, coordY, coordY1;
-        coordX1 = Double.parseDouble(TF_CoordX.getText());
-        coordY1 = Double.parseDouble(TF_CoordY.getText());
-        coordX = coordX2 - coordX1;
-        coordY = coordY2 - coordY1;
-        dist = Math.sqrt((coordX * coordX) + (coordY * coordY));
+    private double calcularDistancia(double coordX1, double coordY1) {
+        double dist = 0, coordX2, coordY2;
+        coordX2 = Double.parseDouble(TF_CoordX.getText());
+        coordY2 = Double.parseDouble(TF_CoordY.getText());
+        double radioTierra = 6371;//en kilómetros  
+        double dLat = Math.toRadians(coordX2 - coordX1);  
+        double dLng = Math.toRadians(coordY2 - coordY1);  
+        double sindLat = Math.sin(dLat / 2);  
+        double sindLng = Math.sin(dLng / 2);  
+        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)  
+                * Math.cos(Math.toRadians(coordX1)) * Math.cos(Math.toRadians(coordX2));  
+        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));  
+        dist = radioTierra * va2;
+//        dist =  Math.round(dist * 1000.0) / 1000.0;
         return dist;
     }
 
