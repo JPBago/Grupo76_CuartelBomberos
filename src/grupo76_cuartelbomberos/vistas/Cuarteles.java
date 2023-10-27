@@ -318,13 +318,14 @@ boolean buscar = false;
 
     private void BBuscarCuartelxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarCuartelxIDActionPerformed
                 // Buscamos el bombero segun el ID ingresado:
+               JOptionPane.showMessageDialog(this, "Selecciona el id del cuartel que deseas buscar.");
                 buscar = true;
                 
                 TextId.setEditable(true);
                 TextId.setOpaque(true);
                 BGuardar.setEnabled(true);
                 BCancelar.setEnabled(true);
-                JOptionPane.showMessageDialog(this, "Selecciona el id del cuartel que deseas buscar.");
+              
         
     }//GEN-LAST:event_BBuscarCuartelxIDActionPerformed
 
@@ -392,7 +393,13 @@ boolean buscar = false;
         int numId;
 
         try {
-            numId = Integer.parseInt(TextId.getText());
+          
+                if(TextId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Código de cuertel inexistente.");
+                return;
+        }else{
+                 numId = Integer.parseInt(TextId.getText());     
+                }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número de ID valido.");
             borrarCampos();
@@ -410,22 +417,21 @@ boolean buscar = false;
         BBuscarCuartelxID.setEnabled(false);
         BNuevoCuartel.setEnabled(false);
         buscar = false;
+    
         
-        
-    } else {
-            
-        }
+    } 
+    // Guarda un nuevo Cuartel.    
         if( nuevo == true){
             String nombre = TextNomCuar.getText();
         if (!validarString(nombre)) {
-            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos(Nombre).");
             return;
         }
            cua.setNombreCuartel(nombre);
           
        String domicilio = TextDomicilio.getText();
-        if (nuevo == true) {
-            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
+        if (!validarDir(domicilio)) {
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos (Domicilio).");
             return;
         }
           cua.setDireccion(domicilio);
@@ -456,11 +462,12 @@ boolean buscar = false;
             cuaData.guardarCuartel(cua);
             JOptionPane.showMessageDialog(this, "Bombero: "+nombre+" agregado con éxito.");
         }
-//        borrarCampos();
-      
+        borrarCampos();
+        MenuPrincipal();
        
         
     }
+        //Modificar Cuartel
         if(modificar == true){
            int cuaId = 0;
      
@@ -474,7 +481,8 @@ boolean buscar = false;
                 return;
             }
             cua.setCodCuartel(cuaId);
-        }
+        } 
+    
             
           String nombre = TextNomCuar.getText();
         if (!validarString(nombre)) {
@@ -516,48 +524,15 @@ boolean buscar = false;
             cuaData.modificarCuartel(cua);
             JOptionPane.showMessageDialog(this, "Cuartel: "+nombre+" agregado con éxito.");
         }
-//        borrarCampos();
+    MenuPrincipal();
       
     }                      
         
     }//GEN-LAST:event_BGuardarActionPerformed
 
     private void BCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarActionPerformed
-        TextId.setText("");
-        TextNomCuar.setText("");
-        TextDomicilio.setText("");
-        TextCaracteristicaCel.setText("");
-        TextCelu.setText("");
-        TextCorreo.setText(" ");
-        TextCoordX.setText("");
-        TextCoordY.setText("");
-        
-        TextId.setEditable(false);
-        TextNomCuar.setEditable(false);
-        TextDomicilio.setEditable(false);
-        TextCaracteristicaCel.setEditable(false);
-        TextCelu.setEditable(false);
-        TextCorreo.setEditable(false);
-        TextCoordX.setEditable(false);
-        TextCoordY.setEditable(false);
-        
-        TextId.setOpaque(false);
-        TextNomCuar.setOpaque(false);
-        TextDomicilio.setOpaque(false);
-        TextCaracteristicaCel.setOpaque(false);
-        TextCelu.setOpaque(false);
-        TextCorreo.setOpaque(false);
-        TextCoordX.setOpaque(false);
-        TextCoordY.setOpaque(false);
-        
-        BBuscarCuartelxID.setEnabled(true);
-        BNuevoCuartel.setEnabled(true);
-        BModifCuartel.setEnabled(false);
-        BEliminar.setEnabled(false);
-        
-        buscar = false;
-        nuevo = false;
-        modificar = false;
+      MenuPrincipal();
+       
     }//GEN-LAST:event_BCancelarActionPerformed
 
     private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarActionPerformed
@@ -568,6 +543,7 @@ boolean buscar = false;
         int cuaId = Integer.parseInt(TextId.getText());
         
         cuaData.eliminarCuartel(cuaId);
+        MenuPrincipal();
           }
     }//GEN-LAST:event_BEliminarActionPerformed
     private void borrarCampos() {
@@ -705,7 +681,41 @@ boolean buscar = false;
         return codArea + "-" + cuerpoNum;
     }
        private void MenuPrincipal(){
-           
+           TextId.setText("");
+        TextNomCuar.setText("");
+        TextDomicilio.setText("");
+        TextCaracteristicaCel.setText("");
+        TextCelu.setText("");
+        TextCorreo.setText(" ");
+        TextCoordX.setText("");
+        TextCoordY.setText("");
+        
+        TextId.setEditable(false);
+        TextNomCuar.setEditable(false);
+        TextDomicilio.setEditable(false);
+        TextCaracteristicaCel.setEditable(false);
+        TextCelu.setEditable(false);
+        TextCorreo.setEditable(false);
+        TextCoordX.setEditable(false);
+        TextCoordY.setEditable(false);
+        
+        TextId.setOpaque(false);
+        TextNomCuar.setOpaque(false);
+        TextDomicilio.setOpaque(false);
+        TextCaracteristicaCel.setOpaque(false);
+        TextCelu.setOpaque(false);
+        TextCorreo.setOpaque(false);
+        TextCoordX.setOpaque(false);
+        TextCoordY.setOpaque(false);
+        
+        BBuscarCuartelxID.setEnabled(true);
+        BNuevoCuartel.setEnabled(true);
+        BModifCuartel.setEnabled(false);
+        BEliminar.setEnabled(false);
+        
+        buscar = false;
+        nuevo = false;
+        modificar = false;
        }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscarCuartelxID;
