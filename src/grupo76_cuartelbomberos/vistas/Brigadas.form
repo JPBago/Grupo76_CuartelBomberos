@@ -35,23 +35,17 @@
                           <Component id="SP_TablaBomberos" min="-2" pref="338" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="BotonAsignado" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="BotonLibre" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="TextBrigada" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="CBCuartel" pref="185" max="32767" attributes="0"/>
-                                      <Component id="jLabel6" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="CBCuartel" pref="185" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CBEspecialidades" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="CBEspecialidades" alignment="0" pref="185" max="32767" attributes="0"/>
+                                  <Component id="LabelEstado" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -64,7 +58,7 @@
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
+      <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -81,11 +75,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BotonAsignado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BotonLibre" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="LabelEstado" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="SP_TablaBomberos" min="-2" pref="107" max="-2" attributes="0"/>
@@ -190,22 +181,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Asignado Accidente/Siniestro:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="BotonAsignado">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ASIGNADO"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonAsignadoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="BotonLibre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="LIBRE"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonLibreActionPerformed"/>
-      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
@@ -382,6 +357,8 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Integer&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelEstado">
     </Component>
   </SubComponents>
 </Form>

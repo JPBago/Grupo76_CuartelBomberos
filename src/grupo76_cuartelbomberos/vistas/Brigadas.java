@@ -62,8 +62,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
         SP_TablaBomberos = new javax.swing.JScrollPane();
         TablaIntBrigada = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        BotonAsignado = new javax.swing.JRadioButton();
-        BotonLibre = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         BAsignarsinie = new javax.swing.JButton();
         BotonNuevaBrigada = new javax.swing.JButton();
@@ -74,6 +72,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
         BBuscarBrigada = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         CBCuartel = new javax.swing.JComboBox<>();
+        LabelEstado = new javax.swing.JLabel();
 
         setTitle("Detalles Brigadas");
 
@@ -111,20 +110,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Asignado Accidente/Siniestro:");
-
-        BotonAsignado.setText("ASIGNADO");
-        BotonAsignado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAsignadoActionPerformed(evt);
-            }
-        });
-
-        BotonLibre.setText("LIBRE");
-        BotonLibre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonLibreActionPerformed(evt);
-            }
-        });
 
         BAsignarsinie.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BAsignarsinie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Asignar (2).png"))); // NOI18N
@@ -244,26 +229,22 @@ public class Brigadas extends javax.swing.JInternalFrame {
                             .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BotonAsignado)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(BotonLibre))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel2))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
-                                    .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(CBEspecialidades, 0, 185, Short.MAX_VALUE)
+                                    .addComponent(LabelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel2)
@@ -280,15 +261,13 @@ public class Brigadas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonAsignado)
-                    .addComponent(BotonLibre))
-                .addGap(15, 15, 15)
+                .addComponent(LabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -298,10 +277,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BotonAsignadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAsignadoActionPerformed
-        BotonLibre.setSelected(false);
-    }//GEN-LAST:event_BotonAsignadoActionPerformed
 
     private void BotonNuevaBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevaBrigadaActionPerformed
         // Agregar nueva Brigada
@@ -334,13 +309,13 @@ public class Brigadas extends javax.swing.JInternalFrame {
         bri.setCodCuartel(cuart);
 
         bri.setLibre(true);
-        
+
         Brigada bri2 = brigD.buscarBrigadaEspecifica(nomBrig, cod);
-        if (bri2 != null){
-            JOptionPane.showMessageDialog(this, "Ya existe una brigada "+ nomBrig +" en el Cuartel "+cod);
+        if (bri2 != null) {
+            JOptionPane.showMessageDialog(this, "Ya existe una brigada " + nomBrig + " en el Cuartel " + cod);
             return;
         }
-        
+
         int resp = JOptionPane.showConfirmDialog(this, "Confirma el alta de la brigada " + nomBrig + " ?", "CONFIRMAR", 2, 3);
         if (resp == 0) {
             brigD.NuevaBrigada(bri);
@@ -351,31 +326,21 @@ public class Brigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotonNuevaBrigadaActionPerformed
 
     private void BEliminarBrigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarBrigActionPerformed
-        BrigadaData brigD = new BrigadaData();
-        
-        String nomBrig = TextBrigada.getText();
-        if (nomBrig.isEmpty() || nomBrig.equals(" ")) {
-            JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada.");
+        // Se verifica q la brigada no tenga bomberos asociados y no este asignada a un incidente
+        if (LabelEstado.getText().equals("Brigada Ocupada")) {
+            JOptionPane.showMessageDialog(this, "No es posible elimnar la Brigada ya que aun esta ocupada!!");
             return;
         }
-
-        String esp = " ";
         try {
-            esp = CBEspecialidades.getSelectedItem().toString();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
+            int bombero = Integer.parseInt((String) TablaIntBrigada.getValueAt(0, 0));
+            JOptionPane.showMessageDialog(this, "No es posible elimnar la Brigada ya que aun esta ocupada!!");
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            eliminarBrigada();
+        } catch (ClassCastException e){
+            JOptionPane.showMessageDialog(this, "No es posible elimnar la Brigada ya que aun esta ocupada!!");
             return;
         }
-
-        int cod = 0;
-        try {
-            cod = (Integer) CBCuartel.getSelectedItem();
-        } catch (Exception c) {
-            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
-            return;
-        }
-        
-        brigD.eliminaBrigada(nomBrig,esp,cod);
         limpiarCampos();
     }//GEN-LAST:event_BEliminarBrigActionPerformed
 
@@ -449,16 +414,15 @@ public class Brigadas extends javax.swing.JInternalFrame {
         cuart.setCodCuartel(codCuartel);
         brig.setCodCuartel(cuart);
 
-        brig.setLibre(BotonLibre.isSelected());
+        if (LabelEstado.getText().equals("Brigada Libre")) {
+            brig.setLibre(true);
+        } else {
+            brig.setLibre(false);
+        }
 
         brigD.ModificarBrigada(brig);
         limpiarCampos();
     }//GEN-LAST:event_BModiBrigadaActionPerformed
-
-    private void BotonLibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLibreActionPerformed
-        BotonAsignado.setSelected(false);
-    }//GEN-LAST:event_BotonLibreActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAsignarsinie;
@@ -467,11 +431,10 @@ public class Brigadas extends javax.swing.JInternalFrame {
     private javax.swing.JButton BLimpBrigada;
     private javax.swing.JButton BModiBrigada;
     private javax.swing.JButton BSalirBrigada;
-    private javax.swing.JRadioButton BotonAsignado;
-    private javax.swing.JRadioButton BotonLibre;
     private javax.swing.JButton BotonNuevaBrigada;
     private javax.swing.JComboBox<Integer> CBCuartel;
     private javax.swing.JComboBox<Especialidad> CBEspecialidades;
+    private javax.swing.JLabel LabelEstado;
     private javax.swing.JScrollPane SP_TablaBomberos;
     protected javax.swing.JTable TablaIntBrigada;
     private javax.swing.JTextField TextBrigada;
@@ -503,7 +466,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
         TablaIntBrigada.setForeground(Color.darkGray);
         TablaIntBrigada.setSelectionBackground(Color.yellow);
         TablaIntBrigada.setSelectionForeground(Color.black);
-        
+
         DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
         Alinear.setHorizontalAlignment(SwingConstants.CENTER);
         TablaIntBrigada.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -551,8 +514,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
         CBEspecialidades.setSelectedIndex(-1);
         CBCuartel.setSelectedIndex(-1);
         TextBrigada.setText("");
-        BotonLibre.setSelected(false);
-        BotonAsignado.setSelected(false);
+        LabelEstado.setText("");
         BotonNuevaBrigada.setVisible(true);
         BEliminarBrig.setVisible(false);
         BModiBrigada.setVisible(false);
@@ -571,12 +533,10 @@ public class Brigadas extends javax.swing.JInternalFrame {
         if (brig != null) {
             TextBrigada.setText(brig.getNombreBrigada());
             if (brig.isLibre()) {
-                BotonLibre.setSelected(true);
-                BotonAsignado.setSelected(false);
+                LabelEstado.setText("Brigada Libre");
                 BAsignarsinie.setVisible(true);
             } else {
-                BotonLibre.setSelected(false);
-                BotonAsignado.setSelected(true);
+                LabelEstado.setText("Brigada Ocupada");
                 BAsignarsinie.setVisible(false);
             }
             BEliminarBrig.setVisible(true);
@@ -588,4 +548,30 @@ public class Brigadas extends javax.swing.JInternalFrame {
         }
     }
 
+    private void eliminarBrigada() {
+        String nomBrig = TextBrigada.getText();
+        if (nomBrig.isEmpty() || nomBrig.equals(" ")) {
+            JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada");
+            return;
+        }
+
+        String esp = " ";
+        try {
+            esp = CBEspecialidades.getSelectedItem().toString();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
+            return;
+        }
+
+        int cod = 0;
+        try {
+            cod = (Integer) CBCuartel.getSelectedItem();
+        } catch (Exception c) {
+            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+            return;
+        }
+
+        BrigadaData brigD = new BrigadaData();
+        brigD.eliminaBrigada(nomBrig, esp, cod);
+    }
 }
