@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class coneccionData {
 
     private static final String URL = "jdbc:mariadb://localhost/";
-    private static final String DB = "bomberos";//ver si la base de datos coinside
+    private static final String DB = "grupo76_bomberos";//ver si la base de datos coinside
     private static final String USER = "root";
     private static final String PASS = "";
     private static Connection connection;

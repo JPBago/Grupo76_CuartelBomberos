@@ -63,7 +63,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
         TablaIntBrigada = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        BAsignarsinie = new javax.swing.JButton();
         BotonNuevaBrigada = new javax.swing.JButton();
         BModiBrigada = new javax.swing.JButton();
         BLimpBrigada = new javax.swing.JButton();
@@ -110,11 +109,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Asignado Accidente/Siniestro:");
-
-        BAsignarsinie.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        BAsignarsinie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Asignar (2).png"))); // NOI18N
-        BAsignarsinie.setText("Asignar Siniestro");
-        BAsignarsinie.setPreferredSize(new java.awt.Dimension(100, 20));
 
         BotonNuevaBrigada.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BotonNuevaBrigada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/NewBrigada.png"))); // NOI18N
@@ -184,7 +178,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
             .addComponent(BEliminarBrig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BotonNuevaBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BModiBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BAsignarsinie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BBuscarBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BSalirBrigada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -193,9 +186,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BBuscarBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BAsignarsinie, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(53, 53, 53)
                 .addComponent(BotonNuevaBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BModiBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +194,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
                 .addComponent(BLimpBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BEliminarBrig, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(BSalirBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -231,9 +222,8 @@ public class Brigadas extends javax.swing.JInternalFrame {
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2))
+                                    .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2)
                                     .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
@@ -425,7 +415,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BModiBrigadaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BAsignarsinie;
     private javax.swing.JButton BBuscarBrigada;
     private javax.swing.JButton BEliminarBrig;
     private javax.swing.JButton BLimpBrigada;
@@ -518,7 +507,6 @@ public class Brigadas extends javax.swing.JInternalFrame {
         BotonNuevaBrigada.setVisible(true);
         BEliminarBrig.setVisible(false);
         BModiBrigada.setVisible(false);
-        BAsignarsinie.setVisible(false);
         borrarFilas();
     }
 
@@ -534,10 +522,8 @@ public class Brigadas extends javax.swing.JInternalFrame {
             TextBrigada.setText(brig.getNombreBrigada());
             if (brig.isLibre()) {
                 LabelEstado.setText("Brigada Libre");
-                BAsignarsinie.setVisible(true);
             } else {
                 LabelEstado.setText("Brigada Ocupada");
-                BAsignarsinie.setVisible(false);
             }
             BEliminarBrig.setVisible(true);
             BModiBrigada.setVisible(true);
