@@ -42,12 +42,48 @@ public class CuartelData {
         }
     }
 
-    public void modificarCuartel() {
+   public void modificarCuartel(Cuartel cuartel){
+        String sql = "UPDATE cuartel SET nombreCuartel = ?, direccion = ?, coord_X = ?, coord_Y = ?, telefono = ?, email = ?  WHERE  codCuartel = ?";
+        PreparedStatement ps = null;
+        try{
+            ps = con.prepareStatement(sql);
+           
+            ps.setString(1, cuartel.getNombreCuartel());
+            ps.setString(2, cuartel.getDireccion());
+            ps.setDouble(3, cuartel.getCoord_X());
+            ps.setDouble(4, cuartel.getCoord_Y());
+            ps.setString(5, cuartel.getTelefono());
+            ps.setString(6, cuartel.getEmail());
+            ps.setInt(7, cuartel.getCodCuartel());
 
+            int exito = ps.executeUpdate();
+            
+            if(exito == 1){
+                JOptionPane.showMessageDialog(null, "Modificado exitosamente.");
+            }else{
+                JOptionPane.showMessageDialog(null,"El cuartel no existe");
+            }
+        }catch(SQLException ex){
+            System.out.println("\"Error al acceder a la tabla cuartel \""+ex.getMessage());
+            
+        }
     }
 
-    public void eliminarCuartel() {
-
+    public void eliminarCuartel(int codCuartel){
+        String sql = "DELETE FROM cuartel WHERE codCuartel = ?";
+        Cuartel cuartel = null;
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, codCuartel);
+            
+            int filas = ps.executeUpdate();
+            if(filas>0){
+                JOptionPane.showMessageDialog(null, "cuartel borrado.");
+            }
+            ps.close();
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
+       }
     }
 
     public Cuartel buscarCuartel(int cod){

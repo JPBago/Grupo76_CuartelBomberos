@@ -20,7 +20,9 @@ import javax.swing.JOptionPane;
  * @author Eveel
  */
 public class Cuarteles extends javax.swing.JInternalFrame {
-
+boolean modificar = false;
+boolean nuevo = false;
+boolean buscar = false;
     /**
      * Creates new form Cuarteles
      */
@@ -56,12 +58,13 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         TextCelu = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        BLimpiarCuartel = new javax.swing.JButton();
         BNuevoCuartel = new javax.swing.JButton();
         BSalirCuar = new javax.swing.JButton();
         BModifCuartel = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BEliminar = new javax.swing.JButton();
         BBuscarCuartelxID = new javax.swing.JButton();
+        BGuardar = new javax.swing.JButton();
+        BCancelar = new javax.swing.JButton();
 
         setTitle("Detalles Cuarteles");
 
@@ -72,23 +75,44 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Codigo Cuartel : ");
 
+        TextId.setEditable(false);
+        TextId.setOpaque(false);
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Nombre del Cuartel : ");
+
+        TextNomCuar.setEditable(false);
+        TextNomCuar.setOpaque(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Domicilio:");
 
+        TextDomicilio.setEditable(false);
+        TextDomicilio.setOpaque(false);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Coordenada X:");
+
+        TextCoordX.setEditable(false);
+        TextCoordX.setOpaque(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Coordenada Y : ");
 
+        TextCoordY.setEditable(false);
+        TextCoordY.setOpaque(false);
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Correo : ");
 
+        TextCorreo.setEditable(false);
+        TextCorreo.setOpaque(false);
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Celular : ");
+
+        TextCaracteristicaCel.setEditable(false);
+        TextCaracteristicaCel.setOpaque(false);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("+54 (");
@@ -96,9 +120,8 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setText(") - 15");
 
-        BLimpiarCuartel.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        BLimpiarCuartel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/limpieza-de-datos (1).png"))); // NOI18N
-        BLimpiarCuartel.setText("Limpiar ");
+        TextCelu.setEditable(false);
+        TextCelu.setOpaque(false);
 
         BNuevoCuartel.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BNuevoCuartel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Nuevo cuartel.png"))); // NOI18N
@@ -121,10 +144,22 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         BModifCuartel.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BModifCuartel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Guardar.png"))); // NOI18N
         BModifCuartel.setText("Modificar ");
+        BModifCuartel.setEnabled(false);
+        BModifCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BModifCuartelActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/papelera-de-reciclaje.png"))); // NOI18N
-        jButton4.setText("Eliminar ");
+        BEliminar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/papelera-de-reciclaje.png"))); // NOI18N
+        BEliminar.setText("Eliminar ");
+        BEliminar.setEnabled(false);
+        BEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEliminarActionPerformed(evt);
+            }
+        });
 
         BBuscarCuartelxID.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         BBuscarCuartelxID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/buscar (3).png"))); // NOI18N
@@ -146,8 +181,7 @@ public class Cuarteles extends javax.swing.JInternalFrame {
                     .addComponent(BBuscarCuartelxID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BNuevoCuartel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BModifCuartel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BLimpiarCuartel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,22 +193,44 @@ public class Cuarteles extends javax.swing.JInternalFrame {
                 .addComponent(BNuevoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(BModifCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BLimpiarCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
+                .addComponent(BEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
                 .addComponent(BSalirCuar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        BGuardar.setText("Aceptar");
+        BGuardar.setEnabled(false);
+        BGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGuardarActionPerformed(evt);
+            }
+        });
+
+        BCancelar.setText("Cancelar");
+        BCancelar.setEnabled(false);
+        BCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BCancelar))
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel6)
@@ -199,10 +255,6 @@ public class Cuarteles extends javax.swing.JInternalFrame {
                 .addGap(66, 66, 66)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +298,11 @@ public class Cuarteles extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BCancelar)
+                    .addComponent(BGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,6 +318,77 @@ public class Cuarteles extends javax.swing.JInternalFrame {
 
     private void BBuscarCuartelxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarCuartelxIDActionPerformed
                 // Buscamos el bombero segun el ID ingresado:
+                buscar = true;
+                
+                TextId.setEditable(true);
+                TextId.setOpaque(true);
+                BGuardar.setEnabled(true);
+                BCancelar.setEnabled(true);
+                JOptionPane.showMessageDialog(this, "Selecciona el id del cuartel que deseas buscar.");
+        
+    }//GEN-LAST:event_BBuscarCuartelxIDActionPerformed
+
+    private void BNuevoCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoCuartelActionPerformed
+        nuevo = true;
+        
+        TextId.setEnabled(false);
+        TextId.setText(" ");
+        TextNomCuar.setEditable(true);
+        TextDomicilio.setEditable(true);
+        TextCaracteristicaCel.setEditable(true);
+        TextCelu.setEditable(true);
+        TextCorreo.setEditable(true);
+        TextCoordX.setEditable(true);
+        TextCoordY.setEditable(true);
+        
+       
+        TextNomCuar.setOpaque(true);
+        TextDomicilio.setOpaque(true);
+        TextCaracteristicaCel.setOpaque(true);
+        TextCelu.setOpaque(true);
+        TextCorreo.setOpaque(true);
+        TextCoordX.setOpaque(true);
+        TextCoordY.setOpaque(true);
+        
+        BGuardar.setEnabled(true);
+        BCancelar.setEnabled(true);
+        BBuscarCuartelxID.setEnabled(false);
+    }//GEN-LAST:event_BNuevoCuartelActionPerformed
+
+    private void BModifCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModifCuartelActionPerformed
+        TextId.setEnabled(false);
+        TextId.isOpaque();
+        
+        modificar = true;
+        
+        TextNomCuar.setEditable(true);
+        TextDomicilio.setEditable(true);
+        TextCaracteristicaCel.setEditable(true);
+        TextCelu.setEditable(true);
+        TextCorreo.setEditable(true);
+        TextCoordX.setEditable(true);
+        TextCoordY.setEditable(true);
+        
+        TextId.setOpaque(false);
+        TextNomCuar.setOpaque(true);
+        TextDomicilio.setOpaque(true);
+        TextCaracteristicaCel.setOpaque(true);
+        TextCelu.setOpaque(true);
+        TextCorreo.setOpaque(true);
+        TextCoordX.setOpaque(true);
+        TextCoordY.setOpaque(true);
+        
+        BGuardar.setEnabled(true);
+        BCancelar.setEnabled(true);
+        BNuevoCuartel.setEnabled(false);
+    }//GEN-LAST:event_BModifCuartelActionPerformed
+
+    private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+          CuartelData cuaData = new CuartelData();
+          Cuartel cua = new Cuartel();
+          
+        if(buscar == true){
+                 // Buscamos el bombero segun el ID ingresado:
         int numId;
 
         try {
@@ -272,40 +399,33 @@ public class Cuarteles extends javax.swing.JInternalFrame {
             return;
         }
 
-        CuartelData cuaData = new CuartelData();
-        Cuartel cua = cuaData.buscarCuartel(numId);
-
-
-        // Rellenamos el resto de los campos segun la búsqueda obtenida
+      
+         cua = cuaData.buscarCuartel(numId);
+         buscar =false;
+        
         rellenarCampos(cua);
-//       borrarCampos ();
-    }//GEN-LAST:event_BBuscarCuartelxIDActionPerformed
 
-    private void BNuevoCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoCuartelActionPerformed
-         CuartelData cuaData = new CuartelData();
-         Cuartel cua = new Cuartel();
-         
-                 if (TextId.getText().compareTo("") != 0) {
-                 
-                 int cuarId = 0;    
-            try {
-                cuarId = Integer.parseInt(TextId.getText());
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
-                return;
-            }
-            cua.setCodCuartel(cuarId);
-        } 
-      String nombre = TextNomCuar.getText();
+        BModifCuartel.setEnabled(true);
+        BEliminar.setEnabled(true);
+        BBuscarCuartelxID.setEnabled(false);
+        BNuevoCuartel.setEnabled(false);
+        buscar = false;
+        
+        
+    } else {
+            
+        }
+        if( nuevo == true){
+            String nombre = TextNomCuar.getText();
         if (!validarString(nombre)) {
             JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
             return;
         }
-          cua.setNombreCuartel(nombre);
+           cua.setNombreCuartel(nombre);
           
        String domicilio = TextDomicilio.getText();
-        if (!validarDir(domicilio)) {
-            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos 1.");
+        if (nuevo == true) {
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
             return;
         }
           cua.setDireccion(domicilio);
@@ -325,7 +445,7 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         
         String correo = TextCorreo.getText();
         if (!validarEmail(correo)) {
-            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos 2.");
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos (Correo).");
             return;
         }
           cua.setEmail(correo);
@@ -334,11 +454,122 @@ public class Cuarteles extends javax.swing.JInternalFrame {
                 + nombre , "CONFIRMAR !!", 2, 3);
         if (resp == 0) {
             cuaData.guardarCuartel(cua);
+            JOptionPane.showMessageDialog(this, "Bombero: "+nombre+" agregado con éxito.");
         }
-        borrarCampos();
+//        borrarCampos();
       
-    
-    }//GEN-LAST:event_BNuevoCuartelActionPerformed
+       
+        
+    }
+        if(modificar == true){
+           int cuaId = 0;
+     
+
+        if (TextId.getText().compareTo("") != 0) {
+
+            try {
+                cuaId = Integer.parseInt(TextId.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar solo números enteros.");
+                return;
+            }
+            cua.setCodCuartel(cuaId);
+        }
+            
+          String nombre = TextNomCuar.getText();
+        if (!validarString(nombre)) {
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
+            return;
+        }
+           cua.setNombreCuartel(nombre);
+          
+       String domicilio = TextDomicilio.getText();
+        if (!validarDir(domicilio)) {
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos.");
+            return;
+        }
+          cua.setDireccion(domicilio);
+          
+        double coordX = Double.parseDouble(TextCoordX.getText());    
+          cua.setCoord_X(coordX);
+          
+        double coordY = Double.parseDouble(TextCoordY.getText());    
+          cua.setCoord_Y(coordY);
+        
+        String celular = validarTelefono();
+        if (celular != null) {
+            cua.setTelefono(celular);
+        } else {
+            return;
+        }
+        
+        String correo = TextCorreo.getText();
+        if (!validarEmail(correo)) {
+            JOptionPane.showMessageDialog(this, "Ingrese caracteres Validos (Correo).");
+            return;
+        }
+          cua.setEmail(correo);
+             
+        int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de modificar datos del cuartel \n"
+                + nombre , "CONFIRMAR !!", 2, 3);
+        if (resp == 0) {
+            cuaData.modificarCuartel(cua);
+            JOptionPane.showMessageDialog(this, "Cuartel: "+nombre+" agregado con éxito.");
+        }
+//        borrarCampos();
+      
+    }                      
+        
+    }//GEN-LAST:event_BGuardarActionPerformed
+
+    private void BCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCancelarActionPerformed
+        TextId.setText("");
+        TextNomCuar.setText("");
+        TextDomicilio.setText("");
+        TextCaracteristicaCel.setText("");
+        TextCelu.setText("");
+        TextCorreo.setText(" ");
+        TextCoordX.setText("");
+        TextCoordY.setText("");
+        
+        TextId.setEditable(false);
+        TextNomCuar.setEditable(false);
+        TextDomicilio.setEditable(false);
+        TextCaracteristicaCel.setEditable(false);
+        TextCelu.setEditable(false);
+        TextCorreo.setEditable(false);
+        TextCoordX.setEditable(false);
+        TextCoordY.setEditable(false);
+        
+        TextId.setOpaque(false);
+        TextNomCuar.setOpaque(false);
+        TextDomicilio.setOpaque(false);
+        TextCaracteristicaCel.setOpaque(false);
+        TextCelu.setOpaque(false);
+        TextCorreo.setOpaque(false);
+        TextCoordX.setOpaque(false);
+        TextCoordY.setOpaque(false);
+        
+        BBuscarCuartelxID.setEnabled(true);
+        BNuevoCuartel.setEnabled(true);
+        BModifCuartel.setEnabled(false);
+        BEliminar.setEnabled(false);
+        
+        buscar = false;
+        nuevo = false;
+        modificar = false;
+    }//GEN-LAST:event_BCancelarActionPerformed
+
+    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarActionPerformed
+        CuartelData cuaData = new CuartelData();
+        Cuartel cua = new Cuartel();
+         int confirmacion = JOptionPane.showConfirmDialog(null,"¿De verdad querés remover este bombero?", "Confirma", JOptionPane.YES_NO_OPTION);
+          if(confirmacion == JOptionPane.YES_OPTION){
+        int cuaId = Integer.parseInt(TextId.getText());
+        
+        cuaData.eliminarCuartel(cuaId);
+          }
+    }//GEN-LAST:event_BEliminarActionPerformed
     private void borrarCampos() {
         TextId.setText("");
         TextNomCuar.setText("");
@@ -351,9 +582,15 @@ public class Cuarteles extends javax.swing.JInternalFrame {
     }
     
      private void dividirCel(String cel) {
-        String[] division = cel.split("-");
-        TextCaracteristicaCel.setText(division[-1]);
-        TextCelu.setText(division[0]);
+        try{
+            
+       
+         String[] division = cel.split("-");
+        TextCaracteristicaCel.setText(division[0]);
+        TextCelu.setText(division[1]);
+         }catch(NullPointerException npe){
+             System.out.println(npe.getMessage());
+         }
     }
    private void rellenarCampos(Cuartel cuartel) {
 
@@ -467,9 +704,14 @@ public class Cuarteles extends javax.swing.JInternalFrame {
         // Si pasa todas las verificaciones, el número es válido
         return codArea + "-" + cuerpoNum;
     }
+       private void MenuPrincipal(){
+           
+       }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscarCuartelxID;
-    private javax.swing.JButton BLimpiarCuartel;
+    private javax.swing.JButton BCancelar;
+    private javax.swing.JButton BEliminar;
+    private javax.swing.JButton BGuardar;
     private javax.swing.JButton BModifCuartel;
     private javax.swing.JButton BNuevoCuartel;
     private javax.swing.JButton BSalirCuar;
@@ -481,7 +723,6 @@ public class Cuarteles extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextDomicilio;
     private javax.swing.JTextField TextId;
     private javax.swing.JTextField TextNomCuar;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
