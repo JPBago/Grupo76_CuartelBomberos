@@ -200,16 +200,26 @@ boolean buscar = false;
                 .addContainerGap())
         );
 
+        BGuardar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/Guardar.png"))); // NOI18N
         BGuardar.setText("Aceptar");
+        BGuardar.setActionCommand("Aceptar");
         BGuardar.setEnabled(false);
+        BGuardar.setMaximumSize(new java.awt.Dimension(139, 33));
+        BGuardar.setMinimumSize(new java.awt.Dimension(139, 33));
+        BGuardar.setPreferredSize(new java.awt.Dimension(107, 33));
         BGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BGuardarActionPerformed(evt);
             }
         });
 
+        BCancelar.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
+        BCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupo76_cuartelbomberos/Imagenes/limpieza-de-datos (1).png"))); // NOI18N
         BCancelar.setText("Cancelar");
         BCancelar.setEnabled(false);
+        BCancelar.setMaximumSize(new java.awt.Dimension(139, 33));
+        BCancelar.setMinimumSize(new java.awt.Dimension(139, 33));
         BCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BCancelarActionPerformed(evt);
@@ -225,33 +235,33 @@ boolean buscar = false;
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BCancelar))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(1, 1, 1)
                         .addComponent(TextCaracteristicaCel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextCelu, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TextId)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TextNomCuar)
-                    .addComponent(TextDomicilio)
-                    .addComponent(TextCoordX)
-                    .addComponent(TextCoordY)
-                    .addComponent(TextCorreo))
+                        .addComponent(TextCelu))
+                    .addComponent(TextId, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(TextNomCuar, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextDomicilio, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextCoordX, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextCoordY, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(66, 66, 66)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -299,10 +309,10 @@ boolean buscar = false;
                         .addComponent(TextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BCancelar)
-                    .addComponent(BGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -318,7 +328,7 @@ boolean buscar = false;
 
     private void BBuscarCuartelxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarCuartelxIDActionPerformed
                 // Buscamos el bombero segun el ID ingresado:
-               JOptionPane.showMessageDialog(this, "Selecciona el id del cuartel que deseas buscar.");
+               JOptionPane.showMessageDialog(this, "Escrie el id del cuartel que deseas buscar.");
                 buscar = true;
                 
                 TextId.setEditable(true);
@@ -357,7 +367,7 @@ boolean buscar = false;
     }//GEN-LAST:event_BNuevoCuartelActionPerformed
 
     private void BModifCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModifCuartelActionPerformed
-        TextId.setEnabled(false);
+        TextId.setEditable(false);
         TextId.isOpaque();
         
         modificar = true;
@@ -393,13 +403,7 @@ boolean buscar = false;
         int numId;
 
         try {
-          
-                if(TextId.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Código de cuertel inexistente.");
-                return;
-        }else{
-                 numId = Integer.parseInt(TextId.getText());     
-                }
+                 numId = Integer.parseInt(TextId.getText()); 
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número de ID valido.");
             borrarCampos();
@@ -712,7 +716,8 @@ boolean buscar = false;
         BNuevoCuartel.setEnabled(true);
         BModifCuartel.setEnabled(false);
         BEliminar.setEnabled(false);
-        
+        BGuardar.setEnabled(false);
+        BCancelar.setEnabled(false);
         buscar = false;
         nuevo = false;
         modificar = false;
