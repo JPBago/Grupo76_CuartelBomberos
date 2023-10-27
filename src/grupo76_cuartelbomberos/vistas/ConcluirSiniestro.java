@@ -2,6 +2,7 @@ package grupo76_cuartelbomberos.vistas;
 
 import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
+import static grupo76_cuartelbomberos.vistas.ViewMenu.restaurarFondo;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
@@ -255,9 +256,8 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SalirActionPerformed
-        // TODO add your handling code here:
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+       restaurarFondo();
+      
         this.dispose();
     }//GEN-LAST:event_B_SalirActionPerformed
 

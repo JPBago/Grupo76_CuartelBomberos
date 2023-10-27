@@ -295,50 +295,6 @@ public class ViewMenu extends javax.swing.JFrame {
         escritorio.moveToFront(concluir);
     }
 
-    /**
-     import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class MiApp {
-    private JDesktopPane escritorio;
-    private JLabel fondo;
-
-    public MiApp() {
-        // Inicializa tu JDesktopPane y fondo aquí
-        escritorio = new JDesktopPane();
-        fondo = new JLabel(new ImageIcon("ruta/a/tu/imagen.png"));
-
-        // Configura el fondo
-        fondo.setBounds(0, 0, escritorio.getWidth(), escritorio.getHeight());
-        escritorio.add(fondo);
-        escritorio.moveToBack(fondo);
-
-        // Crea un método para restaurar el fondo
-        restaurarFondo();
-    }
-
-    public void restaurarFondo() {
-        escritorio.add(fondo);
-        escritorio.moveToBack(fondo);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Mi Aplicación");
-            MiApp app = new MiApp();
-
-            // Agrega otros componentes y configuraciones a la aplicación aquí
-
-            frame.add(app.escritorio);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(800, 600);
-            frame.setVisible(true);
-        });
-    }
-
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -374,31 +330,7 @@ public class MiApp {
                 }
             }
         });
-        
-        //JFrame principal = new JFrame ();
-        //ViewMenu menu = new ViewMenu ();
-        
-        //principal.add(menu.escritorio);
-        //principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //principal.setSize(1000, 628);
-        //principal.setVisible(true);
-        /*public void restaurarFondo() {
-        escritorio.add(fondo);
-        escritorio.moveToBack(fondo);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Mi Aplicación");
-            MiApp app = new MiApp();
-
-            // Agrega otros componentes y configuraciones a la aplicación aquí
-
-            frame.add(app.escritorio);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(800, 600);
-            frame.setVisible(true);
-        });*/
+     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -421,20 +353,10 @@ public class MiApp {
 
     
     public static void restaurarFondo () { 
-//        JDesktopPane menu = new JDesktopPane();
-//        JLabel fondis = new JLabel(new ImageIcon ("grupo76_cuartelbomberos.Imagenes.byn.jpg"));
-//        
-//        //configuro el fondo
-//        fondis.setBounds(0, 0,1000,682);
-//        menu.add (fondis);
-//        menu.moveToBack(fondis);
-       // escritorio.add(menu);
+
        escritorio.add(Fondo);
         escritorio.moveToBack(Fondo);
         Fondo.setVisible(true);
     }
-/*  public void restaurarFondo() {
-        escritorio.add(fondo);
-        escritorio.moveToBack(fondo);
-    }*/
+
 }

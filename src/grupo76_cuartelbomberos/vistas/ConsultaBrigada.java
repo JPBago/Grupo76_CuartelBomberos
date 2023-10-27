@@ -2,6 +2,7 @@ package grupo76_cuartelbomberos.vistas;
 
 import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
+import static grupo76_cuartelbomberos.vistas.ViewMenu.restaurarFondo;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -147,8 +148,7 @@ public class ConsultaBrigada extends javax.swing.JInternalFrame {
 
     private void BSalirConBriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirConBriActionPerformed
 
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+        restaurarFondo();
         this.dispose();
 
         // TODO add your handling code here:

@@ -2,6 +2,7 @@ package grupo76_cuartelbomberos.vistas;
 
 import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
+import static grupo76_cuartelbomberos.vistas.ViewMenu.restaurarFondo;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
@@ -239,8 +240,7 @@ public class DeclaracionSiniestro extends javax.swing.JInternalFrame {
 
     private void B_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SalirActionPerformed
         // Cerrar ventana y volver a la ventana principal
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+       restaurarFondo ();
         this.dispose();
     }//GEN-LAST:event_B_SalirActionPerformed
 

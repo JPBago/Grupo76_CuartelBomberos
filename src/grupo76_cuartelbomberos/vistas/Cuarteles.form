@@ -373,7 +373,6 @@
           <Image iconType="3" name="/grupo76_cuartelbomberos/Imagenes/Guardar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
-        <Property name="actionCommand" type="java.lang.String" value="Aceptar"/>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[139, 33]"/>

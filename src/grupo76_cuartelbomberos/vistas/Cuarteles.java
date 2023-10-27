@@ -9,6 +9,7 @@ package grupo76_cuartelbomberos.vistas;
 import grupo76_cuartelbomberos.coneccion.CuartelData;
 import grupo76_cuartelbomberos.entidades.Bomberos;
 import grupo76_cuartelbomberos.entidades.Cuartel;
+import static grupo76_cuartelbomberos.vistas.ViewMenu.restaurarFondo;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -320,8 +321,7 @@ boolean buscar = false;
 
     private void BSalirCuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirCuarActionPerformed
 
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+       restaurarFondo();
         this.dispose();
             // TODO add your handling code here:
     }//GEN-LAST:event_BSalirCuarActionPerformed

@@ -449,15 +449,16 @@ public class GestionBomber extends javax.swing.JInternalFrame {
     private void habiliBomberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habiliBomberActionPerformed
 
         BomberoData bomber = new BomberoData ();
-       // Bomberos bom = new Bomberos () ;
-       int bom = Integer.parseInt (TextId.getText());
-        
-     
-            LabelEstado.setText("Bombero Activo");
-            
+        int bom =0 ;
+       try { 
+        bom = Integer.parseInt (TextId.getText());
+         LabelEstado.setText("Bombero Activo");
+       }catch (NumberFormatException e) {
+           JOptionPane.showMessageDialog(this, "No es posible la habilitación sin completar los datos anteriores.");
+           } 
             bomber.habilitarBombero(bom);
         
-        
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_habiliBomberActionPerformed
 

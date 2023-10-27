@@ -2,6 +2,7 @@ package grupo76_cuartelbomberos.vistas;
 
 import grupo76_cuartelbomberos.coneccion.*;
 import grupo76_cuartelbomberos.entidades.*;
+import static grupo76_cuartelbomberos.vistas.ViewMenu.restaurarFondo;
 import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -148,8 +149,7 @@ public class ConsultaSiniestros extends javax.swing.JInternalFrame {
 
     private void BSalirConsulSiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirConsulSiniActionPerformed
 
-        ViewMenu ventana = new ViewMenu();
-        ventana.setVisible(true);
+      restaurarFondo ();
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_BSalirConsulSiniActionPerformed
