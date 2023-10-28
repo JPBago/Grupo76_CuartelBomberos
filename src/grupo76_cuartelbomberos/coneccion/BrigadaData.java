@@ -108,25 +108,6 @@ public class BrigadaData {
         }
     }
 
-    public void eliminaBrigada(String nom, String esp, int codCuartel) {
-        String sql = "DELETE FROM bridaga WHERE nombreBrig =? AND especialidad=? AND codCuartel=?";
-
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, nom);
-            ps.setString(2, esp);
-            ps.setInt(3, codCuartel);
-            int uno = ps.executeUpdate();
-            if (uno == 1) {
-                JOptionPane.showMessageDialog(null, "Se eliminó la Brigada "+nom+" Correctamente.", "ATENCION !!",1);
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay brigada que cumpla los requisitos", "ERROR", 2);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA TABLA BRIGADA\n" + ex.getMessage(), "ERROR CRITICO", 2);
-        }
-    }
-    
     public Brigada buscarBrigadaNom(String nom) {
         Brigada brig = null;
         Cuartel cuar = null;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package grupo76_cuartelbomberos.vistas;
 
 import grupo76_cuartelbomberos.coneccion.BomberoData;
@@ -20,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Eveel
+ * @author JPBago
  */
 public class Brigadas extends javax.swing.JInternalFrame {
 
@@ -33,15 +28,13 @@ public class Brigadas extends javax.swing.JInternalFrame {
         }
     };
 
-    /**
-     * Creates new form Brigadas
-     */
     public Brigadas() {
         initComponents();
         prepararTabla();
         cargarComboEsp();
         cargarComboCuartel();
         limpiarCampos();
+        CodBrig.setVisible(false);
     }
 
     /**
@@ -72,6 +65,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         CBCuartel = new javax.swing.JComboBox<>();
         LabelEstado = new javax.swing.JLabel();
+        CodBrig = new javax.swing.JLabel();
 
         setTitle("Detalles Brigadas");
 
@@ -208,29 +202,35 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         CBCuartel.setPreferredSize(new java.awt.Dimension(30, 25));
 
+        CodBrig.setText("CodBrig");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
-                                .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(CBEspecialidades, 0, 185, Short.MAX_VALUE)
-                                .addComponent(LabelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(151, 151, 151))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addGap(151, 151, 151))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5)
+                            .addComponent(TextBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(CBCuartel, 0, 185, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(CBEspecialidades, 0, 185, Short.MAX_VALUE)
+                            .addComponent(LabelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CodBrig)
+                        .addGap(49, 49, 49)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -249,8 +249,10 @@ public class Brigadas extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(CodBrig))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,7 +268,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(SP_TablaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -304,8 +306,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         bri.setLibre(true);
 
-        Brigada bri2 = brigD.buscarBrigadaEspecifica(nomBrig, cod);
-        if (bri2 != null) {
+        if (brigD.buscarBrigadaEspecifica(nomBrig, cod) != null) {
             JOptionPane.showMessageDialog(this, "Ya existe una brigada " + nomBrig + " en el Cuartel " + cod);
             return;
         }
@@ -331,11 +332,10 @@ public class Brigadas extends javax.swing.JInternalFrame {
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
             eliminarBrigada();
-        } catch (ClassCastException e){
-            JOptionPane.showMessageDialog(this, "No es posible elimnar la Brigada ya que aun esta ocupada!!");
+        } catch (ClassCastException e) {
+            JOptionPane.showMessageDialog(this, "No es posible elimnar la Brigada ya que tiene Bomberos asignados!!");
             return;
         }
-        limpiarCampos();
     }//GEN-LAST:event_BEliminarBrigActionPerformed
 
     private void BSalirBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirBrigadaActionPerformed
@@ -384,7 +384,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
         String nomBrig = TextBrigada.getText();
         if (!validarString(nomBrig)) {
-            JOptionPane.showMessageDialog(this, " Ingrese nombre de una  Brigada Valida ");
+            JOptionPane.showMessageDialog(this, "Ingrese nombre de una  Brigada Valido");
             return;
         }
         brig.setNombreBrigada(nomBrig);
@@ -400,7 +400,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
         try {
             codCuartel = (Integer) CBCuartel.getSelectedItem();
         } catch (Exception c) {
-            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un N° de Cuartel");
             return;
         }
         Cuartel cuart = new Cuartel();
@@ -413,8 +413,14 @@ public class Brigadas extends javax.swing.JInternalFrame {
             brig.setLibre(false);
         }
 
-        brigD.ModificarBrigada(brig);
-        limpiarCampos();
+        int codBrig = Integer.parseInt(CodBrig.getText());
+        brig.setCodBrigada(codBrig);
+
+        int resp = JOptionPane.showConfirmDialog(this, "Confirma las modificaciones en la Brigada ??", "CONFIRMAR CAMBIOS", 0, 3);
+        if (resp == 0) {
+            brigD.ModificarBrigada(brig);
+            limpiarCampos();
+        }
     }//GEN-LAST:event_BModiBrigadaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -426,6 +432,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
     private javax.swing.JButton BotonNuevaBrigada;
     private javax.swing.JComboBox<Integer> CBCuartel;
     private javax.swing.JComboBox<Especialidad> CBEspecialidades;
+    private javax.swing.JLabel CodBrig;
     private javax.swing.JLabel LabelEstado;
     private javax.swing.JScrollPane SP_TablaBomberos;
     protected javax.swing.JTable TablaIntBrigada;
@@ -507,6 +514,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
         CBCuartel.setSelectedIndex(-1);
         TextBrigada.setText("");
         LabelEstado.setText("");
+        CodBrig.setText("");
         BotonNuevaBrigada.setVisible(true);
         BEliminarBrig.setVisible(false);
         BModiBrigada.setVisible(false);
@@ -522,6 +530,7 @@ public class Brigadas extends javax.swing.JInternalFrame {
 
     private void rellenarCampos(Brigada brig) {
         if (brig != null) {
+            CodBrig.setText(brig.getCodBrigada() + "");
             TextBrigada.setText(brig.getNombreBrigada());
             if (brig.isLibre()) {
                 LabelEstado.setText("Brigada Libre");
@@ -533,34 +542,23 @@ public class Brigadas extends javax.swing.JInternalFrame {
             BotonNuevaBrigada.setVisible(false);
             cargarTabla(brig);
         } else {
-            limpiarCampos();
+            CodBrig.setText("");
+            LabelEstado.setText("");
+            borrarFilas();
         }
     }
 
     private void eliminarBrigada() {
         String nomBrig = TextBrigada.getText();
-        if (nomBrig.isEmpty() || nomBrig.equals(" ")) {
-            JOptionPane.showMessageDialog(this, "ingrese el nombre de la brigada");
+        int codBrigada = Integer.parseInt(CodBrig.getText());
+
+        int resp = JOptionPane.showConfirmDialog(this, "Esta seguro de Eliminar Brigada " + codBrigada + " " + nomBrig + " ??", "ELIMINAR BRIGADA", 2, 3);
+        if (resp == 0) {
+            BrigadaData brigD = new BrigadaData();
+            brigD.eliminaBrigada(codBrigada);
+            limpiarCampos();
+        } else {
             return;
         }
-
-        String esp = " ";
-        try {
-            esp = CBEspecialidades.getSelectedItem().toString();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "debe seleccionar una Especialidad ");
-            return;
-        }
-
-        int cod = 0;
-        try {
-            cod = (Integer) CBCuartel.getSelectedItem();
-        } catch (Exception c) {
-            JOptionPane.showMessageDialog(this, "debe seleccionar un N° de Cuartel");
-            return;
-        }
-
-        BrigadaData brigD = new BrigadaData();
-        brigD.eliminaBrigada(nomBrig, esp, cod);
     }
 }
