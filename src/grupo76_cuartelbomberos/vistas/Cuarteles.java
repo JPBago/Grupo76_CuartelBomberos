@@ -394,9 +394,11 @@ boolean buscar = false;
 
     private void BBuscarCuartelxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarCuartelxIDActionPerformed
                 // Buscamos el bombero segun el ID ingresado:
-               JOptionPane.showMessageDialog(this, "Escrie el id del cuartel que deseas buscar.");
+               JOptionPane.showMessageDialog(this, "Escribe el id del cuartel que deseas buscar.");
                 buscar = true;
                 
+                BNuevoCuartel.setEnabled(false);
+                TextId.setEnabled(true);
                 TextId.setEditable(true);
                 TextId.setOpaque(true);
                 TextId.setEnabled(true);
@@ -477,7 +479,10 @@ boolean buscar = false;
         try {
                  numId = Integer.parseInt(TextId.getText()); 
 
-                 
+//<<<<<<< Updated upstream
+//                 
+//=======
+//>>>>>>> Stashed changes
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número de ID valido.");
             borrarCampos();
@@ -496,8 +501,15 @@ boolean buscar = false;
          buscar =false;
         
         rellenarCampos(cua);
+
          L1.setVisible(false);
          
+
+        if(TextNomCuar.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "ID no existe en la base de datos.");
+            MenuPrincipal();
+        }
+
         BModifCuartel.setEnabled(true);
         BEliminar.setEnabled(true);
         BBuscarCuartelxID.setEnabled(true);
