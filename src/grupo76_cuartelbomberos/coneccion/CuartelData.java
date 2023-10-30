@@ -61,7 +61,8 @@ public class CuartelData {
             if(exito == 1){
                 JOptionPane.showMessageDialog(null, "Modificado exitosamente.");
             }else{
-                JOptionPane.showMessageDialog(null,"El cuartel no existe");
+                System.out.println("\"El cuartel con ese ID no existe\"");
+                
             }
         }catch(SQLException ex){
             System.out.println("\"Error al acceder a la tabla cuartel \""+ex.getMessage());
