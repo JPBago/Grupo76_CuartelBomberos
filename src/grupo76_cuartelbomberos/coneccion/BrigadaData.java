@@ -52,6 +52,7 @@ public class BrigadaData {
             ps.setString(2, brig.getEspecialidad().name());
             ps.setBoolean(3, brig.isLibre());
             ps.setInt(4, brig.getCodCuartel().getCodCuartel());
+            ps.setInt(5, brig.getCodBrigada());
             int aux = ps.executeUpdate();
             if (aux == 1) {
                 JOptionPane.showMessageDialog(null, "La Brigada  ha sido Actualizado exitosamente . ");

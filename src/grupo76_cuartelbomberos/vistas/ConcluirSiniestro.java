@@ -474,11 +474,17 @@ public class ConcluirSiniestro extends javax.swing.JInternalFrame {
                 RBSiSiniestro.setSelected(true);
                 RBNoSiniestro.setEnabled(false);
                 TF_Puntaje.setText(sin.getPuntuacion() + "");
+                TF_Puntaje.setEditable(false);
+                TF_Puntaje.setOpaque(false);
                 DC_FechaFin.setDate(Date.valueOf(sin.getFechaResoluc()));
+                DC_FechaFin.setEnabled(false);
             } else {
                 B_Guardar.setVisible(true);
                 RBNoSiniestro.setEnabled(true);
                 RBSiSiniestro.setSelected(false);
+                TF_Puntaje.setEditable(true);
+                TF_Puntaje.setOpaque(true);
+                DC_FechaFin.setEnabled(true);
             }
         }
     }
