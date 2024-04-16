@@ -4,8 +4,6 @@ import grupo76_cuartelbomberos.entidades.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class CuartelData {
@@ -16,9 +14,9 @@ public class CuartelData {
         con = coneccionData.Conectar();
     }
 
-    public void guardarCuartel(Cuartel cuar) {
+    public int guardarCuartel(Cuartel cuar) {
         String sql = "INSERT INTO cuartel (nombreCuartel, direccion, coord_X, coord_Y, telefono, email) VALUES (?,?,?,?,?,?)";
-
+        int ID = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -32,22 +30,23 @@ public class CuartelData {
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                cuar.setCodCuartel(rs.getInt("insert_cod"));
-                JOptionPane.showMessageDialog(null, "Bombero agregado correctamente.");
+                ID = rs.getInt("insert_id");
+                JOptionPane.showMessageDialog(null, "Cuartel agregado correctamente.");
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {
-            System.out.println("Error al guardar Cuartel nuevo:\\n\" + ex.getMessage()");
+            System.out.println("Error al guardar Cuartel nuevo:\n" + ex.getMessage());
         }
+        return ID;
     }
 
-   public void modificarCuartel(Cuartel cuartel){
+    public void modificarCuartel(Cuartel cuartel) {
         String sql = "UPDATE cuartel SET nombreCuartel = ?, direccion = ?, coord_X = ?, coord_Y = ?, telefono = ?, email = ?  WHERE  codCuartel = ?";
         PreparedStatement ps = null;
-        try{
+        try {
             ps = con.prepareStatement(sql);
-           
+
             ps.setString(1, cuartel.getNombreCuartel());
             ps.setString(2, cuartel.getDireccion());
             ps.setDouble(3, cuartel.getCoord_X());
@@ -57,45 +56,45 @@ public class CuartelData {
             ps.setInt(7, cuartel.getCodCuartel());
 
             int exito = ps.executeUpdate();
-            
-            if(exito == 1){
+
+            if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado exitosamente.");
-            }else{
-                System.out.println("\"El cuartel con ese ID no existe\"");
-                
+            } else {
+                System.out.println("El cuartel con ese ID no existe");
+
             }
-        }catch(SQLException ex){
-            System.out.println("\"Error al acceder a la tabla cuartel \""+ex.getMessage());
-            
+        } catch (SQLException ex) {
+            System.out.println("Error al acceder a la tabla cuartel \"" + ex.getMessage());
+
         }
     }
 
-    public void eliminarCuartel(int codCuartel){
+    public void eliminarCuartel(int codCuartel) {
         String sql = "DELETE FROM cuartel WHERE codCuartel = ?";
         Cuartel cuartel = null;
-        try{
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codCuartel);
-            
+
             int filas = ps.executeUpdate();
-            if(filas>0){
-                JOptionPane.showMessageDialog(null, "cuartel borrado.");
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(null, "Cuartel borrado.");
             }
             ps.close();
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel");
-       }
+        }
     }
 
-    public Cuartel buscarCuartel(int cod){
+    public Cuartel buscarCuartel(int cod) {
         Cuartel cuar = null;
         String sql = "SELECT * FROM cuartel WHERE codCuartel=?";
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, cod);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 cuar = new Cuartel();
                 cuar.setCodCuartel(rs.getInt("codCuartel"));
                 cuar.setNombreCuartel(rs.getString("nombreCuartel"));
@@ -104,13 +103,71 @@ public class CuartelData {
                 cuar.setCoord_Y(rs.getDouble("coord_Y"));
                 cuar.setTelefono(rs.getString("telefono"));
                 cuar.setEmail(rs.getString("email"));
+                JOptionPane.showMessageDialog(null, "Busqueda por ID exitosa !!");
+            } else {
+                JOptionPane.showMessageDialog(null, " ID ERRONEA.");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla Cuartel");
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA BASE DE BOMBEROS");
         }
-        
         return cuar;
     }
+
+    public Cuartel buscarCuartel(String nom) {
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM cuartel WHERE nombreCuartel=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nom);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                cuar.setNombreCuartel(rs.getString("nombreCuartel"));
+                cuar.setDireccion(rs.getString("direccion"));
+                cuar.setCoord_X(rs.getDouble("coord_X"));
+                cuar.setCoord_Y(rs.getDouble("coord_Y"));
+                cuar.setTelefono(rs.getString("telefono"));
+                cuar.setEmail(rs.getString("email"));
+                JOptionPane.showMessageDialog(null, "Busqueda por Nombre exitosa !!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Nombre ERRONEO.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA BASE DE BOMBEROS");
+        }
+        return cuar;
+    }
+
+    public Cuartel buscarCuartel(int cod, String nom) {
+        Cuartel cuar = null;
+        String sql = "SELECT * FROM cuartel WHERE codCuartel=? AND nombreCuartel=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cod);
+            ps.setString(2, nom);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                cuar = new Cuartel();
+                cuar.setCodCuartel(rs.getInt("codCuartel"));
+                cuar.setNombreCuartel(rs.getString("nombreCuartel"));
+                cuar.setDireccion(rs.getString("direccion"));
+                cuar.setCoord_X(rs.getDouble("coord_X"));
+                cuar.setCoord_Y(rs.getDouble("coord_Y"));
+                cuar.setTelefono(rs.getString("telefono"));
+                cuar.setEmail(rs.getString("email"));
+                JOptionPane.showMessageDialog(null, "Busqueda por ID y Nombre exitosa !!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Combinación de ID y Nombre ERRONEA.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR CON LA BASE DE BOMBEROS");
+        }
+        return cuar;
+    }
+
     public List<Cuartel> listarCuartel() {
         ArrayList<Cuartel> listCuarteles = new ArrayList<>();
         Cuartel cuartel = null;
@@ -128,7 +185,7 @@ public class CuartelData {
                 cuartel.setCoord_Y(rs.getDouble("coord_Y"));
                 cuartel.setTelefono(rs.getString("telefono"));
                 cuartel.setEmail(rs.getString("email"));
-                
+
                 listCuarteles.add(cuartel);
             }
         } catch (SQLException ex) {
